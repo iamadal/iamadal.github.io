@@ -1,0 +1,83 @@
+/*
+ * Custom CSS - jannatul
+ * 
+ */
+
+
+
+
+/* 1.0 Global Font Setting */
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+ body , html{ 
+  font-family: 'Roboto';
+  padding:0px;
+  margin:0px;  
+ }
+
+/*University Logo*/
+   .logo { margin:0 auto}
+
+/*Navigation System */
+.nav-main {
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 70%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+/* 4.0 Dropdown menu */
+
+.mainmenu                   { background-color: #4DB848; min-height: 46px; width:100%; z-index:999; }
+.mainmenu ul                { list-style: none; margin:0px; padding:0px; font-size:14px;}
+.mainmenu ul li             { float: left;  position: relative; border-left: 1px solid #3aa635  }
+.mainmenu ul li:first-child { border-left:0px;}
+.mainmenu ul li:last-child  { border-right: 0px;}
+.mainmenu ul li a           { display: block; padding: 15px; color: white; text-decoration: none; font-weight: normal ;}
+.mainmenu ul li a:hover     { background-color: #62b85e;}
+.mainmenu ul li ul          { position:absolute; left: -999999px; }
+.mainmenu ul li ul          { background: blue;}
+.mainmenu ul li:hover ul    { left:0px; }
+.mainmenu ul li ul li       { float: none; border-top: 1px solid #3aa635; width: 300px;}
+.mainmenu ul li ul li a     { background-color: #4DB848; padding: 10px; }
+
+
+/* 5.0 Content Area -The Slide Shows */
+  #slideshow { 
+  z-index: -99;
+  margin: 15px auto; 
+  position: relative; 
+  width: 70%;
+  
+}
+
+#slideshow > div { 
+  position: relative;
+}
+
+/* 7.0 Footer */
+
+/* 8.0 Settings for Responsive view */
+
+
+   
+    @media (min-width: 576px)  
+    {
+      .logo , .nav-main {width: 100%;}
+
+    }
+    @media (min-width: 768px)  
+    {
+      .logo , .nav-main {width: 80%;}
+    }
+    @media (min-width: 992px;)  
+    {
+      .logo , .nav-main {width: 70%;}
+    }
+    @media (min-width: 1200px) 
+    {
+       .logo , .nav-main {width: 70%;}
+    }
+  
