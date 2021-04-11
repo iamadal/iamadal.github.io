@@ -30,18 +30,18 @@
 
 /* 4.0 Dropdown menu */
 
-.mainmenu                   { background-color: #4DB848; min-height: 46px; width:100%; z-index:999; }
-.mainmenu ul                { list-style: none; margin:0px; padding:0px; font-size:14px;}
-.mainmenu ul li             { float: left;  position: relative; border-left: 1px solid #3aa635  }
+.mainmenu                   { background-color: #258666; min-height: 44px; width:100%; }
+.mainmenu ul                { list-style: none; margin:0px; padding:0px; font-size:12px;}
+.mainmenu ul li             { float: left; border-left: 1px solid #34B98B; position: relative;  }
 .mainmenu ul li:first-child { border-left:0px;}
 .mainmenu ul li:last-child  { border-right: 0px;}
 .mainmenu ul li a           { display: block; padding: 15px; color: white; text-decoration: none; font-weight: normal ;}
-.mainmenu ul li a:hover     { background-color: #62b85e;}
+.mainmenu ul li a:hover     { background-color: #339966;}
 .mainmenu ul li ul          { position:absolute; left: -999999px; }
 .mainmenu ul li ul          { background: blue;}
 .mainmenu ul li:hover ul    { left:0px; }
-.mainmenu ul li ul li       { float: none; border-top: 1px solid #3aa635; width: 300px;}
-.mainmenu ul li ul li a     { background-color: #4DB848; padding: 10px; }
+.mainmenu ul li ul li       { float: none; border-top: 1px solid #34B98B; width: 300px;}
+.mainmenu ul li ul li a     { background-color: #258666; padding: 10px; }
 
 
 /* 5.0 Content Area -The Slide Shows */

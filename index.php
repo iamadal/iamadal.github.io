@@ -12,7 +12,7 @@
 <body>
    <!-- University Logo -->
    <div class="logo">
-    <img src="img/logo.png" alt="GUB Logo" class="img-logo"/>
+    <img src="img/m.png" alt="GUB Logo" class="img-logo"/>
    </div>
    <!-- End of University Logo -->
    
@@ -25,8 +25,8 @@
                 <ul class="hidden-xs">
                    <li><a href=""><i class="fa fa-cog"></i> CPanel <br/><sub>Control panel of GUB.</sub>  </a></li>
                    <li><a href=""><i class="fa fa-music"></i> GAlert<br/><sub>Notify students about latest notice</sub>       </a></li>
-                   <li><a href=""><i class="fa fa-male"></i> STrack  <br/><sub>Studnet tracking system.</sub></a></li>
-                   <li><a href=""><i class="fa fa-upload"></i> Backup <br/><sub>Create a backup of your data</sub>         </a></li>
+                   <li><a href=""><i class="fa fa-upload"></i> Restore  <br/><sub>Restore Data</sub></a></li>
+                   <li><a href=""><i class="fa fa-download"></i> Backup <br/><sub>Backup Data</sub>         </a></li>
                </ul></li>
              <li><a href=""><span class="fa fa-newspaper-o"></span> Exam <span class="fa fa-caret-down"></span></a>
                <ul class="hidden-xs">
@@ -36,7 +36,7 @@
              </li>
              <li><a href=""> <i class="fa fa-institution"></i> Academic <span class="fa fa-caret-down"></span> </a>
               <ul class="hidden-xs">
-                  <li><a href=""><i class="fa fa-check"></i>  Apply <br/><sub>Online application for students</sub></a>           </li>
+                  <li><a href=""><i class="fa fa-check"></i>  GConnect <br/><sub>Connect with your GUB's friends</sub></a>           </li>
                   <li><a href=""><i class="fa fa-calculator"></i>  Fees Calculator     <br/><sub> Tution fees analyzer</sub></a>     </li>
                   <li><a href=""><i class="fa fa-user"></i>  My GUB       <br/><sub> Student login .</sub></a>  </li>
               </ul>
@@ -47,15 +47,6 @@
    <!-- End Navigation System --> 
    
    <!-- Slide show -->
-  <div id="slideshow">
-  <div>
-    <img class="responsive"  src="img/img7.png" alt="">
-  </div>
-  <div>
-    <img class="responsive" src="img/img8.jpg" alt="">
-  </div>
-  
-</div>
 </body>
   <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  rel='stylesheet'/>
   <link rel="stylesheet" href="css/styles.css">
