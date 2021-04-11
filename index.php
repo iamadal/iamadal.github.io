@@ -15,8 +15,8 @@
     <img src="img/m.png" alt="GUB Logo" class="img-logo"/>
    </div>
    <!-- End of University Logo -->
-   
-   <!-- Navigation System --> 
+
+   <!-- Navigation System -->
    <div class="nav-main">
     <div class="mainmenu">
         <ul>
@@ -34,7 +34,7 @@
                    <li><a href=""><i class="fa fa-globe"></i>  GOnline   <br/><sub>Online exam module</sub>         </a></li>
                </ul>
              </li>
-             <li><a href=""> <i class="fa fa-institution"></i> Academic <span class="fa fa-caret-down"></span> </a>
+             <li><a href=""> <i class="fa fa-institution"></i> Academics <span class="fa fa-caret-down"></span> </a>
               <ul class="hidden-xs">
                   <li><a href=""><i class="fa fa-check"></i>  GConnect <br/><sub>Connect with your GUB's friends</sub></a>           </li>
                   <li><a href=""><i class="fa fa-calculator"></i>  Fees Calculator     <br/><sub> Tution fees analyzer</sub></a>     </li>
@@ -44,8 +44,8 @@
        </ul>
     </div>
    </div>
-   <!-- End Navigation System --> 
-   
+   <!-- End Navigation System -->
+
    <!-- Slide show -->
 </body>
   <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  rel='stylesheet'/>
