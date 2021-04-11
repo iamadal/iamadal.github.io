@@ -36,7 +36,7 @@
              </li>
              <li><a href=""> <i class="fa fa-institution"></i> Academic <span class="fa fa-caret-down"></span> </a>
               <ul class="hidden-xs">
-                  <li><a href=""><i class="fa fa-check"></i>  GConnect <br/><sub>Connect with your GUB's friends</sub></a>           </li>
+                  <li><a href=""><i class="fa fa-comment"></i>  GConnect <br/><sub>Connect with your GUB's friends</sub></a>           </li>
                   <li><a href=""><i class="fa fa-calculator"></i>  Fees Calculator     <br/><sub> Tution fees analyzer</sub></a>     </li>
                   <li><a href=""><i class="fa fa-user"></i>  My GUB       <br/><sub> Student login .</sub></a>  </li>
               </ul>
