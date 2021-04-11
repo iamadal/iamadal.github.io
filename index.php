@@ -5,12 +5,13 @@
 	<title>Student Management System - Green University</title>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="js/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="css/normalizer.css"/>
+	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-   <!-- University Logo -->
+  <div class="container">
+       <!-- University Logo -->
    <div class="logo">
     <img src="img/m.png" alt="GUB Logo" class="img-logo"/>
    </div>
@@ -47,8 +48,70 @@
    <!-- End Navigation System -->
 
    <!-- Slide show -->
+   <br>	
+   <br>
+   <br>
+   <div class="slideshow-container">
+<div class="mySlides fade">
+  <div class="numbertext">1 / 5</div>
+  <img src="1.png" style="width:100%">
+  <div class="text">GUB's Management System</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 5</div>
+  <img src="2.png" style="width:100%">
+  <div class="text">Administration</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 5</div>
+  <img src="3.png" style="width:100%">
+  <div class="text"></div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / 5</div>
+  <img src="4.png" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">5 / 5</div>
+  <img src="3.png" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+<hr/>
+ <footer class="footer">
+ 
+ <div class="developers">
+   <ol>
+   	<li><b>Lead Developer:</b>  Arun Kumar</li>
+   	<li><b>UI/UX Design:</b>Jannatul Ferdaus</li>
+   	<li><b>Unit Testng:(Qunit,PHPUnit):</b> MD. Rakibul Islam</li>
+   	<li><b>PHP and MySQL Integration:</b> Arun Kumar</li>
+   </ol>
+ </div>
+<div class="gub">
+  <p><b>Special Thanks to: 
+ </b>Our honourable mam/sir - Department of CSE </p>
+</div> 
+</footer>
+</div>
+
 </body>
-  <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  rel='stylesheet'/>
-  <link rel="stylesheet" href="css/styles.css">
   <script src="js/script.js"></script>
+  <link href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'  rel='stylesheet'/>
 </html>

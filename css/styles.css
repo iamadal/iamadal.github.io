@@ -5,6 +5,67 @@
 
 
 
+/* Slide Show*/
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+
 
 /* 1.0 Global Font Setting */
 .responsive {
@@ -18,20 +79,26 @@
   margin:0px;  
  }
 
+
+
+
 /*University Logo*/
-   .logo { margin:0 auto}
+   
+   
+   
 
 /*Navigation System */
+.container {margin: 0 auto;}
 .nav-main {
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 70%), 0 2px 6px 2px rgb(60 64 67 / 15%);
   background-color: #fff;
-  margin: 0 auto;
+  z-index: 999;
 }
 
 /* 4.0 Dropdown menu */
 
-.mainmenu                   { background-color: #258666; min-height: 44px; width:100%; }
-.mainmenu ul                { list-style: none; margin:0px; padding:0px; font-size:12px;}
+.mainmenu                   { background-color: #258666; min-height: 46px; width:100%;}
+.mainmenu ul                { list-style: none; margin:0px; padding:0px; font-size:14px; z-index: 999}
 .mainmenu ul li             { float: left; border-left: 1px solid #34B98B; position: relative;  }
 .mainmenu ul li:first-child { border-left:0px;}
 .mainmenu ul li:last-child  { border-right: 0px;}
@@ -45,39 +112,34 @@
 
 
 /* 5.0 Content Area -The Slide Shows */
-  #slideshow { 
-  z-index: -99;
-  margin: 15px auto; 
-  position: relative; 
-  width: 70%;
-  
-}
 
-#slideshow > div { 
-  position: relative;
-}
+
+
 
 /* 7.0 Footer */
 
+hr {border: 1px solid #EBEDF0 }
+.footer {display: flex; flex-wrap: wrap; justify-content: space-between; } 
+.developers {width: 44.5%; background-color: #EBEDF0; border-radius: 10px; border:1px solid #EBEDF0;}
+.gub {background-color: #EBEDF0; border-radius: 10px; border:1px solid #EBEDF0;width:44.5%; }
 /* 8.0 Settings for Responsive view */
 
 
    
     @media (min-width: 576px)  
     {
-      .logo , .nav-main {width: 100%;}
-
+      .container { width: 100%}
     }
     @media (min-width: 768px)  
     {
-      .logo , .nav-main {width: 80%;}
+      .container { width: 95%}
     }
     @media (min-width: 992px;)  
     {
-      .logo , .nav-main {width: 70%;}
+      .container { width: 80%}
     }
     @media (min-width: 1200px) 
     {
-       .logo , .nav-main {width: 70%;}
+      .container { width: 70%}
     }
   
