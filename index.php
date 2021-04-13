@@ -46,7 +46,7 @@
     </div>
    </div>
    <!-- End Navigation System -->
-   <img src="img/teacher.jpg" class="responsive" alt=""/>
+   <img src="img/teacher.jpg" class="responsive" alt="" style="margin-top:20px;"/>
    <!-- Slide show -->
    <br>	
    <br>
