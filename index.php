@@ -51,34 +51,42 @@
    <br>	
    <br>
    <br>
-   <div class="slideshow-container">
+<div class="slideshow-container">
+
 <div class="mySlides fade">
   <div class="numbertext">1 / 5</div>
-  <img src="1.png" style="width:100%">
+  <img src="img/home.jpg" style="width:100%">
   <div class="text">GUB's Management System</div>
 </div>
 
 <div class="mySlides fade">
+  <div class="numbertext">1 / 5</div>
+  <img src="img/teacher.jpg" style="width:100%">
+  <div class="text">GUB's Management System</div>
+</div>
+
+
+<div class="mySlides fade">
   <div class="numbertext">2 / 5</div>
-  <img src="2.png" style="width:100%">
+  <img src="img/2.png" style="width:100%">
   <div class="text">Administration</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">3 / 5</div>
-  <img src="3.png" style="width:100%">
-  <div class="text"></div>
+  <img src="img/3.png" style="width:100%">
+  <div class="img/text"></div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">4 / 5</div>
-  <img src="4.png" style="width:100%">
+  <img src="img/4.png" style="width:100%">
   <div class="text">Caption Three</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">5 / 5</div>
-  <img src="3.png" style="width:100%">
+  <img src="img/3.png" style="width:100%">
   <div class="text">Caption Three</div>
 </div>
 
@@ -87,6 +95,8 @@
 <br>
 
 <div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
   <span class="dot"></span> 
   <span class="dot"></span> 
   <span class="dot"></span> 
