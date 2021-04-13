@@ -111,21 +111,62 @@
   <span class="dot"></span> 
   <span class="dot"></span> 
 </div>
-<hr/>
+
+
  <footer class="footer">
- 
- <div class="developers">
-   <ol>
-   	<li><b>Lead Developer:</b>  Arun Kumar</li>
-   	<li><b>UI/UX Design:</b>Jannatul Ferdaus</li>
-   	<li><b>Unit Testng:(Qunit,PHPUnit):</b> MD. Rakibul Islam</li>
-   	<li><b>PHP and MySQL Integration:</b> Arun Kumar</li>
-   </ol>
- </div>
-<div class="gub">
-  <p><b>Special Thanks to: 
- </b>Our honourable mam/sir - Department of CSE </p>
-</div> 
+  <div class="developers">
+   <p style="text-align:center">Developer Team</p>
+    <ul>
+	    <li><u>Lead Programmer:</u>&nbsp Arun Kumar Paul</li>
+	    <li><u>API Integration:</u>&nbsp Arun Kumar Paul</li>
+		<li><hr/><br/></li>
+    	<li><u>UI/UX Design:</u>&nbspJannatul Ferdaus</li>
+    	<li><u>MySQL Administration:</u>&nbspJannatul Ferdaus</li>
+		<li><hr/></br/></li>
+    	<li><u>Unit Test(QUnit):</u>&nbsp MD. Rakib Hossen</li>
+    	<li><u>Unit Test(PHPUnit):</u>&nbsp MD. Rakib Hossen</li>
+		<li><hr/></br/></li>
+		<li><u>Copyright(c) - 2021 </u>&nbsp Green university of Bangladesh</li>
+    </ul>
+  </div>
+  
+   <div class="contact">
+   <p>CONTACT US</p>
+   <p>
+     <u>Main Campus:</u><br/>
+        220/D, Begum Rokeya Sarani<br/> 
+	   (300 meter North Side of IDB Bhaban)
+	   <br/>Dhaka -1207<br/> 
+	    Bangladesh<br/><br/>
+		Phone: 9014725<br/>
+		       8031031<br/>
+			   8060116<br/>
+
+<br/> Cell
+<br/> 01757074304
+<br/> 01757074302
+<br/> 01757074303 
+<br/> 01757074301<br/>
+<br/>
+
+<u>Permanent campus:</u>
+<br/>Purbachal American city(kanchon, Rupganj).
+
+<br/>Cell<br/>
+     01713289217<br/>
+	 01764193396
+   </p>
+  </div>
+  
+   <div class="contact-us">
+   <p style="text-align:center">Social Connect</p>
+    <a href="#"><img src="img/fb.png" style="height:40px; width:40px;"/></a><br/>
+    <a href="#"><img src="img/pin.png" style="height:40px; width:40px;"/></a><br/>
+    <a href="#"><img src="img/lin.png" style="height:40px; width:40px;"/></a><br/>
+    <a href="#"><img src="img/you.jpg" style="height:40px; width:40px;"/></a><br/>
+    <a href="#"><img src="img/twi.png" style="height:40px; width:40px;"/></a><br/>
+    <a href="#"><img src="img/ins.jpg" style="height:40px; width:40px;"/></a><br/>
+  </div>
 </footer>
 </div>
 
