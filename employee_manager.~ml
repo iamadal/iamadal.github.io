@@ -53,7 +53,49 @@
 <XPD:REF name="DiagramOwner">9ayPlJY0rEWBLEQFBjEY0gAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLClassDiagramView" guid="N4Ec9eGgTkCB0CB1looQswAA">
 <XPD:REF name="Diagram">QsyEdgjKZ0C+zR5SV118cgAA</XPD:REF>
+<XPD:ATTR name="#OwnedViews" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedViews[0]" type="UMLClassView" guid="UCglDYmlp02hrsM1hjSMGgAA">
+<XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
+<XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
+<XPD:ATTR name="Left" type="integer">56</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">44</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">146</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">43</XPD:ATTR>
+<XPD:REF name="Model">eRYddcke3U6RDsqzXAU5gAAA</XPD:REF>
+<XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="EOKiUxdsTEG9rgMziYikswAA">
+<XPD:OBJ name="NameLabel" type="LabelView" guid="xSo0GBm18Ey0YNOKc9vYdwAA">
+<XPD:ATTR name="FontStyle" type="integer">1</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">abstract Class database</XPD:ATTR>
 </XPD:OBJ>
+<XPD:OBJ name="StereotypeLabel" type="LabelView" guid="Tf6+WOFpNECDX5OCdBMuhQAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+</XPD:OBJ>
+<XPD:OBJ name="PropertyLabel" type="LabelView" guid="YhEi5naTYEGrf/3o9jI5SAAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="AttributeCompartment" type="UMLAttributeCompartmentView" guid="f46ZdDtB50uvqywEvYLajAAA">
+<XPD:REF name="Model">eRYddcke3U6RDsqzXAU5gAAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OperationCompartment" type="UMLOperationCompartmentView" guid="SkXm1YAgO0e2VUv3lPZBAAAA">
+<XPD:REF name="Model">eRYddcke3U6RDsqzXAU5gAAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="TemplateParameterCompartment" type="UMLTemplateParameterCompartmentView" guid="04K0ZdBBokWA5c0zqM7aYwAA">
+<XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
+<XPD:REF name="Model">eRYddcke3U6RDsqzXAU5gAAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:ATTR name="#OwnedElements" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="OwnedElements[0]" type="UMLClass" guid="eRYddcke3U6RDsqzXAU5gAAA">
+<XPD:ATTR name="Name" type="string">abstract Class database</XPD:ATTR>
+<XPD:REF name="Namespace">9ayPlJY0rEWBLEQFBjEY0gAA</XPD:REF>
+<XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
+<XPD:REF name="Views[0]">UCglDYmlp02hrsM1hjSMGgAA</XPD:REF>
+<XPD:REF name="Views[1]">f46ZdDtB50uvqywEvYLajAAA</XPD:REF>
+<XPD:REF name="Views[2]">SkXm1YAgO0e2VUv3lPZBAAAA</XPD:REF>
+<XPD:REF name="Views[3]">04K0ZdBBokWA5c0zqM7aYwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[3]" type="UMLModel" guid="HpT8k17VnkmJCIPhTvDGOAAA">
