@@ -1,0 +1,32 @@
+/*
+ * Blogger Template - xOrigin
+ * Author: Adal Khan;
+ * Email: mdadalkhan@gmail.com;
+ */
+
+/* Syntex heighling */
+.kw   {color: blue; font-weight: bold;}
+.cmd  {} 
+/* Syntex Heightling end */
+
+
+
+ /* media queries - mobile first design */
+
+
+@media (min-width: 576px) { 
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1400px) {
+	
+}
+
