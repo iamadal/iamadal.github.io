@@ -13,7 +13,7 @@
 
 header.headSection {display: flex; flex: 1 0 1; flex-direction: row;  }
 h1.brandTitle {font-family: 'Roboto'; font-weight: 300; color: #71BF44}
-nav.navbar {background-color: #fff;  display: flex; flex-direction:row;  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 10%);}
+nav.navbar {background-color: #fff; height: 40px;  display: flex; flex-direction:row;  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 10%);}
 .navbar a {padding: 15px; color: #000; margin-left: 30px; text-decoration: none; font-family: 'Roboto'; font-size: 0.9em}
 .navbar a:hover {background-color: #F6F6F6;  border-bottom: 2px solid #4DB848;}
 .navbar a:first-child {margin: 0px;}
