@@ -1,1 +1,0 @@
-# iamadal.github.io
