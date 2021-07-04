@@ -1,0 +1,9 @@
+{
+  "name": "webapps",
+  "version": "1.0.0",
+  "description": "Web Application for Green University",
+  "main": "index.js ",
+  "repository": "https://github.com/iamadal/iamadal.github.io.git",
+  "author": "<mdadalkhan@gmail.com>",
+  "license": "MIT"
+}

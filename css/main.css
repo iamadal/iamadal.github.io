@@ -1,32 +1,24 @@
 /*
- * Blogger Template - xOrigin
- * Author: Adal Khan;
- * Email: mdadalkhan@gmail.com;
+ * Green University Management System
+ * 01. Lead Developer: ;
+ * 02. Database Design:;
+ * 03. API Integration:;
+ * 04. JEST Unit Testing:;
+ * 06. PHP Unit Testing: ;
+ * 07. 
  */
 
-/* Syntex heighling */
-.kw   {color: blue; font-weight: bold;}
-.cmd  {} 
-/* Syntex Heightling end */
+
+
+
+* { font-family: 'Roboto';  font-weight: 300 }
+
+
+
 
 
 
  /* media queries - mobile first design */
 
 
-@media (min-width: 576px) { 
-
-}
-@media (min-width: 768px) {
-
-}
-@media (min-width: 992px) {
-
-}
-@media (min-width: 1200px) {
-
-}
-@media (min-width: 1400px) {
-	
-}
 
