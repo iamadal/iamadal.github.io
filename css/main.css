@@ -1,35 +1,26 @@
-/*
- * Green University Management System
- * 01. Lead Developer: ;
- * 02. Database Design:;
- * 03. API Integration:;
- * 04. JEST Unit Testing:;
- * 06. PHP Unit Testing: ;
- * 07. 
- */
+/* Green University of Bangladesh - CSSStyles*/
+
+/* Container */
+.container    {width: 80%; margin: 0 auto; font-family: 'Roboto';}
+.container h2,p { font-weight: normal; color: #7BBC3C; text-align: center;}
+
+table       { margin: 0 auto; width: 100%; font-size: 0.9em  }
+table,tr,td {border-collapse: collapse; text-align: center; padding: 10px;}
+table tr:first-child {background-color: #f1f1f1; color: #000;}
+
+.list      {text-align: left; padding:}
+.list > li {padding: 5px;}
 
 
-/* Header section */
-
-header.headSection {display: flex; flex: 1 0 1; flex-direction: row;  }
-h1.brandTitle {font-family: 'Roboto'; font-weight: 300; color: #71BF44}
-nav.navbar {background-color: #fff; height: 40px;  display: flex; flex-direction:row;  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
-.navbar a {padding: 15px; color: #000; margin-left: 30px; text-decoration: none; font-family: 'Roboto'; font-size: 0.9em}
-.navbar a:hover {background-color: #F6F6F6;  border-bottom: 1px solid #4DB848;}
-.navbar a:first-child {margin: 0px;}
-.content { margin-top: 45px;}
+.complete {color: #0B6E2C}
+.running  {color: #6E2A0B}
+.test     {color: #6E2A0B}
 
 
 
 
 
-/* Development CODE - remove it in productions*/
-
- {border: 1px solid red; font-family: 'Roboto'}
-
- /* media queries - mobile first design */
-
-@media (max-width: 576px )
-{
-    h1 {font-size: 12px;}
-}
+/* media queries - mobile first design */
+@media (min-width: 576px) { p {font-size:0.9em}     }
+@media (min-width: 768px) { p {font-size:1em}   }
+@media (min-width: 1024px){ p {font-size:1.2em }  }
