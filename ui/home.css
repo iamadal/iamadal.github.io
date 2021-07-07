@@ -1,0 +1,46 @@
+/* CSSStyles v1.0 - Moblie First Design */
+
+/* default settigs */
+:root { font-family: 'Roboto';}
+
+/* Development CSS */
+
+ { border: 1px solid red; }
+
+
+/* Production mode - default settings*/
+
+/* 1. header section*/
+
+.head-section h1          { font-weight: 300}
+
+/* 2. navigation bars*/
+
+.navbar             { background-color: #f1f1f1;    display: flex; }
+.navbar a           {  text-decoration: none;       display: block;   flex: 0 1 10%; padding-top: 1.5em; text-align: center;}
+.navbar a:hover     { background-color: red;     transition: all 1s}
+.navbar .logo > img {            width: 4em;         height: auto; }
+
+
+
+
+
+
+
+
+
+
+
+/* media queries */
+
+
+@media (min-width: 576px){ .navbar a {flex: 0 0 20%;} }
+
+
+
+
+
+
+
+
+
