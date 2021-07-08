@@ -1,3 +1,4 @@
+
 /* Green University of Bangladesh - CSSStyles*/
 
 /* Container */
@@ -12,9 +13,15 @@ table tr:first-child {background-color: #f1f1f1; color: #000;}
 .list > li {padding: 5px;}
 
 
+
+
+
 .complete {color: #0B6E2C}
-.running  {color: #6E2A0B}
 .test     {color: #6E2A0B}
+
+
+
+
 
 
 
