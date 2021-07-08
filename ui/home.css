@@ -2,20 +2,28 @@
 
 {border: 1px solid red;}
 
+.head-section   {display: flex;}
+.head-section   {}
+.head-section h1{margin-left: 0.5em; font-family: 'Roboto'; font-weight: 700; font-size: 1.3em;vertical-align: middle; color: #43AB47;  margin-top: 1.2em }
+
+
+/*navbar*/
+.navbar         {background-color: #4BB93E; }
+.navbar a       {position: ;text-decoration: none; color:#fff; font-family: 'Roboto'; font-size: .9em; display: block; padding: 15px; }
+.navbar a:hover {transition: all 0.5s;background-color: #63D656;}
+
+
+
+
+@media (min-width: 768px) {
 /* header section */
 .head-section       {display: flex;}
 .head-section .logo { }
 .head-section  h1   {font-size: 1.5em;  margin-top: 28px; margin-left: 45px  ;font-family: 'Roboto';  font-weight: 700; color: #55B047}
 
 /* navbar*/
-.navbar         {height: 45px; ; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);background-color: chocolate; font-family: 'Roboto'; display: flex;}
-.navbar a       {font-size: 0.80em; text-decoration: none; text-align: center;color: #fff; display: block; padding: 15px; }
-.navbar a:hover {background-color: #E0782D; border-bottom: 2px solid #8A2BE2; padding: 15px;}
+.navbar         {height: 45px; ; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);background-color: #4BB93E; font-family: 'Roboto'; display: flex;}
+.navbar a       {font-size: 0.9em; text-decoration: none; text-align: center;color: #fff; display: block; padding: 15px; }
+.navbar a:hover {transition: all 0.5s;background-color: #63D656; border-bottom: 1px solid #ff0000; padding: 15px;}
 
-/* news */
-.news         {height: 15px; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);margin-top: 10px; background-color: blueviolet; color: #fff; font-family: 'Roboto'; font-size: 0.8em; padding: .3em}
-.news .update {padding: 0px; margin: 0px;t transition: scroll 2s;}
-
-.news div  {display: block; width: 200%; height: 30px; position: absolute; overflow: hidden; animation: scrollT 20s linear infinite;}
-.news span { float: left;  width: 50%; }
-@keyframes scrollT { 0% { left: 0; } 100% { left: -100%; }}
+}
