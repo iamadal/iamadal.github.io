@@ -1,46 +1,16 @@
-/* CSSStyles v1.0 - Moblie First Design */
+/*CSSStyles v1.0 - mobile first design*/
 
-/* default settigs */
-:root { font-family: 'Roboto';}
+{border: 1px solid red;}
 
-/* Development CSS */
+/* header section */
+.head-section       {display: flex;     }
+.head-section .logo { }
+.head-section  h1   {font-size: 1.5em;  margin-top: 28px; margin-left: 45px  ;font-family: 'Roboto';  font-weight: 700; color: #55B047}
 
- { border: 1px solid red; }
+/* navbar*/
+.navbar        {box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);background-color: chocolate; font-family: 'Roboto'; display: flex;}
+.navbar a      {font-size: 0.80em; text-decoration: none; text-align: center;color: #fff; display: block; padding: 15px; }
+.navbar a:hover{background-color: #E0782D;}
 
-
-/* Production mode - default settings*/
-
-/* 1. header section*/
-
-.head-section h1          { font-weight: 300}
-
-/* 2. navigation bars*/
-
-.navbar             { background-color: #f1f1f1;    display: flex; }
-.navbar a           {  text-decoration: none;       display: block;   flex: 0 1 10%; padding-top: 1.5em; text-align: center;}
-.navbar a:hover     { background-color: red;     transition: all 1s}
-.navbar .logo > img {            width: 4em;         height: auto; }
-
-
-
-
-
-
-
-
-
-
-
-/* media queries */
-
-
-@media (min-width: 576px){ .navbar a {flex: 0 0 20%;} }
-
-
-
-
-
-
-
-
-
+/* news */
+.news {box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);margin-top: 10px; background-color: blueviolet; color: #fff; font-family: 'Roboto'; font-size: 0.8em; padding: .3em}
