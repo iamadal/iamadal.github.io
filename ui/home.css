@@ -1,29 +1,2 @@
 /*CSSStyles v1.0 - mobile first design*/
 
-{border: 1px solid red;}
-
-.head-section   {display: flex; background: url("a.png") repeat;}
-.head-section   {}
-.head-section h1{ font-family: 'Roboto'; font-weight: 300; font-size: 1.3em;vertical-align: middle; color: #43AB47;  margin-top: 1.2em }
-
-
-/*navbar*/
-.navbar         {background-color: #4BB93E; }
-.navbar a       {text-decoration: none; color:#fff; font-family: 'Roboto'; font-size: .9em; display: block; padding: 15px; }
-.navbar a:hover {transition: all 0.5s;background-color: #63D656;}
-
-
-
-
-@media (min-width: 768px) {
-/* header section */
-.head-section       {display: flex;}
-.head-section .logo { }
-.head-section  h1   {  margin-left: 20px  ;font-family: 'Roboto';  font-weight: 300; color: #55B047}
-
-/* navbar*/
-.navbar         {height: 45px; ; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);background-color: #4BB93E; font-family: 'Roboto'; display: flex;}
-.navbar a       {font-size: 0.9em; text-decoration: none; text-align: center;color: #fff; display: block; padding: 15px; }
-.navbar a:hover {transition: all 0.5s;background-color: #63D656; border-bottom: 1px solid #ff0000; padding: 15px;}
-
-}

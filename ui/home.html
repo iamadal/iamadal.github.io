@@ -9,22 +9,77 @@
 	<title>Green Univeristy Management System</title>
 </head>
 <body>
-    <header class="head-section">
+    <!-- header section -header -->
+    <header class="head-section"> 
        <div class="logo"><img src="logo.svg" alt="logo" width="80px" height="auto"/></div>
-       <h1>Green University of Bangladesh</h1>
+       <h1  class="hTitle">Green University of Bangladesh <br><sub class="sub"> <i>GUB Management System</i> </sub></h1>
     </header>
+   <!-- navigation system -nav  -->
     <nav class="navbar">
-         <a href="#"><i class="fas fa-home"></i> Home <i class="fas fa-caret-down"></i></a>
-         <a href="#"><i class="fas fa-user"></i> Admin <i class="fas fa-caret-down"></i></a>
-         <a href="#"><i class="fas fa-key"></i> Login <i class="fas fa-caret-down"></i></a>
+         <svg aria-label="menu" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+         <a href="#"><i class="fas fa-home"></i>        Home  <i class="fas fa-caret-down"></i></a>
+         <a href="#"><i class="fas fa-user"></i>        Admin <i class="fas fa-caret-down"></i></a>
+         <a href="#"><i class="fas fa-key"></i>         Login  <i class="fas fa-caret-down"></i></a>
          <a href="#"><i class="fas fa-cog fa-spin"></i> Apps <i class="fas fa-caret-down"></i></a>
     </nav>
-    <div class="content">
-        <h1>Contents Goes Here</h1>
-        
-    </div>
+    <!-- contents -->
+    <main class="content">
+        <section class="content-main">
+            <div class="sliders">
+                
+            </div>
+        </section>
+        <section class="sidebar"></section>
+    </main>
+    <!-- footer -->
+    <footer class="footer">
+        <section class="devs"></section>
+        <section class="contact"></section>
+        <section class="connect"></section>
+    </footer>
 </body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="home.css"/>
 	<script src="home.js"></script>
+    <style>
+        /*Default Settings for mobile view*/
+
+        html, body {font-family: 'Roboto'}
+        header {border: 1px solid red; box-sizing: border-box;}
+        /*---------------------------------------------------*/
+        .head-section             {border: 1px solid #ddd;background: url("a.png") repeat; ; display: flex; flex-wrap: wrap; }
+        .head-section .logo       {}
+        .head-section .hTitle     {font-size: 1em; font-weight: 500; color: #75B931; margin-top: 2em; }
+        .head-section .hTitle .sub{font-weight: 300; text-decoration: italic ;color: #75B931; margin-top: 2em; }
+
+        /* navbar */
+        .navbar                 {}
+
+        .navbar .icon           {}
+        .navbar .icon:focus     {}
+        .navbar .icon:hover     {}
+
+        .navbar a               {}
+        .navbar a:hover         {}
+
+        /* content */
+        .content                        {}
+        .content .content-main          {}
+        .content .content-main .sliders {}
+        
+        .content .sidebar               {}
+
+        /* footer */
+        .footer .devs    {}
+        .footer .contact {}
+        .footer .connect {}
+
+
+
+       /* handling large screen*/
+       @media (min-width: 576px){
+            h1 {color: red;}
+       }
+
+    </style>
 </html>
