@@ -1,2 +1,211 @@
-/*CSSStyles v1.0 - mobile first design*/
+html,body { font-family: 'Roboto';scroll-behavior: smooth;}
+header    {border: 1px solid red;box-sizing: border-box;}
+/*---------------------------------------------------*/
+.head-section              { border: 1px solid #ddd;display: flex;flex-wrap: wrap;}
+.head-section .logo        { }
+.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #75B931;margin-top: 1em;}
+.head-section .hTitle .sub { font-weight: 300;color: #3C6E1B;}
 
+/* sidenav */
+    
+/* navbar */
+.navbar             { z-index: 100;background-color: #519c21;position: sticky;top: 0;display: flex;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+.navbar .icon       { background-color: #fff;padding: .4em}
+.navbar .icon:focus { }
+.navbar .icon:hover { background-color: #E4E6E7;cursor: pointer;}
+
+.navbar a       { display: none;border-left: 1px solid #5fb833;font-family: 'Roboto'; font-weight: 300;font-size: .9em;text-decoration: none;color: #fff;display: block;padding: 10px;}
+.navbar a:hover {background-color: #5fb833}
+
+/* content */
+.content                        {display: flex;flex-wrap: wrap;flex-direction: column;margin-top: 20px;}
+.content .content-main          { flex: 0 0 70%;margin-top: 5px;}
+.content .content-main .sliders { }
+
+.content .sidebar                  { flex: 1 0 29%;margin: 5px 0px;}
+.content .sidebar .news            { border: 1px solid #a1a1a1;margin: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+.content .sidebar .news a          { font-size: 14px;}
+.content .sidebar .news .news-card { padding: 5px;margin: 0px;background-color: #519C21;color: #fff;text-align: center;}
+.content .sidebar .news ol         {}
+.content .sidebar .news ol li      {}
+.content .sidebar .news ol li a    {padding: 5px;display: block;font-style: italic;}
+
+.content .sidebar .notice              { border: 1px solid #a1a1a1;margin: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+.content .sidebar .notice .notice-card { color: #fff;text-align:center;padding:5px;margin:0px;background-color: #519C21;}
+.content .sidebar .notice ol           { }
+.content .sidebar .notice ol li        { }
+.content .sidebar .notice ol li a      { padding: 5px; display: block; font-size: 14px; font-style: italic;}
+
+
+/* slider */
+
+
+/* footer */
+.footer                 { display: flex;flex-wrap: wrap;flex-direction: column;background-color: #519C21;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);align-content: center;padding: 15px;}
+.footer .devs           { flex: 1 0 33.33% }
+.footer .devs ul        { margin: 0px; padding: 0px; list-style: none;  }
+.footer .devs ul li     { color: #fff; font-size: 12px; }
+.footer .devs ul li a   { color: #fff; font-size: 12px; text-decoration: none}
+.footer .devs ul li img { vertical-align: middle; margin: 5px; }
+
+.footer .contact                { flex: 1 0 33.33% }
+.footer .contact .links         {}
+.footer .contact .links a       {text-decoration: none; display: block; padding: 5px; color: #fff; font-size: 12px;}
+.footer .contact .links a:hover {text-decoration: underline}
+
+.footer .connect { flex: 1 0 33.33%}
+.footer .inp     { padding: 10px;margin: 5px;outline: 0;}
+
+/* Slide Show*/
+.slideshow-container {
+    position: relative;
+    margin: auto;
+    margin-top: 10px;
+}
+
+/* Caption text */
+.text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bollets/indicators */
+.dot {
+    height: 5px;
+    width: 5px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .01
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .01
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+
+
+
+/* handling large screen*/
+@media (min-width: 768px) {
+    .head-section .hTitle {
+        font-size: 1.2em;
+        margin-top: 1em
+    }
+
+    .navbar .icon {
+        padding: .65em
+    }
+
+    .navbar a {
+        padding: 1em;
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .footer {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .content .content-main .sliders {
+        border: 1px solid #d3d3d3;
+        margin: 5px;
+        padding: 5px
+    }
+    
+    
+    .content .sidebar {
+    flex: 1 0 29%;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+    
+    .footer .inp {
+     padding: 9px;   
+    outline: 0;
+    }
+        
+}
+    
+    
+/*UI Components*/
+    .w-button {
+    -webkit-tap-highlight-color: transparent;
+    align-items: center;
+    background: 0 0;
+    border: 0;
+    border-radius: 3px;
+    color: #3740ff;
+    cursor: pointer;
+    display: inline-flex;
+    font: 500 .875rem/2.25rem Segoe UI,system-ui,-apple-system,sans-serif;
+    height: 40px;
+    justify-content: center;
+    letter-spacing: 1px;
+    outline: 0;
+    padding: 0 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+    overflow: hidden;
+    position: relative;
+    transition: background-color .2s,box-shadow .2s;
+    vertical-align: middle;
+    white-space: nowrap;
+  
+}
+    .w-button--primary, .w-button--primary:active, .w-button--primary:focus, .w-button--primary:hover {
+    background-color: #3740ff;
+    color: #fff;
+        margin: 5px;
+}
