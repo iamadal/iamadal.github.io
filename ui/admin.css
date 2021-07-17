@@ -1,18 +1,22 @@
 /* Admin Panel Design */
 
 body, html {font-family: 'Roboto'; overflow: hidden}
- {border: 1px solid red;}
+/* div {border: 1px solid red; }*/
 
 /* default settings for mobile view */
+#style-1::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);border-radius: 10px;background-color: #F5F5F5;}
+#style-1::-webkit-scrollbar {width: 12px;background-color: #F5F5F5;}
+#style-1::-webkit-scrollbar-thumb { border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(255,255,255,.1);background-color: #555;}
+
 
 
 
 @media (min-width: 375px){
     .container                     { display: flex}
-    .left-side                     { flex: 1 0 100px; height: 100vh; overflow: hidden; background-color: #2C3E4E; color: #fff; font-weight: 300;}
-    .left-side p                   { font-size: 14px; text-align: center; background-color: #2C3949}
+    .left-side                     { flex: 1 0 100px; height: 100vh; overflow: hidden; background: linear-gradient(#9C27B0,#9C27B0); color: #fff; font-weight: 300;}
+    .left-side p                   { font-size: 14px; text-align: center; }
     .right-side                    { flex: 1 0 80%; height: 100vh; overflow-x: hidden; overflow-y: scroll; background-color: #F0F0F0}
     .right-side p {padding: 10px;}
-    .right-side .header            { background-color: #fff;  position: sticky; top:0;}
+    .right-side .header            { background-color: #fff; z-index:100 ;  position: sticky; top:0;}
     .right-side .header .dashboard { border-bottom: 1px solid #EEEEEE;}
 }
