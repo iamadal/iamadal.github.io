@@ -1,12 +1,18 @@
 /* Admin Panel Design */
 
-body, html {font-family: 'Roboto'}
+body, html {font-family: 'Roboto'; overflow: hidden}
+ {border: 1px solid red;}
+
+/* default settings for mobile view */
 
 
-/* header */
 
-.top                    { }
-.admin-nav              { display: flex; align-content: space-between;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);background-color: #21960f; position: fixed; left:0; width: 100%;}
-.admin-nav .menus       { background-color: #fff; padding: 18px; }
-.admin-nav .menus:hover { cursor: pointer;background-color: #f1f1f1}
-.admin-nav .title       { margin: 0px; flex: 1 0 25%; margin: 0px;  color: #fff; padding-left: 5px; font-weight: 300; }
+@media (min-width: 375px){
+    .container                     { display: flex}
+    .left-side                     { flex: 1 0 100px; height: 100vh; overflow: hidden; background-color: #2C3E4E; color: #fff; font-weight: 300;}
+    .left-side p                   { font-size: 14px; text-align: center; background-color: #2C3949}
+    .right-side                    { flex: 1 0 80%; height: 100vh; overflow-x: hidden; overflow-y: scroll; background-color: #F0F0F0}
+    .right-side p {padding: 10px;}
+    .right-side .header            { background-color: #fff;  position: sticky; top:0;}
+    .right-side .header .dashboard { border-bottom: 1px solid #EEEEEE;}
+}
