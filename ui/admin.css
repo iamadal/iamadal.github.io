@@ -1,6 +1,8 @@
 /* Admin Panel Design */
 
-body, html {font-family: 'Roboto'; overflow: hidden}
+body, html  {
+  font-family: 'Roboto Slab', serif;
+}
 /* div {border: 1px solid red; }*/
 
 /* default settings for mobile view */
