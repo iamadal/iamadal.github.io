@@ -25,7 +25,8 @@ function showSlides() {
 const line = document.querySelector(".sub");
 
 function time(){
-     line.innerHTML = "GUB Management System<br/>" + new Date().toGMTString();
+     let dd = new Date();
+     line.innerHTML = "GUB Management System<br/>" + dd.getHour();
 }
 
 setInterval(time,1000);
