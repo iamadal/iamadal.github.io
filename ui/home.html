@@ -1,39 +1,52 @@
+
+
+
+
+
+
+
+
+
+
+<!-- UI -->
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="normalize.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="fav.png" />
-    <title>Green Univeristy Management System</title>
-</head>
-
-<body>
-    <!-- header section -header -->
-    <header class="head-section">
+    <link rel="stylesheet" href="views/css/normalize.min.css">
+    <link rel="shortcut icon" type="image/jpg" href="img/fav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Green University of Bangladesh</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header section -->
+      <header class="head-section">
         <div class="logo"><img src="img/logo.svg" alt="logo" width="80px" height="auto" /></div>
         <h1 class="hTitle">Green University of Bangladesh <br><sub class="sub"> <i>GUB Management System</i> </sub></h1>
-    </header>
-    <nav class="navbar">
-        <svg aria-label="menu" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-        </svg>
-        <a href="#"><i class="fas fa-home"></i> Home </a>
-        <a href="#"><i class="fas fa-user"></i> Admin </a>
-        <a href="#"><i class="fas fa-key"></i> Exam </a>
-        <a href="#"><i class="fas fa-cog fa-spin"></i> Tools </a>
-    </nav>
-    <marquee behavior="scroll" direction="left">Green University of Bangladesh</marquee>
-    <!-- contents -->
-    <main class="content">
-        <section class="content-main">
-            <div class="sliders">
+      </header>
+      <!-- Navigation System -->
+      <div class="navbar">
+        <ul>
+          <li><a href="index.php"> <i class="fa fa-home" aria-hidden="true"></i> Home </a></li>
+          <li><a href="views/exam.php"> <i class="fa fa-book" aria-hidden="true"></i> Exam </a></li>
+          <li><a href="views/admin.php"><i class="fa fa-cog" aria-hidden="true"></i> Admin </a></li>
+          <li><a href="views/login.php"><i class="fa fa-lock" aria-hidden="true"></i> Login </a></li>
+        </ul>
+        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"><i class="fa fa-circle"></i> Green University of Bangladesh initiated new Online Apps due to COVID-19 <a href="index.php"> Click Here to see Live Preview </a>  - All students must join with google meet in order to take online classes during COVID-19 - </marquee>
+      </div>
+      <!-- main content area -->
+      <div class="content">
+        <!-- Slider animation -->
+        <div class="mid-1">
+             <div class="sliders">
                 <div class="slideshow-container">
                     <div class="mySlides fade">
-                        <img src="img/home.jpg" style="width:100%">
+                        <h1>Green University of Bangladesh</h1>
+                        <p> Web Based Management System </p>
                         <div class="text">Admission</div>
                         <div class="numbertext">1 / 7</div>
                     </div>
@@ -69,7 +82,7 @@
                     </div>
                 </div>
                 <br>
-                <div style="text-align:center">
+                <div style="text-align:center; display: none">
                     <span class="dot"></span>
                     <span class="dot"></span>
                     <span class="dot"></span>
@@ -79,155 +92,116 @@
                     <span class="dot"></span>
                 </div>
             </div>
-        </section>
-        <section class="sidebar">
-            <div class="news">
-                <p class="news-card">Latest News </p>
-                <ol>
-                    <li><a href="#">Undergraduate Admission 2021 <i class="fas fa-check-circle"></i></a></li>
-                    <li><a href="#">GUB initiated an event </a></li>
-                    <li><a href="#">CSE Y1 S1 Training </a></li>
-                    <li><a href="#">ME & CE Department Fest</a></li>
-                    <li><a href="#">CSE Exam will held today(Zoom)</a></li>
-                </ol>
-            </div>
-            <div class="notice">
-                <p class="notice-card">Notice</p>
-                <ol>
-                    <li><a href="#">CSE Y2 S2 must...</a></li>
-                    <li><a href="#">Server may be restart on 21-07-2021</a></li>
-                    <li><a href="#">Online classes may remain closed till 01-07-2021</a></li>
-                    <li><a href="#">CSE Exam will held today</a></li>
-                    <li><a href="#">CSE Exam will held today</a></li>
-                </ol>
-            </div>
-        </section>
-    </main>
-    <div class="description">
-        <div class="exam">
-            <h1>Exam Plannner</h1>
         </div>
-        <div class="gPlus">
-            <h1>Connect with your GUB's Friends</h1>
+        <!-- Slider end -->
+        <!-- Action Section -->
+        <div class="mid-2">
+           <p style="background-color: #13940C; color: #fff;text-align: center;padding:5px; margin: 5px" ><i class="fa fa-external-link"></i>Access Point</p>
+           <div class="warp">
+              <a href="views/admin.php"><i class="fa fa-user"></i> Admin Dashboard</a>
+              <a href="views/student-home.php"><i class="fa fa-user"></i> Student's Dashboard</a>
+              <a href="view/teacher-home.php"><i class="fa fa-user"></i> Teacher's Dashboard</a>
+              <a href="views/exam.php"><i class="fa fa-book"></i> Exam Schedule</a>
+              <a href="views/contact.php"><i class="fa fa-book"></i> Contact</a>
+              <a href="views/tution.php"><i class="fa fa-book"></i> TFCalculator</a>
+           </div>
         </div>
-        <div class="admin">
-            <h1>System administration tools</h1>
+        <!-- Action Section End -->
+      </div>
+      <!-- footer section -->
+      <div class="footer">
+        <div class="developer">
+          <p style="text-align: center; margin: 0;padding: 5px"><i class="fa fa-globe"></i> Developer Team</p>
+          <ol>
+            <li><i class="fa fa-group"></i> Arun Kumar - Backend</li>
+            <li><i class="fa fa-group"></i> Janantul Ferdaus - FrontEnd</li>
+            <li><i class="fa fa-group"></i> RaKiB Hossain - QA</li>
+          </ol>
         </div>
-        <div class="Apps">
-            <h1>Apps for Students</h1>
+        <div class="sitemap">
+          <p style="text-align: center;margin: 0;padding: 5px"><i class="fa fa-address-book"></i> Contact </p>
+          <ol>
+            <li>Main Campus: <br>
+                220/D Begum Rokeya Sarani <br>
+                Dhaka -1207, Bangladesh</li>
+            <li>Phone: 9014725, 8031031, 8060116</li>
+            <li>Cell:  01757074304, 01757074302,</li>
+          </ol>
         </div>
+        <div class="connect">
+          <p style="text-align: center;margin: 0;padding: 5px"><i class="fa fa-envelope"></i> Subscribe US</p>
+          <div class="form-group">
+            
+            <input type="email" name="email-subscribe" placeholder="email"> <button>Subcribe</button>
+          </div>
+          <div class="social">
+            <a href="https://www.facebook.com"><img width="30px" height="auto" src="img/facebook.png" alt=""></a>
+            <a href="https://www.youtube.com"><img width="30px" height="auto" src="img/youtube.png" alt=""></a>
+            <a href="https://www.twitter.com"><img width="30px" height="auto" src="img/twitter.png" alt=""></a>
+            <a href="https://www.linkedin.com"><img width="30px" height="auto" src="img/linkedin.png" alt=""></a>
+            <a href="https://www.pinterest.com"><img width="30px" height="auto" src="img/pin.png" alt=""></a>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- footer -->
-    <footer class="footer">
-        <section class="devs">
-            <h3 style="color: #fff"><i class="fas fa-cog fa-spin"></i> Developer Team</h3>
-            <ul>
-                <li> <a href="#"> <img src="img/avater-male.png" height="auto" width="30px" alt="arun" /> Arun Kumar - Backend</a></li>
-                <li> <a href="#"> <img src="img/avater-female.png" height="auto" width="30px" alt="arun" /> Jannatul Ferdaus - Frontend</a></li>
-                <li> <a href="#"> <img src="img/avater-male.png" height="auto" width="30px" alt="arun" /> RaKib Ahmed - QA & Integration</a></li>
-            </ul>
-        </section>
-        <section class="contact">
-            <h3 style="color:#fff"><i class="fas fa-external-link-alt"></i> Useful links</h3>
-            <div class="links">
-                <a href="#"><i class="fas fa-external-link-alt"></i> Admin Panel</a>
-                <a href="#"><i class="fas fa-external-link-alt"></i> Exam Planner</a>
-                <a href="#"><i class="fas fa-external-link-alt"></i> UGC</a>
-                <a href="#"><i class="fas fa-external-link-alt"></i> Bangladesh Education Board</a>
-                <a href="#"><i class="fas fa-external-link-alt"></i> Bangladesh Education Board</a>
-                <a href="#"><i class="fas fa-external-link-alt"></i> Bangladesh Education Board</a>
-            </div>
-        </section>
-        <section class="connect">
-            <h3 style="color: #fff"><i class="fas fa-envelope"></i> Subscribe Us!</h3>
-            <input class="inp" type="email" placeholder="Enter your email">
-            <input type="button" class="w-button w-button--primary" value="Subscribe" />
-            <h3 style="color: #fff"><i class="fas fa-globe"></i> Connect With US</h3>
-            <div class="social">
-                <a href="https://www.facebook.com"><img width="50px" height="auto" src="img/facebook.png" alt=""></a>
-                <a href="https://www.youtube.com"><img width="50px" height="auto" src="img/youtube.png" alt=""></a>
-                <a href="https://www.twitter.com"><img width="50px" height="auto" src="img/twitter.png" alt=""></a>
-                <a href="https://www.linkedin.com"><img width="50px" height="auto" src="img/linkedin.png" alt=""></a>
-                <a href="https://www.pinterest.com"><img width="50px" height="auto" src="img/pin.png" alt=""></a>
-            </div>
-        </section>
-    </footer>
-    <div class="copy">
-        <p style="text-align: center"> Copyright © 2021 <br /> Green University of Bangladesh.</p>
-    </div>
-</body>
-
+  </body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </html>
 
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-<script src="home.js"></script>
+<!-- Stylesheets -->
 <style>
-/*Defaolt Settings for mobile view*/
+{border: 1px solid red;}
+body,html {font-family: 'Roboto'; background-color: #f0f0f0; margin:0;}
 
-html,body { font-family: 'Roboto';scroll-behavior: smooth;}
-header    {border: 1px solid red;box-sizing: border-box;}
-/*---------------------------------------------------*/
-.head-section              { border: 1px solid #ddd;display: flex;flex-wrap: wrap;}
+/* handle very small devices < 320px*/
+
+.container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+
+.head-section              { border: 1px solid #f0f0f0;display: flex;flex-wrap: wrap;}
 .head-section .logo        { }
-.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #75B931;margin-top: 1em;}
-.head-section .hTitle .sub { font-weight: 300;color: #3C6E1B;}
+.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'ubuntu';}
+.head-section .hTitle .sub { font-weight: 500;color: #3C6E1B;}
 
-/* sidenav */
-    
-/* navbar */
-.navbar             { height:36px; z-index: 100;background-color: #519c21;position: sticky;top: 0;display: flex;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
-.navbar .icon       { background-color: #fff;padding: .4em}
-.navbar .icon:focus { }
-.navbar .icon:hover { background-color: #E4E6E7;cursor: pointer;}
+.navbar ul                { font-size: 14px;font-weight: 300;margin: 0; padding: 0; font-family: 'ubuntu'; background: #13940c;}
+.navbar ul li             { display: inline-block; border-left: 1px solid #20B918;margin-left: -5px;}
+.navbar ul li:first-child { border-left:none; margin-left: 0px; }
+.navbar ul li a           { text-decoration: none; padding: 10px; display: block; color: #fff; }
+.navbar ul li a:hover     { background-color: #20B918; transition: all .3s}
+.navbar marquee           { background-color: #6518c4; color: #fff; font-family: 'open sans'; font-size: 14px; padding: 5px;}
+.navbar marquee  a        { color: #fff; font-style: italic; }
 
-.navbar a       { display: none;border-left: 1px solid #5fb833;font-family: 'Roboto'; font-weight: 300;font-size: .9em;text-decoration: none;color: #fff;display: block; padding: 10px}
-.navbar a:hover {background-color: #5fb833}
+.content         {display: flex; flex-direction: column; font-family: 'open sans'}
+.content .mid-1  {flex: 1 0 100%;}
+.content .mid-2  {flex: 1 0 100%; border: 1px solid #f0f0f0;}
 
-/* content */
-.content                        {display: flex;flex-wrap: wrap;flex-direction: column;margin-top: 20px;}
-.content .content-main          { flex: 0 0 70%;margin-top: 5px;}
-.content .content-main .sliders { }
+.content .mid-2  .warp a { display: block; margin: 5px; background-color: #46BC70; padding: 10px; color: #fff; font-family: 'ubuntu'; font-weight: 300; text-decoration: none }
+.content .mid-2  .warp a:hover {background-color: #5bde8a; cursor: pointer;}
 
-.content .sidebar                  { flex: 1 0 29%;margin: 5px 0px;}
-.content .sidebar .news            { border: 1px solid #a1a1a1;margin: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
-.content .sidebar .news a          { font-size: 14px;}
-.content .sidebar .news .news-card { padding: 5px;margin: 0px;background-color: #519C21;color: #fff;text-align: center;}
-.content .sidebar .news ol         {}
-.content .sidebar .news ol li      {}
-.content .sidebar .news ol li a    {padding: 5px;display: block;font-style: italic;}
+.footer                  { width: 100%;font-family: 'ubuntu';font-weight: 300; color: #fff; font-family: 'ubuntu'; display: flex; flex-direction: column;}
+.footer .developer       { background-color: #6518C4;}
+.footer .developer ol    { list-style: none; margin: 0;}
+.footer .developer ol li { font-size: 14px; padding: 5px }
 
-.content .sidebar .notice              { border: 1px solid #a1a1a1;margin: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
-.content .sidebar .notice .notice-card { color: #fff;text-align:center;padding:5px;margin:0px;background-color: #519C21;}
-.content .sidebar .notice ol           { }
-.content .sidebar .notice ol li        { }
-.content .sidebar .notice ol li a      { padding: 5px; display: block; font-size: 14px; font-style: italic;}
+.footer .sitemap         { background-color: #833bdb }
+.footer .sitemap ol      { list-style: none; margin: 0; }
+.footer .sitemap ol li   { font-size: 14px; padding: 5px}
+.footer .sitemap ol li a { color: #fff;}
 
+.footer .connect {background-color: #7526D6}
 
-/* slider */
-
-
-/* footer */
-.footer                 { display: flex;flex-wrap: wrap;flex-direction: column;background-color: #519C21;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);align-content: center;padding: 15px;}
-.footer .devs           { flex: 1 0 33.33% }
-.footer .devs ul        { margin: 0px; padding: 0px; list-style: none;  }
-.footer .devs ul li     { color: #fff; font-size: 12px; }
-.footer .devs ul li a   { color: #fff; font-size: 12px; text-decoration: none}
-.footer .devs ul li img { vertical-align: middle; margin: 5px; }
-
-.footer .contact                { flex: 1 0 33.33% }
-.footer .contact .links         {}
-.footer .contact .links a       {text-decoration: none; display: block; padding: 5px; color: #fff; font-size: 12px;}
-.footer .contact .links a:hover {text-decoration: underline}
-
-.footer .connect { flex: 1 0 33.33%}
-.footer .inp     { padding: 10px;margin: 5px;outline: 0;}
-
+.footer .connect .form-group                            {padding: 5px}
+.footer .connect .form-group input[type="email"]        {width: ;outline: 0; padding: 5px; border-radius: 3px; background-color: #f0f0f0; border: 1px solid #f0f0f0;}
+.footer .connect .form-group input[type="email"]:focus  {border: 1px solid #6518C4; transition: all 1s }
+.footer .connect .form-group button                     {text-transform: uppercase; margin-top: 2px;cursor: pointer; border: none; background-color: #13940C ;color: #fff;border-radius: 3px; padding: 5px}
+.footer .connect .form-group button:hover               {background-color: #4BD144}
+.footer .connect .social                                {padding: 10px;}
+/* Slider control*/
 /* Slide Show*/
 .slideshow-container {
     position: relative;
     margin: auto;
     margin-top: 10px;
+    margin-left: 2px;
 }
 
 /* Caption text */
@@ -292,88 +266,73 @@ header    {border: 1px solid red;box-sizing: border-box;}
         opacity: 1
     }
 }
-
-
-
-
-/* handling large screen*/
-@media (min-width: 768px) {
-    .head-section .hTitle {
-        font-size: 1.2em;
-        margin-top: 1em
-    }
-
-    .navbar .icon {
-        padding: 6px;
-    }
-
-    .navbar a {
-        padding: 10px;
-    }
-
-    .content {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-    }
-
-    .footer {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .content .content-main .sliders {
-        border: 1px solid #d3d3d3;
-        margin: 5px;
-        padding: 5px
-    }
-    
-    
-    .content .sidebar {
-    flex: 1 0 29%;
-    margin-top: 5px;
-    margin-right: 5px;
+ 
+/* media queries*/
+/* Very Small devices*/
+@media (min-width: 320px){
+     .developer,.sitemap {margin-bottom: 5px; }
 }
-    
-    .footer .inp {
-     padding: 9px;   
-    outline: 0;
-    }
-        
+/*Smart Phones*/
+@media (min-width: 481px){
+  .container {width: 98%; margin: 0 auto;}
+  .developer,.sitemap {margin-bottom: 5px; }
+
 }
-    
-    
-/*UI Components*/
-    .w-button {
-    -webkit-tap-highlight-color: transparent;
-    align-items: center;
-    background: 0 0;
-    border: 0;
-    border-radius: 3px;
-    color: #3740ff;
-    cursor: pointer;
-    display: inline-flex;
-    font: 500 .875rem/2.25rem Segoe UI,system-ui,-apple-system,sans-serif;
-    height: 40px;
-    justify-content: center;
-    letter-spacing: 1px;
-    outline: 0;
-    padding: 0 15px;
-    text-decoration: none;
-    text-transform: uppercase;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeSpeed;
-    overflow: hidden;
-    position: relative;
-    transition: background-color .2s,box-shadow .2s;
-    vertical-align: middle;
-    white-space: nowrap;
-  
+/* Table */
+@media (min-width: 768px){
+  .container          {width: 80%;margin: 0 auto;}
+  .container .content {flex-direction: row;}
+  .content .mid-1     {flex: 1 0 60%;}
+  .content .mid-2     {flex: 1 0 40%;}
+
+  .footer             {flex-direction: row}
+  .footer  .developer {flex: 1 0 30%;}
+  .footer  .sitemap   {flex: 1 0 30%;}
+  .footer  .connect   {flex: 1 0 30%;}
+  .developer,.sitemap {margin-bottom: 0px; }
+
 }
-    .w-button--primary, .w-button--primary:active, .w-button--primary:focus, .w-button--primary:hover {
-    background-color: #3740ff;
-    color: #fff;
-        margin: 5px;
+/*Desktop*/
+@media (min-width: 1364px) {
+  .container          {width: 75%;margin: 0 auto;}
+  .container .content {flex-direction: row;}
+  .content .mid-1     {flex: 1 0 70%;}
+  .content .mid-2     {flex: 1 0 30%;}
+
+  .footer             {flex-direction: row}
+  .footer  .developer {flex: 1 0 33.3%;}
+  .footer  .sitemap   {flex: 1 0 33.3%;}
+  .footer  .connect   {flex: 1 0 33.%;}
+  .developer,.sitemap {margin-bottom: 0px; }
 }
+
 </style>
+<!-- Script -->
+<script>
+	   /* Header clock*/
+     const line = document.querySelector(".sub"); function time(){line.innerHTML = "GUB Management System<br/>" + new Date().toLocaleString();};setInterval(time,1000);
+    /* Slider control */
+
+     /* Slide show */
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 4000); // Change image every 2 seconds
+}
+
+    /* Slider control end*/
+</script>
