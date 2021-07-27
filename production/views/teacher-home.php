@@ -21,7 +21,7 @@
 			<div class="navbar">Navbar</div>
 			
 			<!-- main content area -->
-			<div class="content">Content</div>
+			<div class="content"><h1>Teacher's Panel</h1></div>
 			
 			<!-- footer section -->
 			<div class="footer">

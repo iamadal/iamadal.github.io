@@ -201,6 +201,9 @@ input[type="submit"],input[type="reset"]
 input[type="submit"] {background-color: purple}
 input[type="reset"]  {background-color: red}
 
+input[type="submit"]:hover {background-color: #b019b0}
+input[type="reset"]:hover  {background-color: #ff5e5e}
+
 </style>
 
 <script>
