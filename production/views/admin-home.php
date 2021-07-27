@@ -24,16 +24,14 @@
 			<div class="content">Content</div>
 			
 			<!-- footer section -->
-			<div class="footer">
-				<p>Copyright&copy; Department of CSE - GUB - 2021</p>
-			</div>
+			<div class="footer">footer</div>
 		</div>
 	</body>
 </html>
 <!-- Stylesheets -->
 <style>
        {border: 1px solid red;}
-body,html {font-family: 'Roboto'; font-weight: 300}
+body,html {font-family: 'ubuntu'; font-weight: 300}
 /* handle very small devices < 320px*/
 .container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 
@@ -46,25 +44,23 @@ body,html {font-family: 'Roboto'; font-weight: 300}
 /* media queries*/
 /* Very Small devices*/
 @media (min-width: 320px){
-	.container {width: 98%;margin:0 auto;}
+	.container {width: 98%}
 }
 /*Smart Phones*/
 @media (min-width: 481px){
-    .container {width: 98%;margin:0 auto;}
+    .container {width: 98%}
 }
 /* Table */
 @media (min-width: 768px){
-   .container {width: 80%;margin:0 auto;}
+   .container {width: 80%}
 }
 /*Desktop*/
 @media (min-width: 1364px){
-	.container {width: 75%; margin:0 auto;}
+	.container {width: 75%}
 }
 </style>
 <!-- Script -->
 <script>
 	 /* Header clock*/
      const line = document.querySelector(".sub"); function time(){line.innerHTML = "GUB Management System<br/>" + new Date().toLocaleString();};setInterval(time,1000);
-</script><?php
-   echo "Admin";
-?>
+</script>

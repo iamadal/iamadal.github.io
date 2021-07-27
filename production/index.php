@@ -35,7 +35,7 @@
         <ul>
           <li><a href="index.php"> <i class="fa fa-home" aria-hidden="true"></i> Home </a></li>
           <li><a href="views/exam.php"> <i class="fa fa-book" aria-hidden="true"></i> Exam </a></li>
-          <li><a href="views/admin.php"><i class="fa fa-cog" aria-hidden="true"></i> Admin </a></li>
+          <li><a href="views/admin-login.php"><i class="fa fa-cog" aria-hidden="true"></i> Admin </a></li>
           <li><a href="views/login.php"><i class="fa fa-lock" aria-hidden="true"></i> Login </a></li>
         </ul>
         <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"><i class="fa fa-circle"></i> <?php echo $marquee ?></marquee>
@@ -100,7 +100,7 @@
         <div class="mid-2">
            <p style="background-color: #13940C; color: #fff;text-align: center;padding:5px; margin: 5px" ><i class="fa fa-external-link"></i>Access Point</p>
            <div class="warp">
-              <a href="views/admin.php"><i class="fa fa-user"></i> Admin Dashboard</a>
+              <a href="views/admin-home.php"><i class="fa fa-user"></i> Admin Dashboard</a>
               <a href="views/student-home.php"><i class="fa fa-user"></i> Student's Dashboard</a>
               <a href="view/teacher-home.php"><i class="fa fa-user"></i> Teacher's Dashboard</a>
               <a href="views/exam.php"><i class="fa fa-book"></i> Exam Schedule</a>
@@ -179,7 +179,7 @@ body,html {font-family: 'Roboto'; background-color: #f0f0f0; margin:0;}
 .content .mid-2  .warp a { display: block; margin: 5px; background-color: #46BC70; padding: 10px; color: #fff; font-family: 'ubuntu'; font-weight: 300; text-decoration: none }
 .content .mid-2  .warp a:hover {background-color: #5bde8a; cursor: pointer;}
 
-.footer                  { width: 100%;font-family: 'ubuntu';font-weight: 300; color: #fff; font-family: 'ubuntu'; display: flex; flex-direction: column;}
+.footer                  { width: 100%;font-family: 'Roboto';font-weight: 300; color: #fff; display: flex; flex-direction: column;}
 .footer .developer       { background-color: #6518C4;}
 .footer .developer ol    { list-style: none; margin: 0;}
 .footer .developer ol li { font-size: 14px; padding: 5px }
