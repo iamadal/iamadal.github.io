@@ -1,3 +1,9 @@
+<?php 
+     session_start();
+ ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -18,7 +24,9 @@
 				</header>
 			</div>
 			<!-- Navigation System -->
-			<div class="navbar">Navbar</div>
+			<div class="navbar">
+				<a href="logout.php">Logout</a>
+			</div>
 			
 			<!-- main content area -->
 			<div class="content">Content</div>
@@ -65,6 +73,7 @@ body,html {font-family: 'ubuntu'; font-weight: 300}
 <script>
 	 /* Header clock*/
      const line = document.querySelector(".sub"); function time(){line.innerHTML = "GUB Management System<br/>" + new Date().toLocaleString();};setInterval(time,1000);
-</script><?php
-   echo "Admin";
-?>
+</script>
+
+
+<?php echo var_dump($_SESSION) ?>

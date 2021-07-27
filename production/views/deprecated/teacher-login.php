@@ -1,3 +1,6 @@
+<!-- MC -->
+
+<!-- UI -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -21,15 +24,27 @@
 			<!-- main content area -->
 			<div class="content">
               <div class="title-wrap">
+              	<img src="img/avater-male.png" height="80px" width="80px">
               	<h1>  <i class="fa fa-user"></i> Please verify your identity</h1>
-              	<p>   <i class="fa fa-lock"></i> Admin login</p>
+              	<p>   <i class="fa fa-lock"></i> Student Login</p>
               </div>
 
+             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
               <div class="input-wrap">
-              	  <div> <span><i class="fa fa-envelope"></i> Email</span><input id="admin-email" type="email"    placeholder="Email"></div>
-              	  <div> <span><i class="fa fa-lock"></i></span> Password<input id="admin-pass" type="password" placeholder="Password"></div>
-                  <div><input class="login-button" type="button" value="login"></div>
+              	  <div> 
+              	  	 <i class="fa fa-user"></i> Username
+              	  	 <input id="admin-email" type="text"  name="username"  placeholder="username"></div>
+              	  
+
+              	  <div>
+              	    <i class="fa fa-lock"></i> Password
+              	    <input id="admin-pass" type="password" name="password" placeholder="Password" class="">
+              	  </div>
+                  
+
+                  <div><input class="login-button" type="submit" value="login"></div>
               </div>
+			</form>
 			</div>
 			
 			<!-- footer section -->
@@ -52,18 +67,19 @@ body,html {font-family: 'Roboto';}
 .head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'ubuntu';}
 .head-section .hTitle .sub { font-weight: 500;color: #3C6E1B;}
 
-.footer p {text-align: center; font-family: 'Roboto' ; font-weight: normal; font-size: 14px; color: #fff; background-color: purple}
+.footer p {text-align: center; font-family: 'Roboto' ; font-weight: normal; font-size: 14px; color: #fff; background-color: #fc7703; padding: 5px}
 
 .content .title-wrap         { font-family: 'Roboto'; font-weight: normal}
 .content .title-wrap h1      { font-family: 'Roboto'; font-weight: 300; text-align: center; font-size: 24px}
 .content .title-wrap p       { font-family: 'Roboto'; font-weight: 300; text-align: center;}
+.content .title-wrap img     {margin-left: 40%;}
 
 .content .input-wrap         {}
 .content .input-wrap  div    { padding: 2px; width: 100%; margin: 0 auto}
 
 #admin-email,#admin-pass {width: 100%;padding: 10px; margin-left: -1px; border: 1px solid #f0f0f0; background-color: #ddd; border-radius: 5px}
-#admin-email:focus,#admin-pass:focus {border: 1px solid purple; transition: all  1s}
-.login-button {text-transform: uppercase;background-color: purple;padding: 10px; color: #fff; border: 1px solid purple; width: 100%; border-radius: 5px}
+#admin-email:focus,#admin-pass:focus {border: 1px solid #fc7703; transition: all  1s}
+.login-button {text-transform: uppercase;background-color: #fc7703;padding: 10px; color: #fff; border: 1px solid #fc7703; width: 100%; border-radius: 5px}
 
 
 .container {width: 100%}
