@@ -1,8 +1,9 @@
 <?php 
-     session_start();
- ?>
-
-
+   session_start();
+   if(isset($_SESSION['role']) && $_SESSION['role'] != 'user'){
+   	  header("location: 404.php");
+   }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,11 +70,10 @@ body,html {font-family: 'ubuntu'; font-weight: 300}
 	.container {width: 75%; margin:0 auto;}
 }
 </style>
+
 <!-- Script -->
 <script>
 	 /* Header clock*/
      const line = document.querySelector(".sub"); function time(){line.innerHTML = "GUB Management System<br/>" + new Date().toLocaleString();};setInterval(time,1000);
 </script>
 
-
-<?php echo var_dump($_SESSION) ?>

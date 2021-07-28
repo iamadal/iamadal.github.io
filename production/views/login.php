@@ -1,20 +1,26 @@
 <!-- MC -->
 <?php
-// Initialize the session
 session_start();
- 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["username"]) && $_SESSION["username"] === true){
-    header("location: admin-home.php");
-   
 
-
-    exit; // must terminate script
+if(isset($_SESSION['role'])){
+  switch ($_SESSION['role']) {
+      case 'user':
+            header("location: student-home.php");
+            break;
+       case 'sir':
+            header("location:  teacher-home.php"); 
+            break;
+     case 'admin':
+            header("location: admin-home.php");
+           break;
+     default: 
+         echo "Not found";
+         break;
+    }
 }
- 
+
+
 require_once "core/dbm.php";
- 
-// Define variables and initialize with empty values
 $username     = "";
 $password     = "";
 $username_err = ""; 
@@ -51,7 +57,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username; 
                             $_SESSION["role"]     = $role;
                             $_SESSION["status"]   = $status;                        
-                            header("location: admin-home.php");
+                            switch ($_SESSION['role']) {
+                              case 'user':
+                                header("location: student-home.php");
+                                break;
+
+                              case 'sir':
+                                header("location: teacher-home.php"); 
+                                break;
+
+                              case 'admin':
+                                header("location: admin-home.php");
+                                break;
+
+                                default: 
+                                  echo "Not found";
+                                  break;
+                            }
                         } else{
                             $login_err = "Invalid username or password.";
                         }
