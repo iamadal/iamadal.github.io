@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="views/css/normalize.min.css">
     <link rel="shortcut icon" type="image/jpg" href="img/fav.png">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Green University of Bangladesh</title>
   </head>
   <body>
