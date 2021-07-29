@@ -28,8 +28,25 @@
 			</div>
 			<!-- Navigation System -->
 			<div class="navbar">
-				<a href="#"><i class="fa fa-user"></i> MENU</a>
+				<a id="menu" href="#" style="font-weight: normal"><i class="fa fa-bars"></i> MENU</a>
 				<a href="logout.php"><i class="fa fa-arrow-circle-o-up"></i> Logout</a>
+				 <div class="mega-menu">
+				 	<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
+				    <div class="menu-wrap">
+				    	<div class="profile">
+				    		<img src="img/avater-male.png" height="80px" width="80px" alt=""><br>
+                            <span style="text-align:center;padding: 5px; background-color: #FA4E23 ; font-size: 12px; ;display: block;font-weight: normal; color:#fff"><?php echo $_SESSION['username'] ?></span>
+                            <div class="list-items">
+                             <ul>
+                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
+                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
+                            	<li><a href="#"><i class="fa fa-cog fa-spin fa-2x"></i></a></li>
+                            	<li><a href="logout.php"><i class="fa fa-arrow-circle-o-up fa-2x"></i></a></li>
+                            </ul>
+                            </div>
+				    	</div>
+				    </div>
+				 </div>
 			</div>
 			
 			<!-- main content area -->
@@ -54,60 +71,77 @@
 						<p><a href="admin-registered.php">View Registered</a></p>
 					</div>
 				</div>
-
-
-				<div class="responsive">
-					<p class="item-title"> <i class="fa fa-user"></i> Teachers</p>
+                
+                <!-- Dashboard End -->
+                
+                <!-- User Management -->
+                <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> User Management</p>
+				<div class="user-manager responsive">
+                    <div class="operations">
+                    	<a href="#">Approve Student</a>
+                    	<a href="#">Block Student</a>
+                    	<a href="#">Remove Student</a>
+                    	<a href="#">Approve Teacher</a>
+                    </div>
 				</div>
 
 
-				<div class="report responsive">
-					 <p class="item-title"> <i class="fa fa-user"></i> Students</p>
-				</div>
+				
+               <!-- User management End -->
 
-
-
-				<div class="report"><p class="item-title"> <i class="fa fa-newspaper"></i> Notices</p></div>
-				<div class="report"><p class="item-title"> <i class="fa fa-cog"></i> Settings</p></div>
 			</div>
 		</body>
 	</html>
 <!-- Stylesheets -->
 <style>
-       {border: 1px solid red;}
-body,html {font-family: 'Open sans'; background: #eee;}
+ {border: 1px solid red;}
+body,html {font-family: 'Open sans'; background: #bbb;}
 /* handle very small devices < 320px*/
-.container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+.container { background-color: #ddd; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 
 .head-section              { border: 1px solid #f0f0f0;display: flex;flex-wrap: wrap;}
 .head-section .logo        { }
 .head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'ubuntu';}
 .head-section .hTitle .sub { font-weight: 500;color: #3C6E1B;}
 
-.navbar         {font-family: 'Roboto';font-weight: 300;background-color: purple; position: sticky; top: 0px;}
+.navbar         {font-family: 'Roboto';font-weight: 300;background-color: purple; position: sticky; top: 0px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 .navbar a       {color:#fff; text-decoration: none; padding: 10px; font-size: 14px;display:inline-block;  }
+
+
+
+
 .navbar a:hover {background-color: #b31eb3; transition: all .3s; cursor: pointer;}
 
-.container {width: 100%}
+.navbar .mega-menu  {border:1px solid #800080;background-color: rgba(255,255,255,.90); position: absolute; left:-100%; transition: 0.5s; width:40%;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+
+.navbar .mega-menu img {margin-right: auto; margin-left: auto; display: block;}
+.navbar .mega-menu .list-items ul            {margin: 0; padding: 0; font-weight: normal; flex: 1 0 100%; list-style: none}
+.navbar .mega-menu .list-items ul li         {border-bottom: 1px solid #ddd}
+.navbar .mega-menu .list-items ul li a       {color: #000; padding: 10px; text-align: center ;text-decoration: none; display: block;}
+.navbar .mega-menu .list-items ul li a:hover {background-color: #ccc} 
+
+
+.container { width: 100%}
 .responsive {display: flex; flex-direction: column; flex-wrap: wrap;}
-.flex-items {width: 100%}
+.flex-items {flex: 1 0 100%;}
 
 
 
 
 /* content Area */
 
-.content   {width: 98%; margin: 0 auto; font-family: 'Roboto' }
-.content .item-title { border-radius: 3px; background-color: purple; color:#fff; text-align: center; padding: 5px; margin:5px; display: inline-block; font-size: 14px}
-.content .report {font-family: 'Roboto'; font-size: 14px; }
-.content .report .inbox     {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg, #6a11cb , #2575fc);}
+.content                    {width: 98%; margin: 0 auto; font-family: 'Roboto' }
+.content .item-title        { border-radius: 3px; background-color: purple; color:#fff; text-align: center; padding: 5px; margin:5px; display: inline-block; font-size: 14px}
+.content .report , .user-manager           {box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);font-family: 'Roboto'; font-size: 14px; background-color: #fff  }
+.content .report .inbox     {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);color:#fff;background: linear-gradient(45deg, #6a11cb , #2575fc);}
 .content .report .inbox a   {color: #fff; text-align: center; display: block;  }
 .content .report .request a , .content .report .stat a {color: #fff; text-align: center; display: block;  }
 
 .content .report .request   {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#fc4a1a, #f7b733);}
 .content .report .stat      {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#ee0979, #ff6a00);}
 
-
+.content .user-management .operations   {display: flex; }
+.content .user-management .operations a {padding: 15px;}
 
 /* media queries*/
 /* Very Small devices*/
@@ -121,22 +155,26 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 @media (min-width: 320px){
 	.container {width: 98%}
+	.navbar .mega-menu {width: 22%;}
 }
 /*Smart Phones*/
 @media (min-width: 481px){
     .container {width: 98%}
+    .navbar .mega-menu {width: 19%;}
 }
 /* Table */
 @media (min-width: 768px){
    .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
-   .flex-items  {flex: 1 0 30%; margin: 3px;}
+   .flex-items  {flex: 1 1 30%; margin: 3px;}
+   .navbar .mega-menu {width:16%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
 	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
-    .flex-items  { flex: 1 0 30%;}
+    .flex-items  { flex: 1 1 30%;}
+    .navbar .mega-menu   {width: 10%;}
 }
 
 
@@ -159,8 +197,21 @@ hr {
 #style-1::-webkit-scrollbar-thumb { border-radius: 10px;background-color: #555;}
 
 .progress      { width: 98%;  padding: 2px; border-radius: 3px; background-color: #fff; box-sizing: border-box; }
+.hide-nav      {left: 0% !important; transition: 0.5s}
 
+.icon{
+	background-color: #f0f0f0;
+	padding: 5px;
+	margin:3px;
+	color: #fff;
+	border-radius: 20px;
+    border:1px solid red;
+}
 
+.icon:hover {
+	cursor: pointer;
+	border: 1px solid red;
+}
 </style>
 <!-- Script -->
 <script>
@@ -170,7 +221,7 @@ hr {
      /* Chartjs Setup >  config > getContext */
    
 
-      const labels = [ 'admin','February','March','April']; // Label will be use along with x-axis - data will be placed along with y-axis. both must same number
+/*      const labels = [ 'admin','February','March','April']; // Label will be use along with x-axis - data will be placed along with y-axis. both must same number
        const data = {         labels: labels,
                             datasets: [{ label: 'Attendance',
                      backgroundColor: ['rgb(255, 99, 132)', 'rgb(233,233,210)', 'rgb(233,122,33,12)','rgb(12,33,44'], // making background for ecah bar
@@ -179,10 +230,23 @@ hr {
 
 
   const config = {type: 'doughnut',data,options: {}};
-  var myChart = new Chart(document.getElementById('myChart'),config);
+  var myChart = new Chart(document.getElementById('myChart'),config);*/
+
+  const navmenu = document.querySelector(".mega-menu");
+  const btn = document.querySelector(".navbar a:first-child");
+  const close = document.querySelector(".icon");
+
+  
+
+   close.addEventListener('click',function(){
+      navmenu.classList.toggle('hide-nav');
+  });
+  btn.addEventListener('click',function(){
+      navmenu.classList.toggle('hide-nav');
+  });
 </script>
 
 
 
-</script>
+
 

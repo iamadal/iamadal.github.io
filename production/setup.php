@@ -79,16 +79,25 @@
 
         fwrite($file, "username=" . $username_db . "\n");
         fwrite($file, "password=" . $password_db);
-    
+       
+       echo  '<br>' . '<a href="home.php">Goto Homepage</a>';
 
+      
    ?>
 
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+
+
+
+
+
+
+
+
 <style>
+  body {width: 50%; margin:0 auto;}
    * {margin: 3px;font-family: 'Roboto'}
 </style>
 
-<a href="views/login.php"> login</a>
 
 
 
