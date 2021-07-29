@@ -74,21 +74,18 @@
                 
                 <!-- Dashboard End -->
                 
-                <!-- User Management -->
-                <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> User Management</p>
+                <!-- Student Management -->
+                <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Student Management</p>
 				<div class="user-manager responsive">
                     <div class="operations">
                     	<a href="#">Approve Student</a>
                     	<a href="#">Block Student</a>
                     	<a href="#">Remove Student</a>
-                    	<a href="#">Approve Teacher</a>
                     </div>
 				</div>
 
-
-				
-               <!-- User management End -->
-
+               <!-- Studne management End -->
+               <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Teacher Management</p>
 			</div>
 		</body>
 	</html>
@@ -140,7 +137,7 @@ body,html {font-family: 'Open sans'; background: #bbb;}
 .content .report .request   {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#fc4a1a, #f7b733);}
 .content .report .stat      {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#ee0979, #ff6a00);}
 
-.content .user-management .operations   {display: flex; }
+.content .user-management .operations   {display: flex; flex-direction: row; flex-wrap: wrap; }
 .content .user-management .operations a {padding: 15px;}
 
 /* media queries*/
