@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($stmt->num_rows == 1){
                     $username_err = "This username is not available.";
                 } else{
-                    $username = trim($_POST["username"]);
+                    $username = trim($_POST["username"]); // No Match Found to Given name willl be use as 
                 }
             } else{
                 echo "Oops! Login error";

@@ -6,37 +6,42 @@
 ?>
 
 <?php
- /* Handling Approve, Remove and Blocking Request */
-
-$approved = "";
-$blocked  = "";
-$removed  = "";
-$approval_err = "";
-$blocking_err = "";
-$removal_err  = "";
-$success = "";
-$teacher_success = "Added";
-$teacher_err = "";
-
-// Connect to The Database
-
-require_once "core/dbm.php";
-
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    /* Handle Approve UI*/
-    if(empty(trim($_POST['approve-user']))){
-        $approval_err = "Please enter username to approve";
-    } else {
-        $sql = "SELECT id from users WHERE username = ?";
-        if($stmt = $mysqli->prepare($sql)){
-            $stmt->bind_param("s",$param_status)
-        }
-    }
-}
-
-
-
-
+// /* Handling Approve, Remove and Blocking Request */
+//
+//$approved = "";
+//$blocked  = "";
+//$removed  = "";
+//$approval_err = "";
+//$blocking_err = "";
+//$removal_err  = "";
+//$success = "";
+//$teacher_success = "Added";
+//$teacher_err = "";
+//
+//// Connect to The Database
+//
+//require_once "core/dbm.php";
+//
+//if($_SERVER['REQUEST_METHOD'] == 'POST') { 
+//    /* Handle Approve UI*/
+//    if(empty(trim($_POST['approve-user']))){
+//        $approval_err = "Please enter username to approve";
+//    } else { 
+//        $sql = "SELECT id from users WHERE username = ?";
+//        $stmt = $mysqli->prepare($sql);
+//        $stmt->bind_param("s",$param_user);
+//        $param_user = trim($_POST['approve-user']);
+//        $stmt->execute();
+//        $stmt->store_result();
+//        if($stmt->num_rows == 1){
+//        	$sql = "UPDATE users SET status = active WHERE username =  `${param_user}` "  ;
+//        	$mysqli->query($sql);
+//            $success = $param_user . " have been approved";
+//        } else {
+//        	$approval_err = $param_user . " doesn't found";
+//         }
+//        }
+//}
 
 ?>
 
@@ -114,38 +119,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <!-- Student Management -->
                 <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Student Management</p>
 				<div class="user-manager">
-                   <p style="color:purple; text-align:center"><?php echo $success; ?></p>
                     <div class="operations responsive">
                     	<div class="approve flex-items"><p style="text-align:center; color:#fff; padding:5px;background-color: #5D24D5"><i class="fa fa-plus-square"></i> Approve User</p>
-                    	  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    	    <input placeholder="username" id="ui-txt" type="text" id="admin-pass"  name="approve-user" class="<?php echo (!empty($approval_err)) ? 'is-invalid' : ''; ?>"> <br> <span class="invalid-feedback"><?php echo $approval_err; ?></span> <br>
-                    	    <input id="ui-btn" type="submit" value="Click Here to Approve">
-                    	  </form>
+                    	  <a href="admin-approve-users.php">Click Here to Approve</a>
                     	</div>
                     	<div class="block   flex-items"> <p style="text-align:center;padding:5px; color:#fff; background-color: #FA6B21"><i class="fa fa-power-off"></i> Block User</p>
-                    	   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    	    <input placeholder="username" id="ui-txt" type="text" id="admin-pass"  name="block-user" class="<?php echo (!empty($blocking_err)) ? 'is-invalid' : ''; ?>"> <br> <span class="invalid-feedback"><?php echo $blocking_err; ?></span> <br>
-                    	    <input id="ui-btn" type="submit" value="Click Here to Blocke">
-                    	  </form>
+                    	   <a href="admin-blocked-users.php">Click Here to Block</a>
                     	</div>
                     	<div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #F8432F;padding:5px"><i class="fa fa-close"></i> Remove User</p>
-                    	   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    	    <input placeholder="username" id="ui-txt" type="text" id="admin-pass"  name="remove-user" class="<?php echo (!empty($removal_err)) ? 'is-invalid' : ''; ?>"> <br> <span class="invalid-feedback"><?php echo $removal_err; ?></span> <br>
-                    	    <input id="ui-btn" type="submit" value="Click Here to Remove">
-                    	  </form>
+                    	   <a href="admin-removed-users.php">Click Here to Remove</a>
                     	</div>
                     </div>
 				</div>
 
                <!-- Status management End -->
-               <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Teacher Management</p>
-               <p style="color:purple; background-color:#fff; margin:3px;text-align:center; display: inline-block"><?php echo $teacher_success; ?></p>
-               <div class="teachers responsive">
-                   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" style="margin:5px">
-                       <input style="margin-top:5px" placeholder="username" id="ui-txt" type="text" id="admin-pass"  name="add-teacher" class="<?php echo (!empty($teacher_err)) ? 'is-invalid' : ''; ?>"> <br> <span class="invalid-feedback"><?php echo $teacher_err; ?></span> <br>
-                       <input id="ui-btn" style = "font-size: 14px;" type="submit" value="Click Here to Add Teacher">
-                   </form>
-               </div>
+               <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Teacher Management</p><br>
+               <a id="teacher" href="admin-add-teacher.php">Click Here to Add User as a Teacher</a>
 			</div>
           </div>
 		</body>
@@ -203,8 +192,11 @@ body,html {font-family: 'Open sans'; background: #bbb;}
 .content .user-manager  .operations .remove  { margin: 5px ; background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);  }
 .content .user-manager  .operations .block   { margin: 5px ;background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 .content .user-manager  .operations .approve { margin: 5px ;background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+    .content .user-manager  .operations a    {  padding: 10px ;display: block; text-align: center; background-color: purple; color: #fff}
 
 .content .teachers {width:98%; background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%); margin: 0 auto}
+
+    #teacher { border: 1px solid purple; padding: 5px; font-size:14px ;border-radius: 5px; background-color: #fff; display: inline-block}
 /* media queries*/
 /* Very Small devices*/
 
@@ -231,7 +223,6 @@ body,html {font-family: 'Open sans'; background: #bbb;}
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 1 30%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
-    .teachers {width: 45%; margin: 0 auto}
 }
 /*Desktop*/
 @media (min-width: 1364px){
@@ -239,7 +230,7 @@ body,html {font-family: 'Open sans'; background: #bbb;}
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap;  align-content:  center;}
     .flex-items  { flex: 1 1 30%;}
     .navbar .mega-menu   {width: 10%;}
-    .teachers {margin: 0 auto; width: 40%}
+   
     }
 
 
