@@ -21,6 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_username = trim($_POST["username"]);
             if($stmt->execute()){
                 $stmt->store_result();
+                // if given username and returned result are match int value 1 is retured else 0 will be returned
                 if($stmt->num_rows == 1){
                     $username_err = "This username is not available.";
                 } else{
@@ -32,7 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->close();
         }
     }
-    
+    /*  */
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter a password.";     
     } elseif(strlen(trim($_POST["password"])) < 6){

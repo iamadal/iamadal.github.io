@@ -7,7 +7,7 @@
     $password = password_hash($admin_pass, PASSWORD_DEFAULT); // Don't Edit or Change hash Algorithms
 
     $username_db       = "root";  // Set Database User
-    $password_db       = "5576";  // Set Database Password
+    $password_db       = "55761910";  // Set Database Password
 
 
 
