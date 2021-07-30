@@ -41,7 +41,7 @@
 				 	<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
 				    <div class="menu-wrap">
 				    	<div class="profile">
-				    		<img src="img/avater-male.png" height="80px" width="80px" alt=""><br>
+				    		<a href="teacher-profile.php"> <img src="img/avater-male.png" height="80px" width="80px" alt=""></a><br>
                             <span style="text-align:center;padding: 5px; background-color: #FA4E23 ; display: block;font-weight: normal; color:#fff"><?php echo $_SESSION['username'] ?></span>
                             <div class="list-items">
                              <ul>
@@ -59,8 +59,7 @@
 			<!-- main content area -->
 			<div class="content">
 				<!-- Dashboard -->
-				<p class="item-title" > <i class="fa  fa-list-alt"></i> Dashboard</p>
-				
+				<p class="item-title" > <i class="fa  fa-list-alt"></i> Dashboard</p> <a href="teacher-profile.php">Click here to Complete your profile</a>
 				<div class="report responsive">
 					<div class="inbox flex-items">
 						 <h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300"> <i  class="fa fa-envelope"></i> 234 Messages </h5>
@@ -94,6 +93,7 @@
 				<div class="report"><p class="item-title"> <i class="fa fa-newspaper"></i> Notices</p></div>
 				<div class="report"><p class="item-title"> <i class="fa fa-cog"></i> Settings</p></div>
 			</div>
+        </div>
 		</body>
 	</html>
 <!-- Stylesheets -->

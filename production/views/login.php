@@ -219,4 +219,7 @@ body,html {font-family: 'Roboto'; background: #ddd;}
 <script>
 	 /* Header clock*/
      const line = document.querySelector(".sub"); function time(){line.innerHTML = "GUB Management System<br/>" + new Date().toLocaleString();};setInterval(time,1000);
+/* Form Validation */
+    const phone = document.querySelector('#phone').value;
+
 </script>

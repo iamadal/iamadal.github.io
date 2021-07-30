@@ -27,13 +27,13 @@
          $stmt->execute();
          $stmt->store_result();
          if($stmt->num_rows == 1){
-         	 $cofirmation_message = "Done :" . $username . " has been added as a Teacher.";
+         	 $cofirmation_message = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' has been approved as a Teacher ..OK' . '</p>';
          	 $s = "UPDATE users SET role = ? WHERE username = ?"; 
          	 $stmt= $mysqli->prepare($s);
          	 $stmt->bind_param("ss",$role, $username);
              $stmt->execute();
          } else {
-         	$cofirmation_message = $username . " was not found! :'(";
+         	$cofirmation_message = '<p style="text-align:center; color:red;"><i class="fa fa-frown-o"></i> ' . 'Error:  ' . $username . ' was not found!' . '</p>';
          }
 
     }
@@ -85,10 +85,8 @@
 				<h1 style="font-weight: 300; text-align: center;"><i class="fa fa-user"></i> Adding user as Teacher </h1>
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 					<div class="container-form" style="background-color:white">
+					    <label><?php echo $cofirmation_message; ?></label>
 						<input type="text" placeholder="Enter username" name="username" required>
-						<label>
-							<p style="color: red; text-align: center;"><i class="fa  fa-exclamation-triangle"></i> <?php echo $cofirmation_message; ?></p> 
-						</label>
 					</div>
 					<div class="container-form">
 						<input type="submit" value="Confirm as Teacher">

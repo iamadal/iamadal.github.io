@@ -7,39 +7,10 @@
 
 
 <?php
-    $cofirmation_message = "";
-    $username = "";
-    $status = "active";
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-         $username = trim($_POST['username']);
-         if($username == "admin"){
-         	 session_unset();
-             session_destroy();
-         	 exit;
-         }
-         require_once("core/dbm.php");
+  
 
-         $sql = "SELECT id FROM users WHERE username = ?";
-         $stmt = $mysqli->prepare($sql);
-
-         $stmt->bind_param("s",$username);
-         $stmt->execute();
-         $stmt->store_result();
-         
-         if($stmt->num_rows == 1){
-         	 $cofirmation_message = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' has been approved ..OK' . '</p>';
-         	 $s = "UPDATE users SET status = ? WHERE username = ?"; 
-         	 $stmt= $mysqli->prepare($s);
-         	 $stmt->bind_param("ss", $status, $username);
-             $stmt->execute();
-         } else {
-         	$cofirmation_message = '<p style="text-align:center; color:red;"><i class="fa fa-frown-o"></i> ' . 'Error:  ' . $username . ' was not found!' . '</p>';
-
-         }
-
-    }
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +33,7 @@
 			<!-- Navigation System -->
 			<div class="navbar">
 				<a id="menu" href="#" style="font-weight: normal"><i class="fa fa-bars"></i> MENU</a>
-				<a href="admin-home.php"><i class="fa fa-chevron-circle-left"></i> Back to Admin</a>
+				<a href="admin-home.php"><i class="fa fa-chevron-circle-left"></i> Back to Home</a>
 				<a href="logout.php"><i class="fa fa-arrow-circle-o-up"></i> Logout</a>
 				<div class="mega-menu">
 					<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
@@ -83,19 +54,8 @@
 				</div>
 			</div>
 			<!-- Content -->
-			<div class="content">
-				<h1 style="font-weight: 300; text-align: center;"><i class="fa fa-user"></i> User Approval confirmation</h1>
-				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-					<div class="container-form" style="background-color:white">
-					    <label><?php echo $cofirmation_message; ?> </label>
-						<input type="text" placeholder="Enter username" name="username" required>
-						
-					</div>
-					<div class="container-form">
-						<input type="submit" value="Confirm Approval">
-					</div>
-					
-				</form>
+			<div class="messages">
+				<div class="teacher"></div>
 			</div>
 		</div>
 	</body>
@@ -103,7 +63,7 @@
 
 
 <style>
-* {outline:0;}
+
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/
 .container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
@@ -130,52 +90,6 @@ body,html {font-family: 'Open sans'; background: #eee;}
 .navbar .mega-menu .list-items ul li a:hover {background-color: #ccc} 
 
 
-/* Form container */
-form {
-  border: 3px solid #f1f1f1;
-  font-family: 'Roboto';
-}
-
-.container-form {
-  padding: 10px;
-  background-color: #f1f1f1;
-}
-
-input[type=text], input[type=submit] {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-input[type=text]:focus {
-	  border: 1px solid purple;
-	  transition: all .4s;
-}
-
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  border: none;
-}
-
-input[type=submit]:hover {
-  opacity: 0.8;
-}
-
-
-
-
-
-
-
-
-
-
-
 @media (min-width: 320px){
 	.container {width: 98%}
 	.navbar .mega-menu {width: 22%;}
@@ -187,17 +101,17 @@ input[type=submit]:hover {
 }
 /* Table */
 @media (min-width: 768px){
-   .container  {width: 50%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
+   .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 0 30%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
-	.container  { width: 40%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
+	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
     .flex-items  { flex: 1 0 30%;}
-    .navbar .mega-menu   {width: 15%;}
+    .navbar .mega-menu   {width: 10%;}
 }
 
 
@@ -206,7 +120,7 @@ input[type=submit]:hover {
 
 
 
-#style-1::-webkit-scrollbar-track{border-radius: 5px;background-color: #F5F5F5;}
+	#style-1::-webkit-scrollbar-track{border-radius: 5px;background-color: #F5F5F5;}
 #style-1::-webkit-scrollbar {width: 3px;background-color: #F5F5F5;}
 #style-1::-webkit-scrollbar-thumb { border-radius: 10px;background-color: #555;}
 
