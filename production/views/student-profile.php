@@ -175,7 +175,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     	<option value="select">-- Semester --</option>
                     	<option value="1">Spring - 1 </option>
                     	<option value="2">Summer - 2 </option>
-                    	<option value="3">Fall - 3 </option>
                     </select>
                     <select name="gender" id="gen" required>
                     	<option value="select">-- Gender --</option>

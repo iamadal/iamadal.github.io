@@ -92,11 +92,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
            $m = $mysqli->query("INSERT INTO `webmaster`.`user_info` ( `phone`, `designation`,`firstname`, `lastname`, `email`,`gender`, `address`, `username`,`sems`,`year`) VALUES ( '$phone', '$designation','$firstname', '$lastname', '$emails', '$gender' ,'$address', '$username','$sems','$year')" );
            $success = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' Your Data has been updated ..' . '</p>'; 
             if(!$m){
-               $success = '<p style="text-align:center; color:red; font-size: 13px"><i class="fa fa-close"></i> ' . 'Error: You have already sumbitted your information.  Contact Admin to reset ' . '</p>'; 
+               $success = '<p style="text-align:center; color:red; font-size: 13px"><i class="fa fa-close"></i> ' . 'Error: Fail to Update ' . '</p>'; 
             }
     }
     
-    
+    echo $mysqli->error;
     /*Data Update - Checking Existance in Database */
     
    
@@ -163,16 +163,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					<input type="text" id="phone" name='phones' placeholder="Phone(11 Digits)"  class="<?php echo (!empty($phone_err)) ? 'invalid' : ''; ?>" required>
 					<p>Email:</p>
 					<input type="email"  name='emails' placeholder="Email">
-					<p>Department:</p>
-					<input type="text" placeholder="Department" value="CSE" disabled="true">
-          <select name="des" id="des">
+					<input type="text" placeholder="Department" value="CSE" disabled="true" style="display: none">
+          <select name="des" id="des" required>
                        <option value="default">-- Designation --</option>
                        <option value="Lecturer">Lecturer</option>
                        <option value="Assistant Professor">Assistant Professor</option>
                        <option value="Associate Professor">Associate Professor</option>
                        <option value="Professor">Professor</option>
                    </select>
-                    <select name="gender" id="gen">
+                    <select name="gender" id="gen" required>
                     	<option value="select">-- Gender --</option>
                     	<option value="male">Male</option>
                     	<option value="female">Female</option>

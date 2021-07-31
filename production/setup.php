@@ -1,7 +1,7 @@
 <?php
    echo '<h1 style="text-align:center">Green University of Bangladesh</h1>';
     $admin_user     = "admin";
-    $admin_pass     = "55761910"; // Set Password
+    $admin_pass     = "654321"; // Set Password
 
 
     $password = password_hash($admin_pass, PASSWORD_DEFAULT); // Don't Edit or Change hash Algorithms
@@ -74,7 +74,7 @@
         $stmt->execute();
 
        
-       $user_info = "CREATE TABLE `user_info` (
+      $user_info = "CREATE TABLE `user_info` (
 	`sl` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 	`phone` VARCHAR(50) NOT NULL DEFAULT '00000000000' COLLATE 'utf8_general_ci',
 	`designation` VARCHAR(50) NOT NULL DEFAULT 'student' COLLATE 'utf8_general_ci',
@@ -85,16 +85,41 @@
 	`gender` VARCHAR(20) NOT NULL DEFAULT 'male' COLLATE 'utf8_general_ci',
 	`address` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`username` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`sems` INT(10) UNSIGNED NULL DEFAULT '0',
+	`year` INT(10) UNSIGNED NULL DEFAULT '0',
 	PRIMARY KEY (`sl`) USING BTREE,
 	UNIQUE INDEX `username` (`username`) USING BTREE
 )
 COLLATE='utf8_general_ci'
-ENGINE=InnoDB" ;
+ENGINE=InnoDB"
+;
+
+
+
+ 
 
      
      $con->query($user_info);
 
 
+  $message = "CREATE TABLE `message` (
+	`no` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(100) NOT NULL COLLATE 'utf8_general_ci',
+	`message` VARCHAR(400) NOT NULL COLLATE 'utf8_general_ci',
+	`designation` VARCHAR(50) NOT NULL DEFAULT 'student' COLLATE 'utf8_general_ci',
+	`date` DATETIME NOT NULL DEFAULT current_timestamp(),
+	`by` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`no`) USING BTREE,
+	UNIQUE INDEX `by` (`by`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB"
+
+;
+
+
+
+$con->query($message);
 
 
 
@@ -118,6 +143,7 @@ ENGINE=InnoDB" ;
        
        echo  '<br>' . '<a href="home.php">Goto Homepage</a>';
 
+    
       
    ?>
 

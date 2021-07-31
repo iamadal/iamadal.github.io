@@ -191,7 +191,7 @@ $mysqli->close();
 {border: 1px solid red;}
 body,html {font-family: 'Open sans'; background: #bbb;}
 /* handle very small devices < 320px*/
-.container { background-color: #ddd; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
+.container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 
 .head-section              { border: 1px solid #f0f0f0;display: flex;flex-wrap: wrap;}
 .head-section .logo        { }

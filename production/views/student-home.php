@@ -47,7 +47,7 @@
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
                       
-                      $welcome = "Welcome " . $firstname . " " . $lastname . "  ## " . $designation . " of Green University";
+                      $welcome = "Welcome " . $firstname . " " . $lastname . "  - " . $designation . " of Green University -";
                    } else {
                    	  $welcome = "Your Profile is incomplete";
                    }
@@ -119,7 +119,7 @@
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
-                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
+                            	<li><a href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a></li>
                             </ul>
                             </div>
 				    	</div>
@@ -132,14 +132,14 @@
 				<!-- Dashboard -->
 
 				<p style="margin-left: 5px;background-color: #007EFF; color: #fff; display: inline-block;font-size: 14px; text-align: center; padding: 5px"><i class="fa fa-cog fa-spin"></i> <?php echo $welcome; ?></p>
-				<p class="<?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="student-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
+				<p class="bgc <?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="student-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
                 
-                <div class="tabbed">
-                	<ul>
-                		<li><a href="#" style="color: #fff; background-color: purple">Messages</a></li>
-                		<li><a href="#">Exam</a></li>
-                		<li><a href="#">Live Class</a></li>
-                	</ul>
+                <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
+                  <ul>
+                    <li><a href="student-home.php" style="color: #fff; background-color: purple">Messages</a></li>
+                    <li><a href="student-home-exam.php" >Exam</a></li>
+                    <li><a href="student-home-live.php">Live Class</a></li>
+                  </ul>
                 	<div class="tabbed-content">
                 		<div>
                            <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
@@ -198,9 +198,9 @@ input[type=submit] {
 
 
  /* Styles for this page*/
-.content > a { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center; }
+.content .bgc { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center  ; color:#000;}
 .display-none {display: none}
-
+ 
 .content .tabbed {width: 95%}
 .content .tabbed ul {list-style: none;margin: 0; padding: 0; display: flex; }
 .content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px }

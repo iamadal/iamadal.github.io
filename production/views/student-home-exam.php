@@ -1,15 +1,20 @@
 <?php 
    session_start();
-   if(isset($_SESSION['role']) && $_SESSION['role'] != 'sir' || !isset($_SESSION['username'])){
+   if(isset($_SESSION['role']) && $_SESSION['role'] != 'user'  || !isset($_SESSION['username'])){
    	  header("location: 404.php");
    }
-      if(isset($_SESSION["status"]) && $_SESSION["status"] !== "active"){
+   if(isset($_SESSION["status"]) && $_SESSION["status"] === "pending"){
    	  session_unset();
    	  session_destroy();
    	  header("location: approval.php");
-
    }
-    
+   if(isset($_SESSION["status"]) && $_SESSION["status"] === "blocked"){
+   	  session_unset();
+   	  session_destroy();
+   	  header("location: blocked.php");
+   }
+
+  
     $username = $_SESSION['username'];
     $complete_profile = "";
     require_once ("core/dbm.php");
@@ -23,13 +28,12 @@
 
 ?>
 
+ <?php
+				   $username = $_SESSION['username'];
 
-        <?php
-           $username = $_SESSION['username'];
-
-           $firstname = "";
-           $lastname  = "";
-           $designation = "";
+				   $firstname = "";
+				   $lastname  = "";
+				   $designation = "";
                    $welcome = "";
 
                    require_once ("core/dbm.php");
@@ -38,45 +42,31 @@
                    $r = $m->fetch_assoc();
 
                    if($m->num_rows == 1) {
-                        
+                      	
                       $firstname   = $r['firstname'];
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
                       
-                      $welcome = "Welcome " . $firstname . " " . $lastname . " Sir  - " . $designation . " of Green University -";
+                      $welcome = "Welcome " . $firstname . " " . $lastname . "  - " . $designation . " of Green University -";
                    } else {
-                      $welcome = "Your Profile is incomplete";
+                   	  $welcome = "Your Profile is incomplete";
                    }
-                   
-
                   
-        ?>
-
-
-
-<?php
-  $message_sent = "";
-
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $by     = $_SESSION['username']; 
-    $msg_title    = trim($_POST['msg-title']); 
-    $msg_body     = trim($_POST['msg-body']);
-    $designation  = "";
-    
-    require_once "core/dbm.php";
-    $dd = $mysqli->query( " SELECT `designation` FROM `user_info` WHERE `username`='$by' "  );
-    $ddr = $dd->fetch_assoc();
-    $designation = $ddr['designation'];
-    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`,`designation`) VALUES ( '$by', '$msg_title', '$msg_body','$designation')"   );
-    if($m){
-      $message_sent = "Your message sent to admin.";
-    } else
-    {
-      $message_sent = "You have Pending message request. Please wait for admin's response";
-    }
-   
-   }    
+                  
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -108,13 +98,13 @@
 				 	<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
 				    <div class="menu-wrap">
 				    	<div class="profile">
-				    		<a href="teacher-profile.php"> <img src="img/avater-male.png" height="80px" width="80px" alt=""></a><br>
+				    		<a href="student-profile.php"><img src="img/avater-male.png" height="80px" width="80px" alt=""></a><br>
                             <span style="text-align:center;padding: 5px; background-color: #FA4E23 ; display: block;font-weight: normal; color:#fff"><?php echo $_SESSION['username'] ?></span>
                             <div class="list-items">
                              <ul>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
-                            	<li><a href="#"><i class="fa fa-user fa-2x"></i></a></li>
+                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a></li>
                             </ul>
                             </div>
@@ -127,81 +117,38 @@
 			<div class="content">
 				<!-- Dashboard -->
 
-
 				<p style="margin-left: 5px;background-color: #007EFF; color: #fff; display: inline-block;font-size: 14px; text-align: center; padding: 5px"><i class="fa fa-cog fa-spin"></i> <?php echo $welcome; ?></p>
-				<p class="bgc <?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="teacher-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
-
-
-		            <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
-                  <ul>
-                    <li><a href="#" style="color: #fff; background-color: purple">Messages</a></li>
-                    <li><a href="#">Exam</a></li>
-                    <li><a href="#">Live Class</a></li>
-                  </ul>
-                  <div class="tabbed-content">
-                    <div>
-                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
-                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
-                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                               <input type="text"   name="msg-title"   placeholder="Message Title" required>
-                               <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
-                               <input type="submit" value="Send to Admin">
-                           </form>
-                    </div>
-                  </div> 
+				<p class="bgc <?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="student-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
+                
+                <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
+                	<ul>
+                		<li><a href="student-home.php">Messages</a></li>
+                		<li><a href="student-home-exam.php"style="color: #fff; background-color: purple">Exam</a></li>
+                		<li><a href="student-home-live.php">Live Class</a></li>
+                	</ul>
+                	<div class="tabbed-content">
+                   <p>Samples</p>
+                	</div> 
                 </div>
 
+
+
 			</div>
-        </div>
 		</body>
 	</html>
 <!-- Stylesheets -->
 <style>
 
 
-/* Styles for this page*/
- * {outline: 0px;}
-
-form {margin: 0 auto;}
-form p {margin: 0  5px; font-size: 12px}
-input[type=text], input[type=email],select, textarea{
-  width: 95%;
-  padding: 7px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  resize: vertical;
-  margin: 5px;
-}
-
-input[type=text]:focus, input[type=email]:focus {border: 1px solid #04AA6D; transition: all .5s}
-
-/* Style the label to display next to the inputs */
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-/* Style the submit button */
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 8px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 5px;
-}
 
 
 
 
  /* Styles for this page*/
-
 .content .bgc { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center  ; color:#000;}
 .display-none {display: none}
-
-.content .tabbed {}
+ 
+.content .tabbed {width: 95%}
 .content .tabbed ul {list-style: none;margin: 0; padding: 0; display: flex; }
 .content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px }
 .content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;}
@@ -212,22 +159,9 @@ input[type=submit] {
 
 
 
-.display-none {display: none}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
- {border: 1px solid red;}
+  {border: 1px solid red;}
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/
 .container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
@@ -261,8 +195,17 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 
 
+/* content Area */
 
+.content             {width: 98%; margin: 0 auto; font-family: 'Roboto' }
+.content .item-title { border-radius: 3px; background-color: purple; color:#fff; text-align: center; padding: 5px; margin:5px; display: inline-block; font-size: 14px}
+.content .report {font-family: 'Roboto'; font-size: 14px; }
+.content .report .inbox     {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg, #6a11cb , #2575fc);}
+.content .report .inbox a   {color: #fff; text-align: center; display: block;  }
+.content .report .request a , .content .report .stat a {color: #fff; text-align: center; display: block;  }
 
+.content .report .request   {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#fc4a1a, #f7b733);}
+.content .report .stat      {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#ee0979, #ff6a00);}
 
 
 
