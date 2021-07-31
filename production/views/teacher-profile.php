@@ -81,13 +81,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $designation = $_POST['des'];
     $gender    = trim($_POST['gender']); 
     $address   = trim($_POST['address']); 
+    $sems = 0;
+    $year = 0;
 
     
     if(!preg_match('/^[0-9]{11}+$/', $_POST['phones'])){
         $phone_err = "Please Check Phone number";
     } else {
         $phone = trim($_POST['phones']);
-           $m = $mysqli->query("INSERT INTO `webmaster`.`user_info` ( `phone`, `designation`,`firstname`, `lastname`, `email`,`gender`, `address`, `username`) VALUES ( '$phone', '$designation','$firstname', '$lastname', '$emails', '$gender' ,'$address', '$username')" );
+           $m = $mysqli->query("INSERT INTO `webmaster`.`user_info` ( `phone`, `designation`,`firstname`, `lastname`, `email`,`gender`, `address`, `username`,`sems`,`year`) VALUES ( '$phone', '$designation','$firstname', '$lastname', '$emails', '$gender' ,'$address', '$username','$sems','$year')" );
            $success = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' Your Data has been updated ..' . '</p>'; 
             if(!$m){
                $success = '<p style="text-align:center; color:red; font-size: 13px"><i class="fa fa-close"></i> ' . 'Error: You have already sumbitted your information.  Contact Admin to reset ' . '</p>'; 
@@ -127,7 +129,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			<!-- Navigation System -->
 			<div class="navbar">
 				<a id="menu" href="#" style="font-weight: normal"><i class="fa fa-bars"></i> MENU</a>
-				<a href="student-home.php"><i class="fa fa-chevron-circle-left"></i> Back to Home</a>
+				<a href="teacher-home.php"><i class="fa fa-chevron-circle-left"></i> Back to Home</a>
 				<a href="logout.php"><i class="fa fa-arrow-circle-o-up"></i> Logout</a>
 				<div class="mega-menu">
 					<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
@@ -150,7 +152,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			<!-- Content -->
 
 			<div class="wrap">
-				<h2 style="text-align: center; font-weight: 300 "><i class="fa fa-cog fa-spin"></i> Profile Information</h2>
+				<h2 style="text-align: center; font-weight: 300; margin: 3px "><i class="fa fa-cog fa-spin"></i> Profile Information</h2>
 				<?php if(!(empty($success))) echo $success ?>
 				<form action="teacher-profile.php" method="post">
 					<p>First Name:</p>
@@ -165,10 +167,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					<input type="text" placeholder="Department" value="CSE" disabled="true">
           <select name="des" id="des">
                        <option value="default">-- Designation --</option>
-                       <option value="lecturer">lecturer</option>
-                       <option value="assistant_professor">Assistant Professor</option>
-                       <option value="associate_professor">Associate Professor</option>
-                       <option value="professor">Professor</option>
+                       <option value="Lecturer">Lecturer</option>
+                       <option value="Assistant Professor">Assistant Professor</option>
+                       <option value="Associate Professor">Associate Professor</option>
+                       <option value="Professor">Professor</option>
                    </select>
                     <select name="gender" id="gen">
                     	<option value="select">-- Gender --</option>
@@ -177,7 +179,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     	<option value="other">Other</option>
                     </select>
                     <p>Address:</p>
-                    <input type="text" name="address" placeholder="address">
+                    <input type="text" name="address" placeholder="address" required>
                     <input type="submit" value="Submit Data">
 				</form>
 			</div>
@@ -197,7 +199,7 @@ form {margin: 0 auto;}
 form p {margin: 0  5px; font-size: 12px}
 input[type=text], input[type=email],select, textarea{
   width: 95%;
-  padding: 12px;
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -217,11 +219,12 @@ label {
 input[type=submit] {
   background-color: #04AA6D;
   color: white;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin: 5px;
+  margin-bottom: 10px;
 }
 
 
@@ -270,7 +273,7 @@ body,html {font-family: 'Open sans'; background: #eee;}
 }
 /* Table */
 @media (min-width: 768px){
-   .container-box  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
+   .container-box  {width: 80%;margin: 0 auto;  overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 0 30%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
@@ -278,7 +281,7 @@ body,html {font-family: 'Open sans'; background: #eee;}
 }
 /*Desktop*/
 @media (min-width: 1364px){
-	.container-box  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
+	.container-box  { width: 75%; margin: 0 auto; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
     .flex-items  { flex: 1 0 30%;}
     .navbar .mega-menu   {width: 10%;}

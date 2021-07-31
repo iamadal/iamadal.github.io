@@ -43,6 +43,27 @@
 //        }
 //}
 
+$sms = "";
+$request = "";
+$registered = "";
+
+require_once("core/dbm.php");
+
+$s = $mysqli->query("SELECT * FROM `message`");
+$sms =  $s->num_rows;
+
+
+$ss = $mysqli->query("SELECT * FROM `users` WHERE `status` = 'pending'");
+$request =  $ss->num_rows;
+
+$sss = $mysqli->query("SELECT * FROM `users`");
+
+$registered = $sss->num_rows;
+
+$mysqli->close();
+
+
+
 ?>
 
 
@@ -98,17 +119,17 @@
 				
 				<div class="report responsive">
 					<div class="inbox flex-items">
-						 <h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300"> <i  class="fa fa-envelope"></i> 234 Messages </h5>
+						 <h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300; text-align: center;"> <i  class="fa fa-envelope"></i> <?php echo empty($sms) ? '0' : $sms; ?> Messages </h5>
                          <div class="progress"></div>
 						<p> <a href="admin-messages.php">View Messages </a></p>
 					</div>
 					<div class="request  flex-items">
-						<h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300"> <i  class="fa fa-spinner"> </i> 23 Requests</h5>
+						<h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300;text-align: center;"> <i  class="fa fa-spinner"> </i> <?php echo empty($request) ? '0' : $request; ?> Requests</h5>
 						<div class="progress"></div>
 						<p><a href="admin-request.php"> View Requests </a></p>
 					</div>
 					<div class="stat  flex-items">
-						<h5 style="color:#fff; font-size: 1.5em; margin: 5px;font-weight: 300 "> <i class="fa fa-pencil-square-o "></i> 34 Registered</h5>
+						<h5 style="color:#fff; font-size: 1.5em; margin: 5px;font-weight: 300 ; text-align: center;"> <i class="fa fa-pencil-square-o "></i> <?php echo empty($registered) ? '0' : $registered; ?> Registered</h5>
 						<div class="progress"></div>
 						<p><a href="admin-registered.php">View Registered</a></p>
 					</div>
@@ -117,8 +138,8 @@
                 <!-- Dashboard End -->
                 
                 <!-- Student Management -->
-                <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Student Management</p>
-				<div class="user-manager">
+                <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> User Management</p>
+				          <div class="user-manager">
                     <div class="operations responsive">
                     	<div class="approve flex-items"><p style="text-align:center; color:#fff; padding:5px;background-color: #5D24D5"><i class="fa fa-plus-square"></i> Approve User</p>
                     	  <a href="admin-approve-users.php">Click Here to Approve</a>
@@ -129,12 +150,38 @@
                     	<div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #F8432F;padding:5px"><i class="fa fa-close"></i> Remove User</p>
                     	   <a href="admin-removed-users.php">Click Here to Remove</a>
                     	</div>
+                    	<div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #3A58EE;padding:5px"><i class="fa fa-plus-square"></i> Approve Teacher</p>
+                    	   <a href="admin-add-teacher.php">Click Here to Add Teacher</a>
+                    	</div>
                     </div>
-				</div>
+			        	</div>
 
                <!-- Status management End -->
-               <p class="item-title" style="margin-top:20px "><i class="fa fa-user"></i> Teacher Management</p><br>
-               <a id="teacher" href="admin-add-teacher.php">Click Here to Add User as a Teacher</a>
+               <p class="item-title" style="margin-top:20px "><i class="fa fa-cog fa-spin"></i> System Operations </p><br>
+                  <div class="user-manager">
+                    <div class="operations responsive">
+                  
+                      <div class="block   flex-items"> <p style="text-align:center;padding:5px; color:#fff; background-color: #FA6B21"><i class="fa fa-power-off"></i> RESET Username</p>
+                         <a href="admin-reset-user.php">RESET Now</a>
+                      </div>
+
+                      <div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #3A58EE;padding:5px"><i class="fa fa-plus-square"></i> RESET Password</p>
+                         <a href="admin-reset-pass.php">RESET Now</a>
+                      </div>
+
+                      <div class="approve flex-items"><p style="text-align:center; color:#fff; padding:5px;background-color: #5D24D5"><i class="fa fa-plus-square"></i> Backup </p>
+                        <a href="database-backup.php">Database Backup</a>
+                      </div>
+
+                      <div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #F8432F;padding:5px"><i class="fa fa-close"></i> RESTORE </p>
+                         <a href="admin-removed-users.php">View</a>
+                      </div>
+
+               
+
+                    </div>
+                </div>
+               
 			</div>
           </div>
 		</body>
@@ -192,8 +239,13 @@ body,html {font-family: 'Open sans'; background: #bbb;}
 .content .user-manager  .operations .remove  { margin: 5px ; background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);  }
 .content .user-manager  .operations .block   { margin: 5px ;background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 .content .user-manager  .operations .approve { margin: 5px ;background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
-    .content .user-manager  .operations a    {  padding: 10px ;display: block; text-align: center; background-color: purple; color: #fff}
+    .content .user-manager  .operations a    { 
+     padding: 10px ;display: block; text-align: center; background-color: purple; color: #fff; margin: 0 auto; width: 70%; border-radius: 20px; margin-top: 20px;  margin-bottom: 25px 
 
+ }
+
+
+.content .user-manager  .operations  ul li  {display: inline-block; padding: 5px;}
 .content .teachers {width:98%; background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%); margin: 0 auto}
 
     #teacher { border: 1px solid purple; padding: 5px; font-size:14px ;border-radius: 5px; background-color: #fff; display: inline-block}
@@ -221,14 +273,14 @@ body,html {font-family: 'Open sans'; background: #bbb;}
 @media (min-width: 768px){
    .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
-   .flex-items  {flex: 1 1 30%; margin: 3px;}
+   .flex-items  {flex: 1 1 18%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
 	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap;  align-content:  center;}
-    .flex-items  { flex: 1 1 30%;}
+    .flex-items  { flex: 1 1 18%;}
     .navbar .mega-menu   {width: 10%;}
    
     }

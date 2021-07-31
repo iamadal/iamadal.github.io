@@ -34,7 +34,7 @@
         <ul>
           <li><a href="index.php"> <i class="fa fa-home" aria-hidden="true"></i> Home </a></li>
           <li><a href="views/exam.php"> <i class="fa fa-book" aria-hidden="true"></i> Exam </a></li>
-          <li><a href="views/admin-login.php"><i class="fa fa-cog" aria-hidden="true"></i> Admin </a></li>
+          <li><a href="views/login.php"><i class="fa fa-cog" aria-hidden="true"></i> Admin </a></li>
           <li><a href="views/login.php"><i class="fa fa-lock" aria-hidden="true"></i> Login </a></li>
         </ul>
         <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"><i class="fa fa-circle"></i> <?php echo $marquee ?></marquee>
@@ -103,7 +103,7 @@
               <a href="views/student-home.php"><i class="fa fa-user"></i> Student's Dashboard</a>
               <a href="view/teacher-home.php"><i class="fa fa-user"></i> Teacher's Dashboard</a>
               <a href="views/exam.php"><i class="fa fa-book"></i> Exam Schedule</a>
-              <a href="views/contact.php"><i class="fa fa-book"></i> Contact</a>
+              <a href="views/result.php"><i class="fa fa-book"></i> Result</a>
               <a href="views/tution.php"><i class="fa fa-book"></i> TFCalculator</a>
            </div>
         </div>

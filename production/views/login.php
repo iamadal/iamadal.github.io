@@ -14,6 +14,8 @@ if(isset($_SESSION['role'])){
            break;
      default: 
          echo "Not found";
+         session_unset();
+         session_destroy();
          break;
     }
 }

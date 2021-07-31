@@ -6,11 +6,7 @@
 ?>
 
 
-<?php
 
-  
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,15 +50,42 @@
 				</div>
 			</div>
 			<!-- Content -->
-			<div class="messages">
-				<div class="teacher"></div>
-			</div>
+		    <div style="overflow-x: auto;">
+		    	<h3 style="text-align: center;"><i class="fa fa-envelope"></i> User Approval Requests</h3>
+		    	<table border="1">
+		    		<tr style="background-color: purple;"> <td> User </td> <td>Request Type </td>   <td>Action</td> </tr>
+		    	    <?php
+                    
+                     require_once("core/dbm.php");
+         
+                     $result = $mysqli->query("SELECT * FROM `users` WHERE `status`='pending'");
+                     while($row = $result->fetch_assoc()){
+                     	echo '<tr>';
+                     	  echo '<td style="text-align:center">' . $row['username'] .        '</td>'; 
+                     	  echo '<td style="text-align:center"> Approval      </td>'; 
+                     	  echo '<td >' . '<a style="background-color: purple; text-decoration:none ;color: #fff; padding:5px;";  href="admin-approve-user-q.php?username=' . $row['username'] . ' "  "> <i class="fa fa-plus-circle"></i> Approve</a>' . '</td>';
+                     	echo '</tr>'; 
+                     }
+                     if($result->num_rows == 0) {
+                     	echo '<h3 style="text-align:center; color: red"> No Request </h3>';
+                     }
+
+                       
+                        $mysqli->close();
+                     ?>
+		    	</table>
+		    </div>
 		</div>
 	</body>
 </html>
 
 
 <style>
+
+	table ,tr ,td { border-collapse: collapse; padding: 15px; margin: 0 auto; font-family: 'Roboto' ; font-size: 14px}
+	tr:first-child td {color:#fff; text-align: center;}
+	tr:hover {cursor: pointer; background-color: #eee}
+
 
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/

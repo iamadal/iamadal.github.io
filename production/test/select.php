@@ -1,9 +1,9 @@
-<?php
+<!-- <?php
    
-   $selection_value ="";
-   if($_SERVER['REQUEST_METHOD'] == 'POST'){
-   	   echo $_POST['color']; // value inside the option tag will be sent via post
-   }
+   // $selection_value ="";
+   // if($_SERVER['REQUEST_METHOD'] == 'POST'){
+   // 	   echo $_POST['color']; // value inside the option tag will be sent via post
+   // }
 
 
 ?>
@@ -27,4 +27,12 @@
 		<input type="submit">
 	</form>
 </body>
-</html>
+</html> -->
+
+
+
+<?php
+  
+  $sql = "SELECT * from users";
+
+ ?>

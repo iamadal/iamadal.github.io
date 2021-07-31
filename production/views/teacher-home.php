@@ -9,6 +9,18 @@
    	  header("location: approval.php");
 
    }
+    
+    $username = $_SESSION['username'];
+    $complete_profile = "";
+    require_once ("core/dbm.php");
+    
+    $m = $mysqli->query("SELECT `username` FROM `user_info` WHERE `username`='$username'");
+
+    if($m->num_rows == 1){
+    	$complete_profile = "done";
+    }
+
+
 ?>
 
 
@@ -47,8 +59,8 @@
                              <ul>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
-                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
-                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
+                            	<li><a href="#"><i class="fa fa-user fa-2x"></i></a></li>
+                            	<li><a href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a></li>
                             </ul>
                             </div>
 				    	</div>
@@ -59,45 +71,67 @@
 			<!-- main content area -->
 			<div class="content">
 				<!-- Dashboard -->
-				<p class="item-title" > <i class="fa  fa-list-alt"></i> Dashboard</p> <a href="teacher-profile.php">Click here to Complete your profile</a>
-				<div class="report responsive">
-					<div class="inbox flex-items">
-						 <h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300"> <i  class="fa fa-envelope"></i> 234 Messages </h5>
-                         <div class="progress"></div>
-						<p> <a href="admin-messages.php">View Messages </a></p>
-					</div>
-					<div class="request  flex-items">
-						<h5 style="color:#fff; font-size: 1.5em; margin: 5px; font-weight: 300"> <i  class="fa fa-spinner"> </i> 23 Requests</h5>
-						<div class="progress"></div>
-						<p><a href="admin-request.php"> View Requests </a></p>
-					</div>
-					<div class="stat  flex-items">
-						<h5 style="color:#fff; font-size: 1.5em; margin: 5px;font-weight: 300 "> <i class="fa fa-pencil-square-o "></i> 34 Registered</h5>
-						<div class="progress"></div>
-						<p><a href="admin-registered.php">View Registered</a></p>
-					</div>
+				<?php
+				   $username = $_SESSION['username'];
+
+				   $firstname = "";
+				   $lastname  = "";
+				   $designation = "";
+                   $welcome = "";
+
+                   require_once ("core/dbm.php");
+                   
+                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
+                   $r = $m->fetch_assoc();
+
+                   if($m->num_rows == 1) {
+                      	
+                      $firstname   = $r['firstname'];
+                      $lastname    = $r['lastname'];
+                      $designation = $r['designation'];
+                      
+                      $welcome = "Welcome " . $firstname . " " . $lastname . " Sir  ## " . $designation . " of Green University";
+                   } else {
+                   	  $welcome = "Your Profile is incomplete";
+                   }
+                   
+
+                  
+				?>
+
+				<p style="margin-left: 5px;background-color: #007EFF; color: #fff; display: inline-block;font-size: 14px; text-align: center; padding: 5px"><i class="fa fa-cog fa-spin"></i> <?php echo $welcome; ?></p>
+				<p class="<?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="teacher-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
+
+
+		    	<div class="content-items">
+			      		<i class="fa fa-envelope fa-3x"></i>
 				</div>
 
-
-				<div class="responsive">
-					<p class="item-title"> <i class="fa fa-user"></i> Teachers</p>
-				</div>
-
-
-				<div class="report responsive">
-					 <p class="item-title"> <i class="fa fa-user"></i> Students</p>
-				</div>
-
-
-
-				<div class="report"><p class="item-title"> <i class="fa fa-newspaper"></i> Notices</p></div>
-				<div class="report"><p class="item-title"> <i class="fa fa-cog"></i> Settings</p></div>
 			</div>
         </div>
 		</body>
 	</html>
 <!-- Stylesheets -->
 <style>
+
+
+/* Styles for this page*/
+.content a { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center; }
+.display-none {display: none}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  {border: 1px solid red;}
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/
@@ -132,17 +166,8 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 
 
-/* content Area */
 
-.content             {width: 98%; margin: 0 auto; font-family: 'Roboto' }
-.content .item-title { border-radius: 3px; background-color: purple; color:#fff; text-align: center; padding: 5px; margin:5px; display: inline-block; font-size: 14px}
-.content .report {font-family: 'Roboto'; font-size: 14px; }
-.content .report .inbox     {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg, #6a11cb , #2575fc);}
-.content .report .inbox a   {color: #fff; text-align: center; display: block;  }
-.content .report .request a , .content .report .stat a {color: #fff; text-align: center; display: block;  }
 
-.content .report .request   {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#fc4a1a, #f7b733);}
-.content .report .stat      {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#ee0979, #ff6a00);}
 
 
 

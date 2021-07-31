@@ -6,7 +6,42 @@
 ?>
 
 
+<?php
+    $cofirmation_message = "";
+    $username = "";
+    $password = "";
+    $username_err = "";
 
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+         $username = trim($_POST['username']);
+         if($username == "admin"){
+             session_unset();
+             session_destroy();
+         	 exit;
+         }
+
+         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+         require_once("core/dbm.php");
+
+         $sql = "SELECT password FROM users WHERE username = ?";
+         $stmt = $mysqli->prepare($sql);
+
+         $stmt->bind_param("s",$username);
+         $stmt->execute();
+         $stmt->store_result();
+         if($stmt->num_rows == 1){
+         	 $cofirmation_message = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' Password RESET Complete ..OK' . '</p>';
+         	 $s = "UPDATE users SET password = ?  WHERE username = ?"; 
+         	 $stmt= $mysqli->prepare($s);
+         	 $stmt->bind_param("ss", $password ,  $username);
+             $stmt->execute();
+         } else {
+         	$cofirmation_message = '<p style="text-align:center; color:red;"><i class="fa fa-frown-o"></i> ' . 'Error:  ' . $username . ' was not found!' . '</p>';
+         }
+
+    }
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +64,7 @@
 			<!-- Navigation System -->
 			<div class="navbar">
 				<a id="menu" href="#" style="font-weight: normal"><i class="fa fa-bars"></i> MENU</a>
-				<a href="admin-home.php"><i class="fa fa-chevron-circle-left"></i> Back to Home</a>
+				<a href="admin-home.php"><i class="fa fa-chevron-circle-left"></i> Back to Admin</a>
 				<a href="logout.php"><i class="fa fa-arrow-circle-o-up"></i> Logout</a>
 				<div class="mega-menu">
 					<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
@@ -50,50 +85,37 @@
 				</div>
 			</div>
 			<!-- Content -->
-		    <div style="overflow-x: auto;">
-		    	<h3 style="text-align: center;"><i class="fa fa-envelope"></i> Inbox</h3>
-		    	<table border="1">
-		    		<tr style="background-color: purple;"> <td> By </td> <td> Title </td> <td>Message</td> <td>Designation</td> <td>Date</td>  <td>Action</td> </tr>
-		    	    <?php
-                     require_once("core/dbm.php");
-                     $result = $mysqli->query("SELECT * FROM message");
-                     while($row = $result->fetch_assoc()){
-                     	echo '<tr>';
-                     	  echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
-                     	  echo '<td style="text-align:center">' . $row['title'] .     '</td>'; 
-                     	  echo '<td>' . $row['message'] .   '</td>'; 
-                     	  echo '<td style="text-align:center">' . $row['designation'] .   '</td>'; 
-                     	  echo '<td>' . $row['date'] .   '</td>'; 
-                     	  echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="delete-message.php?username=' . $row['by'] . ' "  "> <i class="fa fa-minus-circle"></i>  Delete</a>' . '</td>';
-                     	echo '</tr>'; 
-                     }
-                     if($result->num_rows == 0) {
-                     	echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
-                     }
-
-
-                     ?>
-		    	</table>
-		    </div>
+			<div class="content">
+				<h1 style="font-weight: 300; text-align: center;"><i class="fa fa-user"></i> Password RESET REQUEST</h1>
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+					<div class="container-form" style="background-color:white">
+					    <label><?php echo $cofirmation_message; ?></label>
+					    <p>Username</p>
+						<input type="text"  name="username" class=" <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" required>
+						<p>New Password</p>
+						 <input type="text"  name="password" placeholder="New Password(at least 6 Character)" required>
+					</div>
+					<div class="container-form">
+						<input type="submit" value="RESET Password">
+					</div>
+					
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
 
 
 <style>
-
-	table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'ubuntu' ; font-size: 13px}
-	tr:first-child td {color:#fff; text-align: center;}
-	tr:hover {cursor: pointer; background-color: #eee}
-
-
+form p {margin: 0  5px; font-size: 12px}
+* {outline:0;}
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/
 .container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 
 .head-section              { border: 1px solid #f0f0f0;display: flex;flex-wrap: wrap;}
 .head-section .logo        { }
-.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'Roboto';}
+.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'ubuntu';}
 .head-section .hTitle .sub { font-weight: 500;color: #3C6E1B;}
 
 .navbar         {font-family: 'Roboto';font-weight: 300;background-color: purple; position: sticky; top: 0px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
@@ -113,6 +135,52 @@ body,html {font-family: 'Open sans'; background: #eee;}
 .navbar .mega-menu .list-items ul li a:hover {background-color: #ccc} 
 
 
+/* Form container */
+form {
+  border: 3px solid #f1f1f1;
+  font-family: 'Roboto';
+}
+
+.container-form {
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+input[type=text], input[type=submit] {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input[type=text]:focus {
+	  border: 1px solid purple;
+	  transition: all .4s;
+}
+
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  border: none;
+}
+
+input[type=submit]:hover {
+  opacity: 0.8;
+}
+
+
+.is-invalid {border: 1px solid red !important;}
+
+
+
+
+
+
+
+
 @media (min-width: 320px){
 	.container {width: 98%}
 	.navbar .mega-menu {width: 22%;}
@@ -124,14 +192,14 @@ body,html {font-family: 'Open sans'; background: #eee;}
 }
 /* Table */
 @media (min-width: 768px){
-   .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
+   .container  {width: 50%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 0 30%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
-	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
+	.container  { width: 40%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
     .flex-items  { flex: 1 0 30%;}
     .navbar .mega-menu   {width: 10%;}
@@ -143,7 +211,7 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 
 
-	#style-1::-webkit-scrollbar-track{border-radius: 5px;background-color: #F5F5F5;}
+#style-1::-webkit-scrollbar-track{border-radius: 5px;background-color: #F5F5F5;}
 #style-1::-webkit-scrollbar {width: 3px;background-color: #F5F5F5;}
 #style-1::-webkit-scrollbar-thumb { border-radius: 10px;background-color: #555;}
 
@@ -182,6 +250,4 @@ body,html {font-family: 'Open sans'; background: #eee;}
   btn.addEventListener('click',function(){
       navmenu.classList.toggle('hide-nav');
   });
-
-
 </script>

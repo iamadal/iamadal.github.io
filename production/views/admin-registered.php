@@ -51,7 +51,24 @@
 			</div>
 			<!-- Content -->
 			<div class="messages">
-				
+						    <div style="overflow-x: auto;">
+		    	<h3 style="text-align: center;"><i class="fa fa-envelope"></i> User List</h3>
+		    	<table border="1">
+		    		<tr style="background-color: purple; color:#fff"><td>ID</td><td>Usernname</td>  <td>Registered</td> <td>Status</td>  </tr>
+		    	    <?php
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT * FROM users");
+                     while($row = $result->fetch_assoc()){
+                     	echo '<tr>';
+                     	  echo '<td style="text-align:center">' . $row['id'] .   '</td>'; 
+                     	  echo '<td style="text-align:center">' . $row['username'] .   '</td>'; 
+                     	  echo '<td style="text-align:center">' . $row['joined'] .     '</td>'; 
+                     	  echo '<td style="text-align:center">' . $row['status'] .     '</td>'; 
+                     	echo '</tr>'; 
+                     }
+                     ?>
+		    	</table>
+		    </div>
 			</div>
 		</div>
 	</body>
@@ -59,6 +76,11 @@
 
 
 <style>
+
+table , tr , td {border-collapse: collapse; margin: 0 auto; padding:  10px; text-align: center}
+tr:hover {cursor: pointer; background-color: #ddd}
+
+
 
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/

@@ -10,6 +10,7 @@
     $cofirmation_message = "";
     $username = "";
     $role = "sir";
+    $status = "active";
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
          $username = trim($_POST['username']);
@@ -28,10 +29,9 @@
          $stmt->store_result();
          if($stmt->num_rows == 1){
          	 $cofirmation_message = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' has been approved as a Teacher ..OK' . '</p>';
-         	 $s = "UPDATE users SET role = ? WHERE username = ?"; 
-         	 $stmt= $mysqli->prepare($s);
-         	 $stmt->bind_param("ss",$role, $username);
-             $stmt->execute();
+         	 $s = "UPDATE `webmaster`.`users` SET `role`='sir', `status`='active' WHERE  `username`='$username'"; 
+             $mysqli->query($s);
+             
          } else {
          	$cofirmation_message = '<p style="text-align:center; color:red;"><i class="fa fa-frown-o"></i> ' . 'Error:  ' . $username . ' was not found!' . '</p>';
          }

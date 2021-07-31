@@ -42,7 +42,7 @@
        }
 
 
-    $create =   "CREATE TABLE `users` (
+    $users =   "CREATE TABLE `users` (
                                      	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	                                    `username` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_unicode_ci',
 	                                    `password` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
@@ -55,7 +55,7 @@
 
 
 
-       if($con->query($create) === TRUE){
+       if($con->query($users) === TRUE){
     	      echo '<p style="color:purple">2. Creating Tables .... OK </p>';
         } else {
               echo '<p style="color:red">2. Failed to Create Table .... ERROR </p>' . $con->error;
@@ -72,6 +72,42 @@
     
         $stmt->bind_param("ssss",$admin_user,$password,$status,$role);
         $stmt->execute();
+
+       
+       $user_info = "CREATE TABLE `user_info` (
+	`sl` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`phone` VARCHAR(50) NOT NULL DEFAULT '00000000000' COLLATE 'utf8_general_ci',
+	`designation` VARCHAR(50) NOT NULL DEFAULT 'student' COLLATE 'utf8_general_ci',
+	`firstname` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`lastname` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`department` VARCHAR(10) NOT NULL DEFAULT 'cse' COLLATE 'utf8_general_ci',
+	`email` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`gender` VARCHAR(20) NOT NULL DEFAULT 'male' COLLATE 'utf8_general_ci',
+	`address` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`username` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`sl`) USING BTREE,
+	UNIQUE INDEX `username` (`username`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB" ;
+
+     
+     $con->query($user_info);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         echo '<h3 style="color: purple"> Installation Completed </h3>' . 'ID: ' . $admin_user . " <br/> PASSWORD: " . $admin_pass;
         
