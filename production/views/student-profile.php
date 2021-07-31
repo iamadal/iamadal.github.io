@@ -81,16 +81,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $lastname  = trim($_POST['lastname']); 
     $emails    = trim($_POST['emails']); 
     $gender    = trim($_POST['gender']); 
+    $years     = trim($_POST['years']);
+    $sems      = trim($_POST['sems']);
     $address   = trim($_POST['address']); 
     
     if(!preg_match('/^[0-9]{11}+$/', $_POST['phones'])){
         $phone_err = "Please Check Phone number";
     } else {
         $phone = trim($_POST['phones']);
-           $m = $mysqli->query("INSERT INTO `webmaster`.`user_info` ( `phone`, `firstname`, `lastname`, `email`,`gender`, `address`, `username`) VALUES ( '$phone', '$firstname', '$lastname', '$emails', '$gender' ,'$address', '$username')" );
+           $m = $mysqli->query("INSERT INTO `webmaster`.`user_info` ( `phone`, `firstname`, `lastname`, `email`,`gender`, `address`, `username`,`sems`,`year`) VALUES ( '$phone', '$firstname', '$lastname', '$emails', '$gender' ,'$address', '$username','$years','$sems')" );
            $success = '<p style="text-align:center; color:#0e8c16;"><i class="fa fa-check"></i> ' . 'Done: ' . $username . ' Your Data has been updated ..' . '</p>'; 
             if(!$m){
-               $success = '<p style="text-align:center; color:red; font-size: 13px"><i class="fa fa-close"></i> ' . 'Error: You have already sumbitted your information.  Contact Admin to reset ' . '</p>'; 
+               $success = '<p style="text-align:center; color:red; font-size: 13px"><i class="fa fa-close"></i> ' . 'Error: Please Recheck the form. or Message to admin ' . '</p>'; 
             }
     }
     
@@ -140,7 +142,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 									<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
 									<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
 									<li><a href="#"><i class="fa fa-cog fa-spin fa-2x"></i></a></li>
-									<li><a href="#"><i class="fa fa-upload fa-2x"></i></a></li>
+									<li><a href="#"><i class="fa fa-sign-out fa-2x"></i></a></li>
 								</ul>
 							</div>
 						</div>
@@ -161,9 +163,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 					<input type="text" id="phone" name='phones' placeholder="Phone(11 Digits)"  class="<?php echo (!empty($phone_err)) ? 'invalid' : ''; ?>" required>
 					<p>Email:</p>
 					<input type="email"  name='emails' placeholder="Email">
-					<p>Department:</p>
-					<input type="text" placeholder="Department" value="CSE" disabled="true">
-                    <select name="gender" id="gen">
+					<input type="text" placeholder="Department" value="CSE" disabled="true" style="display: none">
+					<select name="years" id="yr" required>
+                      <option value="select">-- Year --</option>
+                      <option value="1">1st Year</option>
+                      <option value="2">2nd Year</option>
+                      <option value="3">3rd Year</option>
+                      <option value="4">4th Year</option>
+                    </select>
+                    <select name="sems" id="sm" required>
+                    	<option value="select">-- Semester --</option>
+                    	<option value="1">Spring - 1 </option>
+                    	<option value="2">Summer - 2 </option>
+                    	<option value="3">Fall - 3 </option>
+                    </select>
+                    <select name="gender" id="gen" required>
                     	<option value="select">-- Gender --</option>
                     	<option value="male">Male</option>
                     	<option value="female">Female</option>
@@ -181,6 +195,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <style>
 
+/* Style for this Page*/
+
+
+#yr, #sm , #gen { border: 1px solid purple; padding: 3px; }
+
+
  /* User Form*/
 
 
@@ -190,7 +210,7 @@ form {margin: 0 auto;}
 form p {margin: 0  5px; font-size: 12px}
 input[type=text], input[type=email],select, textarea{
   width: 95%;
-  padding: 10px;
+  padding: 7px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -210,7 +230,7 @@ label {
 input[type=submit] {
   background-color: #04AA6D;
   color: white;
-  padding: 12px 20px;
+  padding: 8px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;

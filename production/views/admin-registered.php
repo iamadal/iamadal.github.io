@@ -54,7 +54,7 @@
 						    <div style="overflow-x: auto;">
 		    	<h3 style="text-align: center;"><i class="fa fa-envelope"></i> User List</h3>
 		    	<table border="1">
-		    		<tr style="background-color: purple; color:#fff"><td>ID</td><td>Usernname</td>  <td>Registered</td> <td>Status</td>  </tr>
+		    		<tr style="background-color: purple; color:#fff"><td>ID</td><td>Usernname</td>  <td>Registered</td> <td>Status</td> <td>Type</td>  </tr>
 		    	    <?php
                      require_once("core/dbm.php");
                      $result = $mysqli->query("SELECT * FROM users");
@@ -64,6 +64,7 @@
                      	  echo '<td style="text-align:center">' . $row['username'] .   '</td>'; 
                      	  echo '<td style="text-align:center">' . $row['joined'] .     '</td>'; 
                      	  echo '<td style="text-align:center">' . $row['status'] .     '</td>'; 
+                     	  echo '<td style="text-align:center">' . $row['role']   .       '</td>'; 
                      	echo '</tr>'; 
                      }
                      ?>

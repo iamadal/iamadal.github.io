@@ -24,6 +24,61 @@
 ?>
 
 
+        <?php
+           $username = $_SESSION['username'];
+
+           $firstname = "";
+           $lastname  = "";
+           $designation = "";
+                   $welcome = "";
+
+                   require_once ("core/dbm.php");
+                   
+                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
+                   $r = $m->fetch_assoc();
+
+                   if($m->num_rows == 1) {
+                        
+                      $firstname   = $r['firstname'];
+                      $lastname    = $r['lastname'];
+                      $designation = $r['designation'];
+                      
+                      $welcome = "Welcome " . $firstname . " " . $lastname . " Sir  - " . $designation . " of Green University -";
+                   } else {
+                      $welcome = "Your Profile is incomplete";
+                   }
+                   
+
+                  
+        ?>
+
+
+
+<?php
+  $message_sent = "";
+
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $by     = $_SESSION['username']; 
+    $msg_title    = trim($_POST['msg-title']); 
+    $msg_body     = trim($_POST['msg-body']);
+    $designation  = "";
+    
+    require_once "core/dbm.php";
+    $dd = $mysqli->query( " SELECT `designation` FROM `user_info` WHERE `username`='$by' "  );
+    $ddr = $dd->fetch_assoc();
+    $designation = $ddr['designation'];
+    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`,`designation`) VALUES ( '$by', '$msg_title', '$msg_body','$designation')"   );
+    if($m){
+      $message_sent = "Your message sent to admin.";
+    } else
+    {
+      $message_sent = "You have Pending message request. Please wait for admin's response";
+    }
+   
+   }      
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -71,41 +126,30 @@
 			<!-- main content area -->
 			<div class="content">
 				<!-- Dashboard -->
-				<?php
-				   $username = $_SESSION['username'];
 
-				   $firstname = "";
-				   $lastname  = "";
-				   $designation = "";
-                   $welcome = "";
-
-                   require_once ("core/dbm.php");
-                   
-                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
-                   $r = $m->fetch_assoc();
-
-                   if($m->num_rows == 1) {
-                      	
-                      $firstname   = $r['firstname'];
-                      $lastname    = $r['lastname'];
-                      $designation = $r['designation'];
-                      
-                      $welcome = "Welcome " . $firstname . " " . $lastname . " Sir  ## " . $designation . " of Green University";
-                   } else {
-                   	  $welcome = "Your Profile is incomplete";
-                   }
-                   
-
-                  
-				?>
 
 				<p style="margin-left: 5px;background-color: #007EFF; color: #fff; display: inline-block;font-size: 14px; text-align: center; padding: 5px"><i class="fa fa-cog fa-spin"></i> <?php echo $welcome; ?></p>
 				<p class="<?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="teacher-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
 
 
-		    	<div class="content-items">
-			      		<i class="fa fa-envelope fa-3x"></i>
-				</div>
+		            <div class="tabbed">
+                  <ul>
+                    <li><a href="#" style="color: #fff; background-color: purple">Messages</a></li>
+                    <li><a href="#">Exam</a></li>
+                    <li><a href="#">Live Class</a></li>
+                  </ul>
+                  <div class="tabbed-content">
+                    <div>
+                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
+                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
+                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                               <input type="text"   name="msg-title"   placeholder="Message Title" required>
+                               <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
+                               <input type="submit" value="Send to Admin">
+                           </form>
+                    </div>
+                  </div> 
+                </div>
 
 			</div>
         </div>
@@ -116,7 +160,57 @@
 
 
 /* Styles for this page*/
-.content a { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center; }
+ * {outline: 0px;}
+
+form {margin: 0 auto;}
+form p {margin: 0  5px; font-size: 12px}
+input[type=text], input[type=email],select, textarea{
+  width: 95%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  margin: 5px;
+}
+
+input[type=text]:focus, input[type=email]:focus {border: 1px solid #04AA6D; transition: all .5s}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+
+
+
+ /* Styles for this page*/
+.content > a { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center; }
+.display-none {display: none}
+
+.content .tabbed {}
+.content .tabbed ul {list-style: none;margin: 0; padding: 0; display: flex; }
+.content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px }
+.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;}
+.content .tabbed ul li a:hover{color: #fff; background-color: purple; transition: all .2s}
+
+.content .tabbed .tabbed-content     {clear: both; border: 1px solid purple;}
+.content .tabbed .tabbed-content div {margin: 5px}
+
+
+
 .display-none {display: none}
 
 

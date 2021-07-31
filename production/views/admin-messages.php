@@ -56,7 +56,7 @@
 		    		<tr style="background-color: purple;"> <td> By </td> <td> Title </td> <td>Message</td> <td>Designation</td> <td>Date</td>  <td>Action</td> </tr>
 		    	    <?php
                      require_once("core/dbm.php");
-                     $result = $mysqli->query("SELECT * FROM message");
+                     $result = $mysqli->query("SELECT * FROM message ORDER BY date DESC LIMIT 1000 ");
                      while($row = $result->fetch_assoc()){
                      	echo '<tr>';
                      	  echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
@@ -82,7 +82,7 @@
 
 <style>
 
-	table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'ubuntu' ; font-size: 13px}
+	table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
 	tr:first-child td {color:#fff; text-align: center;}
 	tr:hover {cursor: pointer; background-color: #eee}
 
