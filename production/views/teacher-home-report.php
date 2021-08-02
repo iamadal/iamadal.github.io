@@ -134,23 +134,16 @@
 
 		            <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
                   <ul>
-                    <li><a href="teacher-home.php" style="background-color:purple;color:#fff">Messages</a></li>
+                    <li><a href="teacher-home.php">Messages</a></li>
                     <li><a href="teacher-home-exam.php" >Exam</a></li>
                     <li><a href="teacher-home-assignment.php">Assignment</a></li>
                     <li><a href="teacher-home-live.php">Live Class</a></li>
-                    <li><a href="teacher-home-report.php">Report</a></li>
+                    <li><a href="teacher-home-report.php" style="background-color:purple;color:#fff">Report</a></li>
                   </ul>
                   <div class="tabbed-content">
-                    <div>
-                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
-                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
-                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                               <input type="text"   name="msg-title"   placeholder="Message Title" required>
-                               <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
-                               <input type="submit" value="Send to Admin">
-                           </form>
-                    </div>
+                        Fine
                   </div> 
+                </div>
 
 			</div>
         </div>
@@ -198,7 +191,6 @@ input[type=submit] {
 
 
  /* Styles for this page*/
-
 .content .bgc { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center  ; color:#000;}
 .display-none {display: none}
 
@@ -252,7 +244,7 @@ body,html {font-family: 'Open sans'; background: #eee;}
 .navbar .mega-menu img {margin-right: auto; margin-left: auto; display: block;}
 .navbar .mega-menu .list-items ul            {margin: 0; padding: 0; font-weight: normal; flex: 1 0 100%; list-style: none}
 .navbar .mega-menu .list-items ul li         {border-bottom: 1px solid #ddd}
-.navbar .mega-menu .list-items ul li a       {color: #000; padding: 10px; text-align: center ;text-decoration: none; display: block;}
+.navbar .mega-menu .list-items ul li a       {color: #000; padding: 10px; text-align: center ;text-decoration: none; display: block;color:#000;}
 .navbar .mega-menu .list-items ul li a:hover {background-color: #ccc} 
 
 

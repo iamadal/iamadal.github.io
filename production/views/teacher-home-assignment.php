@@ -134,23 +134,16 @@
 
 		            <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
                   <ul>
-                    <li><a href="teacher-home.php" style="background-color:purple;color:#fff">Messages</a></li>
+                    <li><a href="teacher-home.php">Messages</a></li>
                     <li><a href="teacher-home-exam.php" >Exam</a></li>
-                    <li><a href="teacher-home-assignment.php">Assignment</a></li>
+                    <li><a href="teacher-home-assignment.php" style="background-color:purple;color:#fff">Assignment</a></li>
                     <li><a href="teacher-home-live.php">Live Class</a></li>
                     <li><a href="teacher-home-report.php">Report</a></li>
                   </ul>
                   <div class="tabbed-content">
-                    <div>
-                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
-                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
-                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                               <input type="text"   name="msg-title"   placeholder="Message Title" required>
-                               <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
-                               <input type="submit" value="Send to Admin">
-                           </form>
-                    </div>
+                        Fine
                   </div> 
+                </div>
 
 			</div>
         </div>

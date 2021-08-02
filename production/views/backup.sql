@@ -23,15 +23,15 @@ DROP TABLE IF EXISTS `message`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `message` (
-  `no` int(10) unsigned NOT NULL,
-  `by` varchar(50) NOT NULL,
+  `no` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `message` varchar(400) NOT NULL,
-  `designation` varchar(50) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`no`),
-  UNIQUE KEY `by` (`by`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `designation` varchar(50) NOT NULL DEFAULT 'student',
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `by` varchar(50) NOT NULL,
+  PRIMARY KEY (`no`) USING BTREE,
+  UNIQUE KEY `by` (`by`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (1,'sir','Safe','Hi Go go','sdd','2021-07-31');
+INSERT INTO `message` VALUES (1,'Please RESET my Password','System setting need to change from me','Lecturer','2021-07-31 23:43:11','rafik'),(3,'Reset my id','Need to changed the id','student','2021-07-31 23:49:04','soma'),(5,'Hi','Can get a Card','student','2021-07-31 23:59:16','abbas');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,11 +62,11 @@ CREATE TABLE `user_info` (
   `gender` varchar(20) NOT NULL DEFAULT 'male',
   `address` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `sems` int(10) unsigned NOT NULL,
-  `year` int(10) unsigned NOT NULL,
+  `sems` int(10) unsigned DEFAULT 0,
+  `year` int(10) unsigned DEFAULT 0,
   PRIMARY KEY (`sl`) USING BTREE,
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `user_info` (
 
 LOCK TABLES `user_info` WRITE;
 /*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
-INSERT INTO `user_info` VALUES (1,'01799729507','student','Soma','Akter','cse','soma@gmail.com','female','KS','soma',0,0),(10,'12323232323','Professor','Shamsul','Alam','cse','samsul@gmail.com','male','SKAA','samsul',0,0),(11,'12121212122','Lecturer','Mahmud','Abbas','cse','ada@cc','female','1233','mahmud',0,0);
+INSERT INTO `user_info` VALUES (1,'01799729507','Lecturer','Rafiqul','Islam','cse','admin@gmail.com','male','ASS','rafik',0,0),(2,'01793112066','student','Soma','Akter','cse','ad@cc','female','ASAs','soma',1,1),(3,'12121212121','student','Abbas','Khan','cse','ad@cc','male','ASS','abbas',1,1);
 /*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `users` (
   `status` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','$2y$10$Uz1/QexkH7yTVvT9NoW51u9cZWRHBPsRlsSuT4WRdeifIcQWqejsS','2021-07-30 20:41:04','admin','active'),(2,'soma','$2y$10$vY4kJYovgh0kVP51xwERqOa8fCMiI2c/LheowbstC4ysB/rRmwEpa','2021-07-30 20:43:33','user','active'),(3,'sir','$2y$10$TV8SwHH1jED3NQ5Ej3g4wePBoHrdDqVddEQPB2XeuWjvYwjxJ5CiO','2021-07-30 20:45:05','sir','active'),(4,'mahmud','$2y$10$szFwFjrrpsizCWy3qrZn/emzZ1A4F9MA6Io8eZ66txR31noXuvyxu','2021-07-30 21:04:19','sir','active'),(6,'samsul','$2y$10$ooXDUB85F7RPSTGopia4Pe9AKOfwiYHEmw2aVummRE1qwaqbx2dAa','2021-07-31 08:30:27','sir','active'),(7,'rafik','$2y$10$5vMcjioQjzWtD7BE5bCxo.6108rK7ohaDFjIdC5gaUI1Lrq3R24e2','2021-07-31 08:30:46','user','active'),(8,'a','$2y$10$ulcmmuRKcFhynDCGEKIujeKzSsX/QIbDutiDX/knmrmwZwnw0v7L.','2021-07-31 10:51:15','user','pending');
+INSERT INTO `users` VALUES (1,'admin','$2y$10$qL2skC7LNlTzgPVOXERSp.AodLzJQVBMR11M6krzzJVy8BGrTY3Su','2021-07-31 23:38:38','admin','active'),(2,'soma','$2y$10$srZSGYOG2ljKgnQe2VxPjOUb1JQk8Yarpdfs92Zx4Zaf4NGLlicXy','2021-07-31 23:39:18','user','active'),(3,'rafik','$2y$10$TllshOboCCk3GzBXit1qkeZAjv74cLgd2W0txPdg2.XsX.NwAFyHi','2021-07-31 23:39:41','sir','active'),(4,'abbas','$2y$10$5ipfYs7dX4zaMgRc2.V.N.iQpLf2Tr2a/C.bjkhut.CP5cJ7LTp3y','2021-07-31 23:39:56','user','active'),(5,'Adal','$2y$10$QamNAEQt5dYSbPxjnfNWUuYRu7xlV.6aIUyUqmtOd1S7rkno80QAC','2021-07-31 23:52:14','user','pending');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -117,4 +117,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-07-31 16:03:30
+-- Dump completed on 2021-08-01 12:08:16

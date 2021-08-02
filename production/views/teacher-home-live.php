@@ -3,11 +3,10 @@
    if(isset($_SESSION['role']) && $_SESSION['role'] != 'sir' || !isset($_SESSION['username'])){
    	  header("location: 404.php");
    }
-      if(isset($_SESSION["status"]) && $_SESSION["status"] !== "active"){
-   	  session_unset();
+   if(isset($_SESSION["status"]) && $_SESSION["status"] !== "active"){
+      session_unset();
    	  session_destroy();
    	  header("location: approval.php");
-
    }
     
     $username = $_SESSION['username'];
@@ -19,20 +18,16 @@
     if($m->num_rows == 1){
     	$complete_profile = "done";
     }
-
-
 ?>
 
+<?php
+   $username    = $_SESSION['username'];
+   $firstname   = "";
+   $lastname    = "";
+   $designation = "";
+       $welcome = "";
 
-        <?php
-           $username = $_SESSION['username'];
-
-           $firstname = "";
-           $lastname  = "";
-           $designation = "";
-                   $welcome = "";
-
-                   require_once ("core/dbm.php");
+     require_once ("core/dbm.php");
                    
                    $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
                    $r = $m->fetch_assoc();
@@ -54,30 +49,38 @@
 
 
 
+
+
+
+<!-- Handle Live Classes -->
 <?php
-  $message_sent = "";
 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $by     = $_SESSION['username']; 
-    $msg_title    = trim($_POST['msg-title']); 
-    $msg_body     = trim($_POST['msg-body']);
-    $designation  = "";
-    
-    require_once "core/dbm.php";
-    $dd = $mysqli->query( " SELECT `designation` FROM `user_info` WHERE `username`='$by' "  );
-    $ddr = $dd->fetch_assoc();
-    $designation = $ddr['designation'];
-    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`,`designation`) VALUES ( '$by', '$msg_title', '$msg_body','$designation')"   );
+   $message_class     = "";
+ 
+
+   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+   	 $class_id    = trim($_POST['class_id']);
+   	 $class_title = trim($_POST['class_title']);
+   	 $year        = trim($_POST['year']);
+   	 $sems        = trim($_POST['sems']);
+   	 $deadline    = trim($_POST['deadline']);
+   	 $links       = trim($_POST['links']);
+   	 $by          = $_SESSION['username'];
+     
+     require_once("core/dbm.php");
+     
+    $m = $mysqli->query( "INSERT INTO `webmaster`.`live_class_sir` ( `class_id`, `sems`, `year`,`class_title`,`by`,`designation`,`links`,`dead_line`) VALUES ( '$class_id', '$sems', '$year','$class_title','$by','$designation','$links','$deadline')"   );
     if($m){
-      $message_sent = "Your message sent to admin.";
-    } else
-    {
-      $message_sent = "You have Pending message request. Please wait for admin's response";
+      $message_class = '<p style="font-size:14px; padding:5px;color:#000;text-align:center; background-color:yellow">' . $class_title . " with id=" . $class_id . " is Created" . '</p>' ;
+    } else {
+      $message_class = '<p style="color:#fff; font-size:14px; padding:5px; ;text-align:center; background-color:red"> Another Class is already Created on the Given Time or Check Class ID  </p>' ;
     }
-   
-   }    
-?>
+    
+   }
 
+   
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -132,25 +135,93 @@
 				<p class="bgc <?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="teacher-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
 
 
-		            <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
+		         <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
                   <ul>
-                    <li><a href="teacher-home.php" style="background-color:purple;color:#fff">Messages</a></li>
+                    <li><a href="teacher-home.php" >Messages</a></li>
                     <li><a href="teacher-home-exam.php" >Exam</a></li>
                     <li><a href="teacher-home-assignment.php">Assignment</a></li>
-                    <li><a href="teacher-home-live.php">Live Class</a></li>
+                    <li><a href="teacher-home-live.php" style="background-color:purple;color:#fff">Live Class</a></li>
                     <li><a href="teacher-home-report.php">Report</a></li>
                   </ul>
-                  <div class="tabbed-content">
-                    <div>
-                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
-                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
-                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                               <input type="text"   name="msg-title"   placeholder="Message Title" required>
-                               <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
-                               <input type="submit" value="Send to Admin">
-                           </form>
-                    </div>
+                  <div class="tabbed-content responsive">
+                     <div class="A flex-items" style="border:1px solid #ddd">
+                     	<p style="text-align: center; background-color: purple; margin:5px; color:#fff;padding: 5px">Create a Live Class</p>
+                     	<?php echo $message_class; ?>
+                     	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                     		<input type="text" name="class_id" placeholder="Class ID(0 - 10 Digit) E.G 23221" required="true">
+                     		<input type="text" name="class_title" placeholder="Class title(Including Start time E.G 09:30 PM)" required="true">
+                     		<input type="text" name="links" placeholder="Zoom/Google Meet Links(E.G https://mylinks.cc)" required="true">
+                     		<label for="">Start Time:</label><input name="deadline" type="datetime-local" required="true">
+                            <select name="year">
+                     			<option value="0">--Select Year--</option>
+                     			<option value="1">1st Year</option>
+                     			<option value="2">2nd Year</option>
+                     			<option value="3">3rd Year</option>
+                     			<option value="4">4th Year</option>
+                     		</select>
+
+                     		<select name="sems">
+                     			<option value="0">--Select Semester</option>
+                     			<option value="1">Spring 1</option>
+                     			<option value="2">Summer 2</option>
+                     		</select>
+                     		<input type="submit" value="Create Class">
+                     	</form>
+                     </div>
+
+
+                     <div class="B"  style="border:1px solid #ddd;">
+                     	<p style="text-align: center; background-color: red; margin:5px; color:#fff;padding: 5px;margin: 0px; font-size: 14px">Active All Class </p>
+                        <table border="1">
+		    		    <tr style="background-color: purple;"> <td> Class ID </td> <td>Start Time</td>   </tr>
+                     <?php
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT `class_id`,`dead_line` FROM `live_class_sir`  ORDER BY `dead_line` DESC LIMIT 1000 ");
+                     while($row = $result->fetch_assoc()){
+                           echo '<tr>';
+                                echo '<td style="text-align:center">' . $row['class_id'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['dead_line'] .        '</td>'; 
+                           echo '</tr>';
+                           
+                     }
+                     if($result->num_rows == 0) {
+                     	echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+                       $mysqli->error;
+
+                     ?>
+                      </table>
+                     </div>
+
+                     <div class="C flex-items" style="border:1px solid #ddd">
+                     	<p style="text-align: center; background-color: yellow; margin:5px; color:#000;padding: 5px; font-size: 14px">Class Created By: <?php echo $firstname . " " . $lastname ; ?> </p>
+                        <table border="1">
+		    		    <tr style="background-color: purple;"> <td> Class ID </td> <td> Title </td> <td> Year </td> <td> Sems </td> <td>Start Time</td> <td>Action</td> <td> Preview </td>  </tr>
+                     <?php
+                     $username = $_SESSION['username'];
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT `class_id`,`sems`,`year`,`class_title`,`dead_line`,`links` FROM `live_class_sir` WHERE `by`='$username' ORDER BY `dead_line` DESC LIMIT 1000 ");
+                     while($row = $result->fetch_assoc()){
+                           echo '<tr>';
+                                echo '<td style="text-align:center">' . $row['class_id'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['class_title'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['year'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['sems'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['dead_line'] .        '</td>'; 
+                                echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="delete-live-class.php?class_id=' . $row['class_id'] . ' "  ">   Delete</a>' . '</td>';
+                                echo '<td>'  . '<a href="' . $row['links'] . ' "  ">' . ' Check</a>';
+                           echo '</tr>';
+                     }
+                     if($result->num_rows == 0) {
+                     	echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+                       $mysqli->error;
+
+                     ?>
+                       </table>
+                     </div>
                   </div> 
+                </div>
 
 			</div>
         </div>
@@ -159,11 +230,15 @@
 <!-- Stylesheets -->
 <style>
 
+	table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
+	tr:first-child td {color:#fff; text-align: center;}
+	tr:hover {cursor: pointer; background-color: #eee}
 
 /* Styles for this page*/
  * {outline: 0px;}
+  {border:1px solid red;}
 
-form {margin: 0 auto;}
+form {margin: 0 auto; font-size: 12px;}
 form p {margin: 0  5px; font-size: 12px}
 input[type=text], input[type=email],select, textarea{
   width: 95%;
@@ -209,7 +284,7 @@ input[type=submit] {
 .content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;color:#000;}
 .content .tabbed ul li a:hover{color: #fff; background-color: purple; transition: all .2s}
 
-.content .tabbed .tabbed-content     {clear: both; border: 1px solid purple;}
+.content .tabbed .tabbed-content     {clear: both; border: 1px solid purple; }
 .content .tabbed .tabbed-content div {margin: 5px}
 
 
@@ -258,7 +333,7 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 .container {width: 100%}
 .responsive {display: flex; flex-direction: column; flex-wrap: wrap;}
-.flex-items {width: 100%}
+.flex-items {width: 98%}
 
 
 
@@ -289,14 +364,14 @@ body,html {font-family: 'Open sans'; background: #eee;}
 }
 /* Table */
 @media (min-width: 768px){
-   .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
+   .container  {width: 100%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 0 30%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
-	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
+	.container  { width: 100%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
     .flex-items  { flex: 1 0 30%;}
     .navbar .mega-menu   {width: 10%;}

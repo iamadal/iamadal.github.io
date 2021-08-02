@@ -38,7 +38,7 @@
 
                    require_once ("core/dbm.php");
                    
-                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
+                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation`,`sems`,`year` FROM `user_info` WHERE `username` = '$username'  ");
                    $r = $m->fetch_assoc();
 
                    if($m->num_rows == 1) {
@@ -46,6 +46,8 @@
                       $firstname   = $r['firstname'];
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
+                      $sems        = $r['sems'];
+                      $year        = $r['year'];
                       
                       $welcome = "Welcome " . $firstname . " " . $lastname . "  - " . $designation . " of Green University -";
                    } else {
@@ -127,7 +129,34 @@
                 		<li><a href="student-home-live.php" style="color: #fff; background-color: purple">Live Class</a></li>
                 	</ul>
                 	<div class="tabbed-content">
-                   <p>Live Classes</p>
+                   <p style="background-color: yellow; color: #000; text-align: center; font-size: 16px; padding: 5px; display: block">Hi ,<?php echo $firstname . " "; ?> Your upcoming Live Class( <?php echo "Year: " . $year . " # Semester: " . $sems; ?>)</p>
+                    
+                              <table border="1">
+            <tr style="background-color: purple;"> <td> By </td> <td>Designation</td> <td> Title </td> <td>Start Time</td>   <td>Action</td> </tr>
+              <?php
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT `class_title`,`by`,`designation`,`dead_line`,`links` FROM `live_class_sir` WHERE `sems`=$sems AND `year` = $year ORDER BY `dead_line` DESC LIMIT 1000 ");
+                     while($row = $result->fetch_assoc()){
+                      echo '<tr>';
+                        echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                        echo '<td style="text-align:center">' . $row['designation'] .   '</td>'; 
+                        echo '<td style="text-align:center">' . $row['class_title'] .     '</td>'; 
+                        echo '<td>' . $row['dead_line'] .   '</td>'; 
+                        echo '<td>'  . '<a style="background-color:purple; padding:5px; color:#fff; text-decoration:none; " href="' . $row['links'] . ' "  ">' . ' Join</a>';
+                      echo '</tr>'; 
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+
+                     
+                     ?>
+          </table>
+
+                      <br>
+                      <br>
+                      <br>
+                      <br>
                 	</div> 
                 </div>
 
@@ -159,7 +188,9 @@
 
 
 
-
+  table ,tr ,td { border-collapse: collapse; padding: 15px; margin: 0 auto; font-family: 'Roboto' ; font-size: 16px}
+  tr:first-child td {color:#fff; text-align: center;}
+  tr:hover {cursor: pointer; background-color: #eee}
 
   {border: 1px solid red;}
 body,html {font-family: 'Open sans'; background: #eee;}

@@ -53,16 +53,16 @@
 		    <div style="overflow-x: auto;">
 		    	<h3 style="text-align: center;"><i class="fa fa-envelope"></i> Inbox</h3>
 		    	<table border="1">
-		    		<tr style="background-color: purple;"> <td> By </td> <td> Title </td> <td>Message</td> <td>Designation</td> <td>Date</td>  <td>Action</td> </tr>
+		    		<tr style="background-color: purple;"> <td> By </td> <td>Designation</td> <td> Title </td> <td>Message</td>  <td>Date</td>  <td>Action</td> </tr>
 		    	    <?php
                      require_once("core/dbm.php");
                      $result = $mysqli->query("SELECT * FROM message ORDER BY date DESC LIMIT 1000 ");
                      while($row = $result->fetch_assoc()){
                      	echo '<tr>';
                      	  echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                     	  echo '<td style="text-align:center">' . $row['designation'] .   '</td>'; 
                      	  echo '<td style="text-align:center">' . $row['title'] .     '</td>'; 
                      	  echo '<td>' . $row['message'] .   '</td>'; 
-                     	  echo '<td style="text-align:center">' . $row['designation'] .   '</td>'; 
                      	  echo '<td>' . $row['date'] .   '</td>'; 
                      	  echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="delete-message.php?username=' . $row['by'] . ' "  "> <i class="fa fa-minus-circle"></i>  Delete</a>' . '</td>';
                      	echo '</tr>'; 
@@ -71,7 +71,7 @@
                      	echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
                      }
 
-
+                     
                      ?>
 		    	</table>
 		    </div>
