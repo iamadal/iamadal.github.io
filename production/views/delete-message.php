@@ -1,6 +1,6 @@
 <?php 
    session_start();
-   if(isset($_SESSION['role']) && $_SESSION['role'] != "sir" || !isset($_SESSION['username'])){
+   if(isset($_SESSION['role']) && $_SESSION['role'] != "admin" || !isset($_SESSION['username'])){
    	  header("location: 404.php");
    }
 ?>
@@ -9,11 +9,11 @@
 
 <?php
   if(isset($_GET['username'])){
-  	 $username = trim($_GET['class_id']);
+  	 $username = trim($_GET['username']);
      require_once "core/dbm.php";
-     $sql = "DELETE FROM `live_class_sir` WHERE `class_id` = '$username' ";
+     $sql = "DELETE FROM `message` WHERE `by` = '$username' ";
      $mysqli->query($sql);
-     header("location: admin-home-live.php");
+     header("location: admin-messages.php");
   }
   
   ?>

@@ -54,29 +54,6 @@
 
 
 
-<?php
-  $message_sent = "";
-
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $by     = $_SESSION['username']; 
-    $msg_title    = trim($_POST['msg-title']); 
-    $msg_body     = trim($_POST['msg-body']);
-    $designation  = "";
-    
-    require_once "core/dbm.php";
-    $dd = $mysqli->query( " SELECT `designation` FROM `user_info` WHERE `username`='$by' "  );
-    $ddr = $dd->fetch_assoc();
-    $designation = $ddr['designation'];
-    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`,`designation`) VALUES ( '$by', '$msg_title', '$msg_body','$designation')"   );
-    if($m){
-      $message_sent = "Your message sent to admin.";
-    } else
-    {
-      $message_sent = "You have Pending message request. Please wait for admin's response";
-    }
-   
-   }    
-?>
 
 
 <!DOCTYPE html>
@@ -141,7 +118,35 @@
                     <li><a href="teacher-home-report.php" style="background-color:purple;color:#fff">Report</a></li>
                   </ul>
                   <div class="tabbed-content">
-                        Fine
+                        <div>
+                          <p style="text-align: center; background-color: yellow; color: #000;padding: 10px">Please Review following assignments</p>
+                              <table border="1">
+                                 <tr style="background-color: purple"><td>ID</td> <td>Submitted By</td> <td>Remarks</td><td>Year</td> <td>Semester</td> <td>Points</td> <td>Document</td>  <td>Action</td><td>Comment</td></tr>
+                                 <?php
+                                   require_once("core/dbm.php");
+                                   $result = $mysqli->query("SELECT `ass_id`,`by`,`year`,`sems`,`file_location`,`points`,`remarks` FROM `ass_students` ");
+                                   while($row = $result->fetch_assoc()){
+                                   echo '<tr>';
+                                      echo '<td style="text-align:center">' . $row['ass_id'] .        '</td>'; 
+                                      echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                                      echo '<td style="text-align:center">' . $row['remarks'] .        '</td>'; 
+                                      echo '<td style="text-align:center">' . $row['year'] .   '</td>'; 
+                                      echo '<td style="text-align:center">' . $row['sems'] .     '</td>'; 
+                                      echo '<td style="text-align:center">' . $row['points'] .     '</td>'; 
+                                      echo '<td>'  . '<a style="background-color:purple; padding:5px; color:#fff; text-decoration:none; " href="   ' . $row['file_location'] . ' "  ">' . ' View File</a>';
+                                      echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="teacher-add-points.php?ass_id=' . $row['ass_id'] . '&user=' . $row['by'] .  ' "  ">   Add Points </a>' . '</td>';
+                                      echo '<td >' . '<a style="background-color: yellow; color: #000; padding:5px; text-decoration:none;";  href="teacher-add-comments.php?ass_id=' . $row['ass_id'] . '&user=' . $row['by'] .  ' "  ">   Remarks </a>' . '</td>';
+                                     
+                                     echo '</tr>'; 
+                                   }
+                                      if($result->num_rows == 0) {
+                                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                                     }
+
+                                   ?>
+                              </table>        
+                          
+                        </div>
                   </div> 
                 </div>
 
@@ -152,7 +157,9 @@
 <!-- Stylesheets -->
 <style>
 
-
+  table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
+  tr:first-child td {color:#fff; text-align: center;}
+  tr:hover {cursor: pointer; background-color: #eee}
 /* Styles for this page*/
  * {outline: 0px;}
 

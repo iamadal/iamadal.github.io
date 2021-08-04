@@ -30,6 +30,10 @@
 
  <?php
 				   $username = $_SESSION['username'];
+           
+        
+
+
 
 				   $firstname = "";
 				   $lastname  = "";
@@ -38,7 +42,7 @@
 
                    require_once ("core/dbm.php");
                    
-                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
+                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` ,`sems`,`year` FROM `user_info` WHERE `username` = '$username'  ");
                    $r = $m->fetch_assoc();
 
                    if($m->num_rows == 1) {
@@ -46,6 +50,8 @@
                       $firstname   = $r['firstname'];
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
+                      $sems        = $r['sems'];
+                      $year        = $r['year'];
                       
                       $welcome = "Welcome " . $firstname . " " . $lastname . "  - " . $designation . " of Green University -";
                    } else {
@@ -54,30 +60,6 @@
                   
                   
 ?>
-
-<?php
-  $message_sent = "";
-
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $by     = $_SESSION['username']; 
-    $msg_title    = trim($_POST['msg-title']); 
-    $msg_body     = trim($_POST['msg-body']);
-    
-    require_once "core/dbm.php";
-    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`) VALUES ( '$by', '$msg_title', '$msg_body')"   );
-    if($m){
-      $message_sent = "Your message sent to admin.";
-    } else
-    {
-      $message_sent = "You have Pending message request. Please wait for admin's response";
-    }
-   
-   }      
-?>
-
-
-
-
 
 
 
@@ -137,23 +119,47 @@
                 
                 <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
                   <ul>
-                    <li><a href="student-home.php" style="color: #fff; background-color: purple">Messages</a></li>
+                    <li><a href="student-home.php">Messages</a></li>
                     <li><a href="student-home-exam.php" >Exam</a></li>
-                    <li><a href="student-home-assignment.php" >Assignment</a></li>
+                    <li><a href="student-home-assignment.php" style="color: #fff; background-color: purple">Assignment</a></li>
                     <li><a href="student-home-live.php">Live Class</a></li>
                     <li><a href="student-home-report.php">Report</a></li>
                   </ul>
-                	<div class="tabbed-content">
-                		<div>
-                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
-                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
-                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                           	   <input type="text"   name="msg-title"   placeholder="Message Title" required>
-                           	   <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
-                               <input type="submit" value="Send to Admin">
-                           </form>
-                		</div>
-                	</div> 
+                  <div class="tabbed-content">
+                   <p style="background-color: yellow; color: #000; text-align: center; font-size: 16px; padding: 5px; display: block">Hi ,<?php echo $firstname . " "; ?> Your Assignments( <?php echo "Year: " . $year . " # Semester: " . $sems; ?>)</p>
+                  
+                     <table border="1">
+                        <tr style="background-color: purple;"> <td> ID </td> <td> By </td> <td>Designation</td> <td> Title </td> <td> Points </td> <td>Deadline</td>   <td>Documents</td>  <td>Action</td> </tr>
+                        
+                        <?php
+                         require_once("core/dbm.php");
+                         $result = $mysqli->query("SELECT `ass_id`,`by`,`designation`,`title`,`points`,`dead_line`,`file_location` FROM `assignments` WHERE `sems`=$sems AND `year` = $year ORDER BY `dead_line` DESC LIMIT 1000 ");
+                         while($row = $result->fetch_assoc()){
+                         echo '<tr>';
+                            echo '<td style="text-align:center">' . $row['ass_id'] .        '</td>'; 
+                            echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                            echo '<td style="text-align:center">' . $row['designation'] .   '</td>'; 
+                            echo '<td style="text-align:center">' . $row['title'] .     '</td>'; 
+                            echo '<td style="text-align:center">' . $row['points'] .     '</td>'; 
+                            echo '<td style="text-align:center">' . $row['dead_line'] .     '</td>'; 
+                            echo '<td>'  . '<a style="background-color:purple; padding:5px; color:#fff; text-decoration:none; " href="' . $row['file_location'] . ' "  ">' . ' View File</a>';
+                            echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="student-upload.php?ass_id=' . $row['ass_id'] . ' "  ">   Submit</a>' . '</td>';
+                         echo '</tr>'; 
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+
+                     
+                     ?>
+                     
+                    </table>
+
+                      <br>
+                      <br>
+                      <br>
+                      <br>
+                  </div> 
                 </div>
 
 
@@ -197,6 +203,9 @@ input[type=submit] {
   margin: 5px;
 }
 
+  table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
+  tr:first-child td {color:#fff; text-align: center;}
+  tr:hover {cursor: pointer; background-color: #eee}
 
 
 
@@ -207,7 +216,7 @@ input[type=submit] {
 .content .tabbed {width: 95%}
 .content .tabbed ul {list-style: none;margin: 0; padding: 0; display: flex; }
 .content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px }
-.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; color:#000 ;text-align: center;}
+.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;}
 .content .tabbed ul li a:hover{color: #fff; background-color: purple; transition: all .2s}
 
 .content .tabbed .tabbed-content     {clear: both; border: 1px solid purple;}

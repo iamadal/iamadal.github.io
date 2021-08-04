@@ -149,8 +149,8 @@
                      	<?php echo $message_class; ?>
                      	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                      		<input type="text" name="class_id" placeholder="Class ID(0 - 10 Digit) E.G 23221" required="true">
-                     		<input type="text" name="class_title" placeholder="Class title(Including Start time E.G 09:30 PM)" required="true">
-                     		<input type="text" name="links" placeholder="Zoom/Google Meet Links(E.G https://mylinks.cc)" required="true">
+                     		<input type="text" name="class_title" placeholder="Class title" required="true">
+                     		<input type="text" name="links" placeholder="Zoom/Google Meet URL(E.G https://mylinks.cc)" required="true">
                      		<label for="">Start Time:</label><input name="deadline" type="datetime-local" required="true">
                             <select name="year">
                      			<option value="0">--Select Year--</option>
@@ -171,7 +171,7 @@
 
 
                      <div class="B"  style="border:1px solid #ddd;">
-                     	<p style="text-align: center; background-color: red; margin:5px; color:#fff;padding: 5px;margin: 0px; font-size: 14px">Active All Class </p>
+                     	<p style="text-align: center; background-color: red; margin:5px; color:#fff;padding: 5px;margin: 0px; font-size: 14px"> All Active Class </p>
                         <table border="1">
 		    		    <tr style="background-color: purple;"> <td> Class ID </td> <td>Start Time</td>   </tr>
                      <?php
@@ -195,7 +195,7 @@
 
                      <div class="C flex-items" style="border:1px solid #ddd">
                      	<p style="text-align: center; background-color: yellow; margin:5px; color:#000;padding: 5px; font-size: 14px">Class Created By: <?php echo $firstname . " " . $lastname ; ?> </p>
-                        <table border="1">
+                <table border="1">
 		    		    <tr style="background-color: purple;"> <td> Class ID </td> <td> Title </td> <td> Year </td> <td> Sems </td> <td>Start Time</td> <td>Action</td> <td> Preview </td>  </tr>
                      <?php
                      $username = $_SESSION['username'];
@@ -209,7 +209,7 @@
                                 echo '<td style="text-align:center">' . $row['sems'] .        '</td>'; 
                                 echo '<td style="text-align:center">' . $row['dead_line'] .        '</td>'; 
                                 echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="delete-live-class.php?class_id=' . $row['class_id'] . ' "  ">   Delete</a>' . '</td>';
-                                echo '<td>'  . '<a href="' . $row['links'] . ' "  ">' . ' Check</a>';
+                                echo '<td>'  . '<a style="color:#fff; background-color:purple; text-decoration: none; padding:5px" href="' . $row['links'] . ' "  ">' . ' Join</a>';
                            echo '</tr>';
                      }
                      if($result->num_rows == 0) {

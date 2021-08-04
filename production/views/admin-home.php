@@ -161,8 +161,8 @@ $mysqli->close();
                   <div class="user-manager">
                     <div class="operations responsive">
                   
-                      <div class="block   flex-items"> <p style="text-align:center;padding:5px; color:#fff; background-color: #FA6B21"><i class="fa fa-power-off"></i> RESET Username</p>
-                         <a href="admin-reset-user.php">RESET Now</a>
+                      <div class="block   flex-items"> <p style="text-align:center;padding:5px; color:#fff; background-color: #FA6B21"><i class="fa fa-power-off"></i> Clear Uploaded Files</p>
+                         <a href="clear-upload.php">Clear </a>
                       </div>
 
                       <div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #3A58EE;padding:5px"><i class="fa fa-plus-square"></i> RESET Password</p>
@@ -173,8 +173,8 @@ $mysqli->close();
                         <a href="database-backup.php">Database Backup</a>
                       </div>
 
-                      <div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #F8432F;padding:5px"><i class="fa fa-close"></i> RESTORE </p>
-                         <a href="admin-removed-users.php">View</a>
+                      <div class="remove  flex-items"> <p style="text-align:center;color:#fff; background-color: #F8432F;padding:5px"><i class="fa fa-close"></i> Clear User Files </p>
+                         <a href="clear-user.php">Clear</a>
                       </div>
 
                

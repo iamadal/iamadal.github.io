@@ -1,15 +1,20 @@
 <?php 
    session_start();
-   if(isset($_SESSION['role']) && $_SESSION['role'] != 'sir' || !isset($_SESSION['username'])){
+   if(isset($_SESSION['role']) && $_SESSION['role'] != 'user'  || !isset($_SESSION['username'])){
    	  header("location: 404.php");
    }
-      if(isset($_SESSION["status"]) && $_SESSION["status"] !== "active"){
+   if(isset($_SESSION["status"]) && $_SESSION["status"] === "pending"){
    	  session_unset();
    	  session_destroy();
    	  header("location: approval.php");
-
    }
-    
+   if(isset($_SESSION["status"]) && $_SESSION["status"] === "blocked"){
+   	  session_unset();
+   	  session_destroy();
+   	  header("location: blocked.php");
+   }
+
+  
     $username = $_SESSION['username'];
     $complete_profile = "";
     require_once ("core/dbm.php");
@@ -23,13 +28,12 @@
 
 ?>
 
+ <?php
+				   $username = $_SESSION['username'];
 
-        <?php
-           $username = $_SESSION['username'];
-
-           $firstname = "";
-           $lastname  = "";
-           $designation = "";
+				   $firstname = "";
+				   $lastname  = "";
+				   $designation = "";
                    $welcome = "";
 
                    require_once ("core/dbm.php");
@@ -38,63 +42,28 @@
                    $r = $m->fetch_assoc();
 
                    if($m->num_rows == 1) {
-                        
+                      	
                       $firstname   = $r['firstname'];
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
                       
-                      $welcome = "Welcome " . $firstname . " " . $lastname . " Sir  - " . $designation . " of Green University -";
+                      $welcome = "Welcome " . $firstname . " " . $lastname . "  - " . $designation . " of Green University -";
                    } else {
-                      $welcome = "Your Profile is incomplete";
+                   	  $welcome = "Your Profile is incomplete";
                    }
-                   
-
                   
-        ?>
-
+                  
+?>
 
 <?php
-  
-  
-
-   if(!isset($_SESSION['message_assignments'])){
-      $_SESSION['message_assignments'] = "";
-   }
-
-   if($_SERVER['REQUEST_METHOD'] == 'POST'){
-     
-     $_SESSION['ass_id']         = trim($_POST['ass_id']);
-     $_SESSION['designation']         = $designation;
-     
-     $_SESSION['title']          = trim($_POST['title']);
-     $_SESSION['points']         = trim($_POST['points']);
-     $_SESSION['year']           = $_POST['year'];
-     $_SESSION['sems']           = $_POST['sems'];
-     $_SESSION['deadline']       = $_POST['deadline'];
-
-     header("location: upload-sir.php");
-
-     
-    }
-
-     // if(isset($_FILES['name'])){
-     //       $target_file = "uploads/" . $filename;
-     //       move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file);
-     // }
-
-     
-   //   require_once("core/dbm.php");
-     
-   //  $m = $mysqli->query( "INSERT INTO `webmaster`.`assignments` ( `ass_id`, `by`, `title`,`designation`,`points`,`file_location`,`dead_line`,`sems`,`year`) VALUES ( '$ass_id', '$by', '$title','$designation','$points','$filename','$deadline','$sems','$year')"   );
-   //  if($m){
-   //     $message_assignments = '<p style="font-size:14px; padding:5px;color:#000;text-align:center; background-color:yellow">' . $title . " with id=" . $ass_id . " is Created" . '</p>' ;
-   //  } else {
-   //     $message_assignments = '<p style="color:#fff; font-size:14px; padding:5px; ;text-align:center; background-color:red"> Please Check ID </p>' ;
-   //  }
     
-   // }
-
 ?>
+
+
+
+
+
+
 
 
 
@@ -104,6 +73,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/ui-core.css">
 		<link rel="shortcut icon" type="image/jpg" href="img/fav.png">
 		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -127,13 +97,13 @@
 				 	<p style="text-align: center; margin:0px;"><svg aria-label="close" class="icon" height="24" role="img" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"></path><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></p>
 				    <div class="menu-wrap">
 				    	<div class="profile">
-				    		<a href="teacher-profile.php"> <img src="img/avater-male.png" height="80px" width="80px" alt=""></a><br>
+				    		<a href="student-profile.php"><img src="img/avater-male.png" height="80px" width="80px" alt=""></a><br>
                             <span style="text-align:center;padding: 5px; background-color: #FA4E23 ; display: block;font-weight: normal; color:#fff"><?php echo $_SESSION['username'] ?></span>
                             <div class="list-items">
                              <ul>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
-                            	<li><a href="#"><i class="fa fa-user fa-2x"></i></a></li>
+                            	<li><a href="#"><i class="fa fa-home fa-2x"></i></a></li>
                             	<li><a href="logout.php"><i class="fa fa-sign-out fa-2x"></i></a></li>
                             </ul>
                             </div>
@@ -146,126 +116,82 @@
 			<div class="content">
 				<!-- Dashboard -->
 
-
 				<p style="margin-left: 5px;background-color: #007EFF; color: #fff; display: inline-block;font-size: 14px; text-align: center; padding: 5px"><i class="fa fa-cog fa-spin"></i> <?php echo $welcome; ?></p>
-				<p class="bgc <?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="teacher-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
-
-
-		            <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
+				<p class="bgc <?php echo (empty($complete_profile)) ? '' : 'display-none'; ?>"><a  href="student-profile.php"><i class="fa fa-external-link"></i> Please Complete your profile. Click Here</a></p>
+                
+                <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
                   <ul>
-                    <li><a href="teacher-home.php">Messages</a></li>
-                    <li><a href="teacher-home-exam.php" >Exam</a></li>
-                    <li><a href="teacher-home-assignment.php" style="background-color:purple;color:#fff">Assignment</a></li>
-                    <li><a href="teacher-home-live.php">Live Class</a></li>
-                    <li><a href="teacher-home-report.php">Report</a></li>
+                    <li><a href="student-home.php">Messages</a></li>
+                    <li><a href="student-home-exam.php" >Exam</a></li>
+                    <li><a href="student-home-assignment.php" >Assignment</a></li>
+                    <li><a href="student-home-live.php">Live Class</a></li>
+                    <li><a href="student-home-report.php" style="color: #fff; background-color: purple">Report</a></li>
                   </ul>
-                  <div class="tabbed-content responsive">
-                     <div class="A flex-items" style="border:1px solid #ddd;font-size: 13px">
+                	<div class="tabbed-content responsive">
+                      <div class="exam-report flex-items">
+                         <p style="text-align: center; background-color: orange; color:#fff">Exam Report</p>
+                                                           <table border="1">
+            <tr style="background-color: purple;"> <td> ID </td> <td>Obtained Points</td> <td>Comments from Tutor</td>  </tr>
+              <?php
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT `ass_id`,`points`,`remarks` FROM `ass_students` WHERE `by`='$username' ");
+                     while($row = $result->fetch_assoc()){
+                      echo '<tr>';
+                        echo '<td style="text-align:center">' . $row['ass_id'] .        '</td>'; 
+                        echo '<td style="text-align:center">' . $row['points'] .   '</td>'; 
+                        echo '<td style="text-align:center">' . $row['remarks'] .     '</td>'; 
+                      echo '</tr>'; 
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+
                      
-
-                      <p style="text-align: center; background-color: purple; margin:0px; color:#fff;padding: 5px">Create an Assignment</p>
-                      <?php echo $_SESSION['message_assignments']; ?>
-                   
-
-
-                      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-                        <input type="text" name="ass_id" placeholder="Assignment ID(0 - 10 Digit) E.G 23221" required="true">
-                        <input type="text" name="title" placeholder="Assignment title" required="true">
-                        <input type="text" name="points" placeholder="Points(1-100)" required="true">
-                        <label style="" for="">Deadline:</label><input style="padding: 5px" name="deadline" type="date" required="true">
-                        <select name="year" required="true">
-                          <option value="0">--Select Year--</option>
-                          <option value="1">1st Year</option>
-                          <option value="2">2nd Year</option>
-                          <option value="3">3rd Year</option>
-                          <option value="4">4th Year</option>
-                        </select>
-
-                        <select name="sems" required="true">
-                          <option value="0">--Select Semester</option>
-                          <option value="1">Spring 1</option>
-                          <option value="2">Summer 2</option>
-                        </select>
-                        <input type="submit" value="Upload Files">
-                      </form>
-                    
-
-
-
-
-                     </div>
-                    <div class="flexitems b" style="border:1px solid red">
-                          <p style="text-align: center; background-color: red; margin-bottom:5px; margin-top:0 ;color:#fff;padding: 5px; font-size: 14px"> Active Assignments </p>
-              <table border="1">
-                <tr style="background-color: purple;"> <td> ID </td> <td>Deadline</td>   </tr>
-                     <?php
+                     ?>
+          </table>
+                      </div>
+                      <div class="assign-report flex-items">
+                        <p style="text-align: center; background-color: purple; color:#fff">Assignment Report</p>
+                                  <table border="1">
+            <tr style="background-color: purple;"> <td> ID </td> <td>Obtained Points</td> <td>Comments from Tutor</td>  </tr>
+              <?php
                      require_once("core/dbm.php");
-                     $result = $mysqli->query("SELECT `ass_id`,`dead_line` FROM `assignments`   ORDER BY `dead_line` DESC LIMIT 1000 ");
+                     $result = $mysqli->query("SELECT `ass_id`,`points`,`remarks` FROM `ass_students` WHERE `by`='$username' ");
                      while($row = $result->fetch_assoc()){
-                           echo '<tr>';
-                                echo '<td style="text-align:center">' . $row['ass_id'] .        '</td>'; 
-                                echo '<td style="text-align:center">' . $row['dead_line'] .        '</td>'; 
-                           echo '</tr>';
-                           
+                      echo '<tr>';
+                        echo '<td style="text-align:center">' . $row['ass_id'] .        '</td>'; 
+                        echo '<td style="text-align:center">' . $row['points'] .   '</td>'; 
+                        echo '<td style="text-align:center">' . $row['remarks'] .     '</td>'; 
+                      echo '</tr>'; 
                      }
                      if($result->num_rows == 0) {
                       echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
                      }
-                       
 
+                     
                      ?>
-                      </table>
-                    </div>
-                    <div class="flexitems c" style="border:1px solid purple">
-                        <p style="text-align: center; background-color: yellow; margin-bottom:5px;margin-top:0 ; color:#000;padding: 5px; font-size: 14px">Your Assignments </p>
-                        <table border="1">
-                <tr style="background-color: purple;"> <td> ID </td> <td> Title </td> <td> Year </td> <td> Sems </td> <td>Deadline</td> <td>Points</td> <td>Action</td> <td> Documents </td>  </tr>
-                     <?php
-                     $username = $_SESSION['username'];
-                     require_once("core/dbm.php");
-                     $result = $mysqli->query("SELECT `ass_id`,`title`,`year`,`sems`,`dead_line`,`points`,`file_location` FROM `assignments` WHERE `by`='$username' ORDER BY `dead_line` DESC LIMIT 1000 ");
-                     while($row = $result->fetch_assoc()){
-                           echo '<tr>';
-                                echo '<td style="text-align:center">' . $row['ass_id'] .        '</td>'; 
-                                echo '<td style="text-align:center">' . $row['title'] .        '</td>'; 
-                                echo '<td style="text-align:center">' . $row['year'] .        '</td>'; 
-                                echo '<td style="text-align:center">' . $row['sems'] .        '</td>'; 
-                                echo '<td style="text-align:center">' . $row['dead_line'] .        '</td>'; 
-                                echo '<td style="text-align:center">' . $row['points'] .        '</td>'; 
-                                echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="delete-assignments.php?ass_id=' . $row['ass_id'] . ' "  ">   Delete</a>' . '</td>';
-                                echo '<td>'  . '<a style="color:#fff; background-color:purple; text-decoration: none; padding:5px" href="'  . $row['file_location'] . ' "  ">' . ' View</a>';
-                           echo '</tr>';
-                     }
-                     if($result->num_rows == 0) {
-                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
-                     }
-                       
-
-                     ?>
-                        
-                    </div>
-                      
-                  </div> 
+          </table>
+                      </div>
+                	</div> 
                 </div>
 
+
+
 			</div>
-        </div>
 		</body>
 	</html>
 <!-- Stylesheets -->
 <style>
 
 
-/* Styles for this page*/
- * {outline: 0px;}
-
-  table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
+    table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
   tr:first-child td {color:#fff; text-align: center;}
   tr:hover {cursor: pointer; background-color: #eee}
 
+ * {outline: 0px;}
 
 form {margin: 0 auto;}
-form p {margin: 0  5px; font-size: 12px !important}
+form p {margin: 0  5px; font-size: 12px}
 input[type=text], input[type=email],select, textarea{
   width: 95%;
   padding: 7px;
@@ -299,15 +225,13 @@ input[type=submit] {
 
 
  /* Styles for this page*/
-
-.content .bgc { padding: 5px; margin: 5px; background-color: yellow; color: #000; border-radius: 5px; text-align: center  ; color:#000;}
+.content .bgc { padding: 5px; margin: 5px; background-color: yellow; color: #000 !important; border-radius: 5px; text-align: center  ; color:#000;}
 .display-none {display: none}
-
-.content .tabbed {margin: 5px}
+ 
+.content .tabbed {width: 95%}
 .content .tabbed ul {list-style: none;margin: 0; padding: 0; display: flex; }
-.content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px;border-left:none; }
-.content .tabbed ul li:first-child {border-left:1px solid purple;}
-.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;color:#000;}
+.content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px }
+.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;}
 .content .tabbed ul li a:hover{color: #fff; background-color: purple; transition: all .2s}
 
 .content .tabbed .tabbed-content     {clear: both; border: 1px solid purple;}
@@ -315,29 +239,16 @@ input[type=submit] {
 
 
 
-.display-none {display: none}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
- {border: 1px solid red;}
+  {border: 1px solid red;}
 body,html {font-family: 'Open sans'; background: #eee;}
 /* handle very small devices < 320px*/
 .container { background-color: #fff; box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
 
 .head-section              { border: 1px solid #f0f0f0;display: flex;flex-wrap: wrap;}
 .head-section .logo        { }
-.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'Roboto';}
+.head-section .hTitle      { font-size: 1em;font-weight: 500;color: #2d8016;margin-top: 1em;font-family: 'ubuntu';}
 .head-section .hTitle .sub { font-weight: 500;color: #3C6E1B;}
 
 .navbar         {font-family: 'Roboto';font-weight: 300;background-color: purple; position: sticky; top: 0px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);}
@@ -359,13 +270,22 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 .container {width: 100%}
 .responsive {display: flex; flex-direction: column; flex-wrap: wrap;}
-.flex-items {width: 98%}
+.flex-items {width: 100%}
 
 
 
 
+/* content Area */
 
+.content             {width: 98%; margin: 0 auto; font-family: 'Roboto' }
+.content .item-title { border-radius: 3px; background-color: purple; color:#fff; text-align: center; padding: 5px; margin:5px; display: inline-block; font-size: 14px}
+.content .report {font-family: 'Roboto'; font-size: 14px; }
+.content .report .inbox     {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg, #6a11cb , #2575fc);}
+.content .report .inbox a   {color: #fff; text-align: center; display: block;  }
+.content .report .request a , .content .report .stat a {color: #fff; text-align: center; display: block;  }
 
+.content .report .request   {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#fc4a1a, #f7b733);}
+.content .report .stat      {margin-top: 5px; padding: 4px ;border-radius: 3px; margin-bottom: 5px;box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);;color:#fff;background: linear-gradient(45deg,#ee0979, #ff6a00);}
 
 
 
@@ -379,10 +299,9 @@ body,html {font-family: 'Open sans'; background: #eee;}
 
 
 
-
 @media (min-width: 320px){
-  .container {width: 98%}
-  .navbar .mega-menu {width: 22%;}
+	.container {width: 98%}
+	.navbar .mega-menu {width: 22%;}
 }
 /*Smart Phones*/
 @media (min-width: 481px){
@@ -391,18 +310,19 @@ body,html {font-family: 'Open sans'; background: #eee;}
 }
 /* Table */
 @media (min-width: 768px){
-   .container  {width: 100%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
+   .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 0 30%; margin: 3px;}
    .navbar .mega-menu {width:16%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
-  .container  { width: 100%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
+	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
     .flex-items  { flex: 1 0 30%;}
     .navbar .mega-menu   {width: 10%;}
 }
+
 
 
 /* UI Components */

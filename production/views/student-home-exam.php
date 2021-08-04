@@ -137,11 +137,11 @@
                 
                 <div class="tabbed <?php echo (!empty($complete_profile)) ? '' : 'display-none'; ?>">
                   <ul>
-                    <li><a href="student-home.php" style="color: #fff; background-color: purple">Messages</a></li>
-                    <li><a href="student-home-exam.php" >Exam</a></li>
+                    <li><a href="student-home.php">Messages</a></li>
+                    <li><a href="student-home-exam.php" style="color: #fff; background-color: purple">Exam</a></li>
                     <li><a href="student-home-assignment.php" >Assignment</a></li>
                     <li><a href="student-home-live.php">Live Class</a></li>
-                    <li><a href="student-home-report.php">Report</a></li>
+                    <li><a href="student-home-report.php">Live Class</a></li>
                   </ul>
                 	<div class="tabbed-content">
                 		<div>
@@ -207,7 +207,7 @@ input[type=submit] {
 .content .tabbed {width: 95%}
 .content .tabbed ul {list-style: none;margin: 0; padding: 0; display: flex; }
 .content .tabbed ul li{ border: 1px solid purple; border-bottom: none; flex: 0 0 100px ; font-size: 14px }
-.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; color:#000 ;text-align: center;}
+.content .tabbed ul li a{text-decoration: none; display: block; padding: 10px; text-align: center;}
 .content .tabbed ul li a:hover{color: #fff; background-color: purple; transition: all .2s}
 
 .content .tabbed .tabbed-content     {clear: both; border: 1px solid purple;}

@@ -1,1 +1,0 @@
-INSERT INTO `webmaster`.`message` (`no`, `by`, `title`, `message`) VALUES ('2', 'mam', 'mo', 'Go Go');

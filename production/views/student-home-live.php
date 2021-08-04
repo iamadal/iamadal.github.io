@@ -126,7 +126,9 @@
                 	<ul>
                 		<li><a href="student-home.php">Messages</a></li>
                 		<li><a href="student-home-exam.php" >Exam</a></li>
+                    <li><a href="student-home-assignment.php" >Assignment</a></li>
                 		<li><a href="student-home-live.php" style="color: #fff; background-color: purple">Live Class</a></li>
+                    <li><a href="student-home-report.php">Report</a></li>
                 	</ul>
                 	<div class="tabbed-content">
                    <p style="background-color: yellow; color: #000; text-align: center; font-size: 16px; padding: 5px; display: block">Hi ,<?php echo $firstname . " "; ?> Your upcoming Live Class( <?php echo "Year: " . $year . " # Semester: " . $sems; ?>)</p>
