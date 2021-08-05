@@ -28,59 +28,39 @@
 
 ?>
 
- <?php
-				   $username = $_SESSION['username'];
 
-				   $firstname = "";
-				   $lastname  = "";
-				   $designation = "";
+ <?php
+           $username = $_SESSION['username'];
+           
+        
+
+
+
+           $firstname = "";
+           $lastname  = "";
+           $designation = "";
                    $welcome = "";
 
                    require_once ("core/dbm.php");
                    
-                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` FROM `user_info` WHERE `username` = '$username'  ");
+                   $m = $mysqli->query("SELECT `firstname`,`lastname`,`designation` ,`sems`,`year` FROM `user_info` WHERE `username` = '$username'  ");
                    $r = $m->fetch_assoc();
 
                    if($m->num_rows == 1) {
-                      	
+                        
                       $firstname   = $r['firstname'];
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
+                      $sems        = $r['sems'];
+                      $year        = $r['year'];
                       
                       $welcome = "Welcome " . $firstname . " " . $lastname . "  - " . $designation . " of Green University -";
                    } else {
-                   	  $welcome = "Your Profile is incomplete";
+                      $welcome = "Your Profile is incomplete";
                    }
                   
                   
 ?>
-
-<?php
-  $message_sent = "";
-
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $by     = $_SESSION['username']; 
-    $msg_title    = trim($_POST['msg-title']); 
-    $msg_body     = trim($_POST['msg-body']);
-    
-    require_once "core/dbm.php";
-    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`) VALUES ( '$by', '$msg_title', '$msg_body')"   );
-    if($m){
-      $message_sent = "Your message sent to admin.";
-    } else
-    {
-      $message_sent = "You have Pending message request. Please wait for admin's response";
-    }
-   
-   }      
-?>
-
-
-
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -141,18 +121,37 @@
                     <li><a href="student-home-exam.php" style="color: #fff; background-color: purple">Exam</a></li>
                     <li><a href="student-home-assignment.php" >Assignment</a></li>
                     <li><a href="student-home-live.php">Live Class</a></li>
-                    <li><a href="student-home-report.php">Live Class</a></li>
+                    <li><a href="student-home-report.php">Report</a></li>
                   </ul>
-                	<div class="tabbed-content">
-                		<div>
-                           <p style="text-align: center"><i class="fa fa-envelope"></i> Report your problem to admin</p>
-                           <p style="color:#0231BA; font-size: 14px; text-align: center;"><?php echo $message_sent; ?></p>
-                           <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                           	   <input type="text"   name="msg-title"   placeholder="Message Title" required>
-                           	   <textarea placeholder="Your message" name="msg-body" row="6" column="50" required></textarea>
-                               <input type="submit" value="Send to Admin">
-                           </form>
-                		</div>
+                	<div class="tabbed-content responsive">
+                     <div class="flex-item" >
+                       <p style="background-color: purple; color:#fff; padding: 5px; text-align: center;">Please Complete following MCQ Test</p>
+                        <table border="1">
+                <tr style="background-color: purple;"> <td> ID </td> <td> Name </td> <td> By </td> <td> Designation </td> <td>Marks</td> <td>Length(min)</td> <td>Action</td>  </tr>
+                     <?php
+                     $username = $_SESSION['username'];
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT `exam_id`,`exam_name`,`by`,`designation`,`marks`,`duration` FROM `exam` WHERE `sems`='$sems' AND `year`='$year' ");
+                     while($row = $result->fetch_assoc()){
+                           echo '<tr>';
+                                echo '<td style="text-align:center">' . $row['exam_id'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['exam_name'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['designation'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['marks'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['duration'] .        '</td>'; 
+                                echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="   take-mcq-exam.php?e_id=' . $row['exam_id'] . '&exam_name=' . $row['exam_name'] . '&teacher='  . $row['by'] . '&sems=' . $sems . '&year=' .$year. '&len=' .$row['duration'] . '   "      ">   Start Now</a>' . '</td>';
+                           echo '</tr>';
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+                       
+
+                     ?>
+                     </table>   
+
+                     </div>
                 	</div> 
                 </div>
 
@@ -163,6 +162,12 @@
 	</html>
 <!-- Stylesheets -->
 <style>
+
+
+    table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
+  tr:first-child td {color:#fff; text-align: center;}
+  tr:hover {cursor: pointer; background-color: #eee}
+
 
  * {outline: 0px;}
 

@@ -44,7 +44,7 @@ require_once("core/dbm.php");
   $ass_id       = $_SESSION['ass_ids'];
   $by           = $_SESSION['username'];
   $target_dir   = "uploads_std/";
-  $target_file  = $target_dir . $_SESSION['ass_ids'] . "_" . basename($_FILES["file"]["name"]);
+  $target_file  = $target_dir . $_SESSION['ass_ids'] . "_" . $by . "_". basename($_FILES["file"]["name"]);
   $sems         = 0;
   $year         = 0;
   $sub          = 1;

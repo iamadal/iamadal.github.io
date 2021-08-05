@@ -42,6 +42,8 @@
                       $firstname   = $r['firstname'];
                       $lastname    = $r['lastname'];
                       $designation = $r['designation'];
+
+                      $_SESSION['designation'] = $r['designation'];
                       
                       $welcome = "Welcome " . $firstname . " " . $lastname . " Sir  - " . $designation . " of Green University -";
                    } else {
@@ -54,29 +56,6 @@
 
 
 
-<?php
-  $message_sent = "";
-
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $by     = $_SESSION['username']; 
-    $msg_title    = trim($_POST['msg-title']); 
-    $msg_body     = trim($_POST['msg-body']);
-    $designation  = "";
-    
-    require_once "core/dbm.php";
-    $dd = $mysqli->query( " SELECT `designation` FROM `user_info` WHERE `username`='$by' "  );
-    $ddr = $dd->fetch_assoc();
-    $designation = $ddr['designation'];
-    $m = $mysqli->query(   "INSERT INTO `webmaster`.`message` ( `by`, `title`, `message`,`designation`) VALUES ( '$by', '$msg_title', '$msg_body','$designation')"   );
-    if($m){
-      $message_sent = "Your message sent to admin.";
-    } else
-    {
-      $message_sent = "You have Pending message request. Please wait for admin's response";
-    }
-   
-   }    
-?>
 
 
 <!DOCTYPE html>
@@ -140,8 +119,95 @@
                     <li><a href="teacher-home-live.php">Live Class</a></li>
                     <li><a href="teacher-home-report.php">Report</a></li>
                   </ul>
-                  <div class="tabbed-content">
-                        Fine
+                  <div class="tabbed-content responsive">
+                     <div class="flex-itesm">
+                     	  <form action="teacher-create-exam.php">
+                        	<h3 style="text-align: center">Create a MCQ Based Exam</h3>
+                        	<p>Exam ID</p>
+                        	<input type="text" name="exam-id" placeholder="Exam ID(1-10 Digits)" required="true">
+                        	<p>Exam Name</p>
+                        	<input type="text" name="exam-name" placeholder="Exam Name" required="true">
+                        	<p>Exam Duration(in minutes)</p>
+                        	<input type="text" name="duration" placeholder="Duration(must be in minutes 0-120 min)" required="true">
+                        	<p>Full Marks</p>
+                        	<input type="text" name="marks" placeholder="Marks(0-100)" required="true">
+				        	<select name="year" id="yr" required>
+                              <option value="select">-- Year --</option>
+                              <option value="1">1st Year</option>
+                              <option value="2">2nd Year</option>
+                              <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                          </select>
+                    <select name="sems" id="sm" required>
+                    	<option value="select">-- Semester --</option>
+                    	<option value="1">Spring - 1 </option>
+                    	<option value="2">Summer - 2 </option>
+                    </select>
+                        	<input type="submit" value="Add MCQ Question">
+                        </form>
+                     </div>
+                     <div class="flex-itesm">
+                     	<p style="text-align: center; background-color: red; margin:5px; color:#fff;padding: 5px;margin: 0px; font-size: 14px"> Active Exam </p>
+                     	                      <table border="1">
+                        <tr style="background-color: purple;"> <td> ID </td> <td> By </td> <td>Sem</td> </td> <td> Year </td> </tr>
+                        
+                        <?php
+                         require_once("core/dbm.php");
+
+                         $result = $mysqli->query("SELECT `exam_id`,`by`,`sems`,`Year` FROM `exam`");
+                         
+                         while($row = $result->fetch_assoc()){
+                         
+                         echo '<tr>';
+                            echo '<td style="text-align:center">' . $row['exam_id'] .        '</td>'; 
+                            echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                            echo '<td style="text-align:center">' . $row['sems'] .     '</td>'; 
+                            echo '<td style="text-align:center">' . $row['Year'] .     '</td>'; 
+                         echo '</tr>'; 
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+
+                     
+                     ?>
+                     
+                    </table>
+                     </div>
+                     <div class="flex-itesm">
+                     	<p style="text-align: center; background-color: yellow; margin:5px; color:#000;padding: 5px;margin: 0px; font-size: 14px"> MCQ Set Created by You </p>
+                      <table border="1">
+                        <tr style="background-color: purple;"> <td> ID </td> <td> By </td> <td>Designation</td> <td> Marks </td> <td> Semester </td> <td> Year </td> <td>Action</td></tr>
+                        
+                        <?php
+                         require_once("core/dbm.php");
+
+                         $result = $mysqli->query("SELECT `exam_id`,`by`,`designation`,`Marks`,`sems`,`Year` , `duration` FROM `exam` WHERE `by`='$username'");
+                         
+                         while($row = $result->fetch_assoc()){
+                         
+                         echo '<tr>';
+                            echo '<td style="text-align:center">' . $row['exam_id'] .        '</td>'; 
+                            echo '<td style="text-align:center">' . $row['by'] .        '</td>'; 
+                            echo '<td style="text-align:center">' . $row['designation'] .   '</td>'; 
+                            echo '<td style="text-align:center">' . $row['Marks'] .     '</td>'; 
+                            echo '<td style="text-align:center">' . $row['sems'] .     '</td>'; 
+                            echo '<td style="text-align:center">' . $row['Year'] .     '</td>'; 
+                        
+                            echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="delete-exam.php?exam_id=' . $row['exam_id'] . ' " ">   Delete</a>' . '</td>';
+              
+                         echo '</tr>'; 
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+
+                     
+                     ?>
+                     
+                    </table>
+
+                     </div>
                   </div> 
                 </div>
 
@@ -154,9 +220,16 @@
 
 
 /* Styles for this page*/
+
  * {outline: 0px;}
 
-form {margin: 0 auto;}
+  table ,tr ,td { border-collapse: collapse; padding: 10px; margin: 0 auto; font-family: 'Roboto' ; font-size: 13px}
+  tr:first-child td {color:#fff; text-align: center;}
+  tr:hover {cursor: pointer; background-color: #eee}
+
+ * {outline: 0px;}
+
+form {margin: 0 auto; font-size: 12px; }
 form p {margin: 0  5px; font-size: 12px}
 input[type=text], input[type=email],select, textarea{
   width: 95%;
@@ -285,11 +358,11 @@ body,html {font-family: 'Open sans'; background: #eee;}
    .container  {width: 80%;margin: 0 auto; height: 95vh; overflow-y: scroll; }
    .responsive {display: flex; flex-direction: row; flex-wrap: wrap;}
    .flex-items  {flex: 1 0 30%; margin: 3px;}
-   .navbar .mega-menu {width:16%; }
+   .navbar .mega-menu {width:98%; }
 }
 /*Desktop*/
 @media (min-width: 1364px){
-	.container  { width: 75%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
+	.container  { width: 98%; margin: 0 auto; height: 95vh; overflow-y: scroll; }
     .responsive { display: flex; flex-direction: row; flex-wrap: wrap; align-content:  center;}
     .flex-items  { flex: 1 0 30%;}
     .navbar .mega-menu   {width: 10%;}
