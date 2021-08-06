@@ -71,10 +71,11 @@
 			</div>
 			<!-- Content -->
 			<h1 style="text-align: center; color: red" id="demo"><h1/>
+		    <h5 style="text-align: center; color:red;">Do not reload the Page</h5>
 			<!-- <p style="font-size:14px; width: 50% ; margin: 0 auto; padding: 5px; margin-bottom: 10px;  ;text-align: center; background-color: red; color:#fff">Do not refresh the Browser. otherwise Our Bot might ban you</p> -->
 			<div class="contents">
                      <table border="1">
-
+                         
                         <tr style="background-color: purple;"> <td> no.  </td> <td> Question </td> <td>  1 </td> <td>  2 </td> <td>  3 </td> <td>  4 </td>  </tr>
                       
                         <?php
