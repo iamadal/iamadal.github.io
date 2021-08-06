@@ -8,20 +8,23 @@
 
 
 <?php
+    
    if(isset($_GET['len'])){
 
-   	  $time    = $_GET['len'];
-   	  $e_id    = $_GET['e_id'];
-   	  $e_name  = $_GET['exam_name'];
-   	  $teacher = $_GET['teacher'];
-   	  $sems    = $_GET['sems'];
-   	  $year    = $_GET['year'];
+   	  $time    =  $_GET['len'];
+   	  $e_id    =  $_GET['e_id'];
+   	  $e_name  =  $_GET['exam_name'];
+   	  $teacher =  $_GET['teacher'];
+   	  $sems    =  $_GET['sems'];
+   	  $year    =  $_GET['year'];
+   	  $markss    = $_GET['marks'];
 
    	  $_SESSION['teacher']   = $teacher;
    	  $_SESSION['e_id']      = $e_id;
    	  $_SESSION['e_name']    = $e_name;
    	  $_SESSION['sems']      = $sems;
    	  $_SESSION['year']      = $year;
+   	  $_SESSION['marks']    = $markss;
    }
 ?>
 
@@ -71,8 +74,9 @@
 			
 			<div class="contents">
                      <table border="1">
+
                         <tr style="background-color: purple;"> <td> no.  </td> <td> Question </td> <td>  1 </td> <td>  2 </td> <td>  3 </td> <td>  4 </td>  </tr>
-                        
+                      
                         <?php
                          require_once("core/dbm.php");
                          $dbs = $e_id . "_" . $teacher;
@@ -84,10 +88,11 @@
                          echo '<tr>';
                             echo '<td style="text-align:center">' . $row['qn'] .        '</td>'; 
                             echo '<td style="text-align:center">' . $row['question'] .        '</td>'; 
-                            echo '<td style="text-align:center">' .  $row['option_1'] .   '</td>'; 
+                            echo '<td style="text-align:center">' . $row['option_1'] .   '</td>'; 
                             echo '<td style="text-align:center">' . $row['option_2'] .     '</td>'; 
                             echo '<td style="text-align:center">' . $row['option_3'] .     '</td>'; 
                             echo '<td style="text-align:center">' . $row['option_4'] .     '</td>'; 
+                            
                          echo '</tr>'; 
 
 
@@ -98,14 +103,10 @@
                       
                      
                      ?>
-                     
+                    <tr><td colspan="6"><form action="verify.php" method="post"><input type="text" name="answer" placeholder="answer(E.G: 1 6 3 2 7 3 4 2 1 4)" required="true"><input type="submit" value="Submit answer"></form></td></tr>
                     </table>
-                    <p style="font-size: 14px; text-align: center">Answer Sheet</p>
-                    <p style="font-size: 14px; text-align: center">Sample: 1 2 3 7 3 1 2 4 5 6 8 9   must be seperated by space</p>
-                    <form action="verify.php" method="post">
-                    	<input type="text" name="answer" placeholder="enter answer sequences">
-                    	<input type="submit" >
-                    </form>
+              
+    
 			</div>
 			
 		</div>
@@ -116,7 +117,7 @@
 <style>
  * {outline: 0px;}
 
-form {margin: 0 auto; position: fixed;}
+form {margin: 0 auto;}
 form p {margin: 0  5px; font-size: 12px}
 input[type=text], input[type=email],select, textarea{
   width: 95%;

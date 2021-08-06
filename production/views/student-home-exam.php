@@ -124,7 +124,7 @@
                     <li><a href="student-home-report.php">Report</a></li>
                   </ul>
                 	<div class="tabbed-content responsive">
-                     <div class="flex-item" >
+                     <div class="flex-items" >
                        <p style="background-color: purple; color:#fff; padding: 5px; text-align: center;">Please Complete following MCQ Test</p>
                         <table border="1">
                 <tr style="background-color: purple;"> <td> ID </td> <td> Name </td> <td> By </td> <td> Designation </td> <td>Marks</td> <td>Length(min)</td> <td>Action</td>  </tr>
@@ -140,7 +140,7 @@
                                 echo '<td style="text-align:center">' . $row['designation'] .        '</td>'; 
                                 echo '<td style="text-align:center">' . $row['marks'] .        '</td>'; 
                                 echo '<td style="text-align:center">' . $row['duration'] .        '</td>'; 
-                                echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="   take-mcq-exam.php?e_id=' . $row['exam_id'] . '&exam_name=' . $row['exam_name'] . '&teacher='  . $row['by'] . '&sems=' . $sems . '&year=' .$year. '&len=' .$row['duration'] . '   "      ">   Start Now</a>' . '</td>';
+                                echo '<td >' . '<a style="background-color: red; color: #fff; padding:5px; text-decoration:none;";  href="   take-mcq-exam.php?e_id=' . $row['exam_id'] . '&exam_name=' . $row['exam_name'] . '&teacher='  . $row['by'] . '&sems=' . $sems . '&year=' .$year. '&len=' .$row['duration'] . '&marks=' . $row['marks'] .     '   "      ">   Take</a>' . '</td>';
                            echo '</tr>';
                      }
                      if($result->num_rows == 0) {
@@ -150,6 +150,30 @@
 
                      ?>
                      </table>   
+
+                     </div>
+                     <div >
+                       <p style="text-align: center; background-color: yellow; color:#000; padding: 5px;">Completed MCQ Exams</p>
+                                               <table border="1">
+                <tr style="background-color: purple;"> <td> ID </td> <td> Name </td>    <td>Obtained Marks</td>   </tr>
+                     <?php
+                     $username = $_SESSION['username'];
+                     require_once("core/dbm.php");
+                     $result = $mysqli->query("SELECT `exam_id`,`exam_name`,`marks` FROM `exam_std` WHERE `submitted_by`='$username' ");
+                     while($row = $result->fetch_assoc()){
+                           echo '<tr>';
+                                echo '<td style="text-align:center">' . $row['exam_id'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['exam_name'] .        '</td>'; 
+                                echo '<td style="text-align:center">' . $row['marks'] .        '</td>'; 
+                           echo '</tr>';
+                     }
+                     if($result->num_rows == 0) {
+                      echo '<h3 style="text-align:center; color: red"> No Messages </h3>';
+                     }
+                       
+
+                     ?>
+                     </table> 
 
                      </div>
                 	</div> 
