@@ -24,7 +24,7 @@
    	  $_SESSION['e_name']    = $e_name;
    	  $_SESSION['sems']      = $sems;
    	  $_SESSION['year']      = $year;
-   	  $_SESSION['marks']    = $markss;
+   	  $_SESSION['marks']     = $markss;
    }
 ?>
 
@@ -38,7 +38,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<title>Green University of Bangladesh</title>
 	</head>
-	<body>
+	<body onunload="clearTimers();">
 		<div class="container" id="style-1">
 			<div class="header">
 				<header class="head-section">
@@ -71,7 +71,7 @@
 			</div>
 			<!-- Content -->
 			<h1 style="text-align: center; color: red" id="demo"><h1/>
-			
+			<!-- <p style="font-size:14px; width: 50% ; margin: 0 auto; padding: 5px; margin-bottom: 10px;  ;text-align: center; background-color: red; color:#fff">Do not refresh the Browser. otherwise Our Bot might ban you</p> -->
 			<div class="contents">
                      <table border="1">
 
@@ -293,4 +293,8 @@ var x = setInterval(() => {
         document.querySelector(".contents").classList.toggle('hide');
     }
 }, 1000);
+
+function clearTimers(){
+	localStorage.removeItem('saved_countdown');
+}
 </script>
