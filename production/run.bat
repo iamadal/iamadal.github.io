@@ -1,3 +1,3 @@
 @echo off
-start http://localhost:82/home.php
+start http://localhost:82
 php -S localhost:82
