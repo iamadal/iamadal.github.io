@@ -1,13 +1,13 @@
 <?php
    echo '<h1 style="text-align:center">Green University of Bangladesh</h1>';
     $admin_user     = "admin";
-    $admin_pass     = "654321"; // Set Password
+    $admin_pass     = "admin"; // Set Password
 
 
     $password = password_hash($admin_pass, PASSWORD_DEFAULT); // Don't Edit or Change hash Algorithms
 
     $username_db       = "root";  // Set Database User
-    $password_db       = "55761910";  // Set Database Password
+    $password_db       = "123456";  // Set Database Password
 
 
 
