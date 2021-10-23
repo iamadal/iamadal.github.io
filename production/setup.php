@@ -1,13 +1,13 @@
 <?php
    echo '<h1 style="text-align:center">Green University of Bangladesh</h1>';
     $admin_user     = "admin";
-    $admin_pass     = "admin"; // Set Password
+    $admin_pass     = "123456"; // Set Password
 
 
     $password = password_hash($admin_pass, PASSWORD_DEFAULT); // Don't Edit or Change hash Algorithms
 
     $username_db       = "root";  // Set Database User
-    $password_db       = "123456";  // Set Database Password
+    $password_db       = "1234";  // Set Database Password
 
 
 
@@ -19,7 +19,7 @@
     $m = new mysqli("localhost",$username_db,$password_db);
 
     if($m->connect_error){
-  	    die( "Failed to connect");
+  	    echo $m->connect_error;
      } else {
   	      echo "1. Connecting ... OK<br>";
      }
